@@ -1,0 +1,1135 @@
+{
+    "Genesis": {
+        "date": "c. 1446–1400 BC",
+        "date_academic_stance": "Traditional date; low consensus in modern critical scholarship",
+        "category": "Law",
+        "author": "Moses (traditional); multiple sources (critical)",
+        "language": "Hebrew",
+        "chapters": 50,
+        "jesus_revealed": "Promised Seed who crushes the serpent; Creator-Word foreshadowed.",
+        "key_verses": [
+            "Genesis 1:1",
+            "Genesis 3:15"
+        ],
+        "application": "Trust God’s sovereign plan and covenant faithfulness.",
+        "setting": "Primeval history and patriarchal period across Mesopotamia, Canaan, and Egypt.",
+        "audience": "Israelites under the covenant, learning origins and identity.",
+        "debate": "Documentary Hypothesis vs. Mosaic authorship; dating and sources."
+    },
+    "Exodus": {
+        "date": "c. 1446–1406 BC",
+        "date_academic_stance": "Traditional date; debated, with many scholars favoring later composition",
+        "category": "Law",
+        "author": "Moses (traditional); composite sources (critical)",
+        "language": "Hebrew",
+        "chapters": 40,
+        "jesus_revealed": "Passover Lamb; Deliverer who leads out of slavery.",
+        "key_verses": [
+            "Exodus 3:14",
+            "Exodus 12:13"
+        ],
+        "application": "Live as redeemed people who worship in holiness.",
+        "setting": "Egypt, Red Sea, and wilderness of Sinai.",
+        "audience": "Israel delivered from slavery and constituted as God’s people.",
+        "debate": "Historical exodus timing (15th vs. 13th c.), route, and composition."
+    },
+    "Leviticus": {
+        "date": "c. 1446–1406 BC",
+        "date_academic_stance": "Traditional date; textual compilation likely later",
+        "category": "Law",
+        "author": "Moses (traditional); priestly compilers/redactors (critical)",
+        "language": "Hebrew",
+        "chapters": 27,
+        "jesus_revealed": "High Priest and perfect sacrifice who makes us holy.",
+        "key_verses": [
+            "Leviticus 16:30",
+            "Leviticus 19:2"
+        ],
+        "application": "Approach God through the atonement He provides.",
+        "setting": "Israel encamped at Sinai around the tabernacle.",
+        "audience": "Priests and people of Israel learning holy worship.",
+        "debate": "Dating of Priestly material; function of sacrificial system."
+    },
+    "Numbers": {
+        "date": "c. 1446–1406 BC",
+        "date_academic_stance": "Traditional date; complex composition history",
+        "category": "Law",
+        "author": "Moses (traditional); later editorial shaping (critical)",
+        "language": "Hebrew",
+        "chapters": 36,
+        "jesus_revealed": "Bronze Serpent lifted up; faithful Presence in the wilderness.",
+        "key_verses": [
+            "Numbers 6:24–26",
+            "Numbers 21:8–9"
+        ],
+        "application": "Persevere in faith; unbelief brings loss, trust brings life.",
+        "setting": "Sinai to wilderness wanderings to the plains of Moab.",
+        "audience": "Second generation of Israelites preparing to enter the land.",
+        "debate": "Wilderness itinerary, census data, and source layers."
+    },
+    "Deuteronomy": {
+        "date": "1406 BC",
+        "date_academic_stance": "Traditional date; some scholars date later",
+        "category": "Law",
+        "author": "Moses (traditional); Deuteronomistic circle (critical)",
+        "language": "Hebrew",
+        "chapters": 34,
+        "jesus_revealed": "Prophet like Moses who speaks God’s final word.",
+        "key_verses": [
+            "Deuteronomy 6:4–5",
+            "Deuteronomy 18:15"
+        ],
+        "application": "Love the Lord wholeheartedly and obey His word.",
+        "setting": "Plains of Moab; Moses’ farewell addresses and covenant renewal.",
+        "audience": "Israel poised to enter the Promised Land.",
+        "debate": "Josianic composition hypothesis; covenant-law form and dating."
+    },
+    "Joshua": {
+        "date": "1406–1370 BC",
+        "date_academic_stance": "Traditional range; debated in academic circles",
+        "category": "History",
+        "author": "Joshua (traditional); Deuteronomistic historians (critical)",
+        "language": "Hebrew",
+        "chapters": 24,
+        "jesus_revealed": "Captain of the Lord’s army; giver of rest and inheritance.",
+        "key_verses": [
+            "Joshua 1:9",
+            "Joshua 24:15"
+        ],
+        "application": "Be strong and courageous in obedience to God’s promises.",
+        "setting": "Conquest and allotment of Canaan.",
+        "audience": "Israel settling the land and recalling God’s faithfulness.",
+        "debate": "Conquest vs. gradual settlement/peasant-revolt models; archaeology."
+    },
+    "Judges": {
+        "date": "1050–1000 BC",
+        "date_academic_stance": "Intermediate consensus; dates uncertain but within this range",
+        "category": "History",
+        "author": "Samuel (traditional); Deuteronomistic editors (critical)",
+        "language": "Hebrew",
+        "chapters": 21,
+        "jesus_revealed": "True Judge and Deliverer greater than all saviors.",
+        "key_verses": [
+            "Judges 2:16",
+            "Judges 21:25"
+        ],
+        "application": "Reject doing what is right in our own eyes; seek God’s kingship.",
+        "setting": "Tribal period in Canaan between Joshua and the monarchy.",
+        "audience": "Israel warned about covenant unfaithfulness and need for godly rule.",
+        "debate": "Chronology of judges, cycles, and redactional shaping."
+    },
+    "Ruth": {
+        "date": "1011–931 BC",
+        "date_academic_stance": "Traditional dating; less scholarly consensus",
+        "category": "History",
+        "author": "Samuel (traditional); unknown/anonymous (critical)",
+        "language": "Hebrew",
+        "chapters": 4,
+        "jesus_revealed": "Kinsman-Redeemer who brings outsiders into God’s family.",
+        "key_verses": [
+            "Ruth 1:16",
+            "Ruth 4:14"
+        ],
+        "application": "Practice loyal love; God works redemption through faithfulness.",
+        "setting": "Bethlehem and Moab during the time of the judges.",
+        "audience": "Israel reflecting on David’s lineage and God’s providence.",
+        "debate": "Date (monarchic vs. postexilic), purpose, and genre (novella vs. history)."
+    },
+    "1 Samuel": {
+        "date": "1100–931 BC",
+        "date_academic_stance": "Approximate traditional dating; composition possibly later",
+        "category": "History",
+        "author": "Samuel, Gad, Nathan (traditional); Deuteronomistic historians (critical)",
+        "language": "Hebrew",
+        "chapters": 31,
+        "jesus_revealed": "Anointed King after God’s heart, prefigured by David.",
+        "key_verses": [
+            "1 Samuel 15:22",
+            "1 Samuel 16:7"
+        ],
+        "application": "God exalts the humble and opposes the proud.",
+        "setting": "Transition from judges to monarchy; Shiloh, Philistia, Bethlehem.",
+        "audience": "Israel learning about kingship and obedience.",
+        "debate": "Sources behind Saul/David cycles; historical reliability; redaction."
+    },
+    "2 Samuel": {
+        "date": "1010–931 BC",
+        "date_academic_stance": "Traditional range; complex editorial history",
+        "category": "History",
+        "author": "Gad, Nathan (traditional); Deuteronomistic editors (critical)",
+        "language": "Hebrew",
+        "chapters": 24,
+        "jesus_revealed": "Son of David whose throne endures forever.",
+        "key_verses": [
+            "2 Samuel 7:12–13",
+            "2 Samuel 22:31"
+        ],
+        "application": "Hope in God’s covenant mercy despite human failure.",
+        "setting": "David’s reign from Hebron and Jerusalem; regional conflicts.",
+        "audience": "Israel under the monarchy, looking to the Davidic promise.",
+        "debate": "Court history sources; chronology; composition and theology of the narrative."
+    },
+    "1 Kings": {
+        "date": "971–561 BC",
+        "date_academic_stance": "Traditional to late composition range",
+        "category": "History",
+        "author": "Jeremiah (traditional); Deuteronomistic historians (critical)",
+        "language": "Hebrew",
+        "chapters": 22,
+        "jesus_revealed": "Wisdom greater than Solomon; faithful temple presence.",
+        "key_verses": [
+            "1 Kings 8:27",
+            "1 Kings 9:4–5"
+        ],
+        "application": "Seek God’s wisdom; idolatry destroys kingdoms.",
+        "setting": "United monarchy under Solomon, divided kingdom afterward.",
+        "audience": "Israel and Judah reflecting on covenant faithfulness.",
+        "debate": "Historical Solomon; archaeology of temple and chronology of kings."
+    },
+    "2 Kings": {
+        "date": "561–538 BC",
+        "date_academic_stance": "Generally accepted final editing dates",
+        "category": "History",
+        "author": "Jeremiah (traditional); Deuteronomistic historians (critical)",
+        "language": "Hebrew",
+        "chapters": 25,
+        "jesus_revealed": "Prophetic Word who judges sin and preserves a remnant.",
+        "key_verses": [
+            "2 Kings 17:13",
+            "2 Kings 23:25–27"
+        ],
+        "application": "Turn from idols; trust God’s warning and mercy.",
+        "setting": "Divided monarchy until the Babylonian exile.",
+        "audience": "Israel in exile seeking explanation for judgment.",
+        "debate": "Exilic redaction; relation to Chronicles and prophetic books."
+    },
+    "1 Chronicles": {
+        "date": "450–425 BC",
+        "date_academic_stance": "High academic consensus on postexilic composition",
+        "category": "History",
+        "author": "Ezra (traditional); anonymous Chronicler (critical)",
+        "language": "Hebrew",
+        "chapters": 29,
+        "jesus_revealed": "Promised Son of David; focus on worship and priestly kingdom.",
+        "key_verses": [
+            "1 Chronicles 17:11–12",
+            "1 Chronicles 28:9"
+        ],
+        "application": "Center life on worship and God’s promises.",
+        "setting": "Postexilic Judah, with temple worship as focal point.",
+        "audience": "Returned exiles seeking encouragement in covenant faithfulness.",
+        "debate": "Theology of temple vs. Samuel-Kings narrative differences."
+    },
+    "2 Chronicles": {
+        "date": "450–425 BC",
+        "date_academic_stance": "High academic consensus on postexilic composition",
+        "category": "History",
+        "author": "Ezra (traditional); anonymous Chronicler (critical)",
+        "language": "Hebrew",
+        "chapters": 36,
+        "jesus_revealed": "Faithful King sought by those who humble themselves and pray.",
+        "key_verses": [
+            "2 Chronicles 7:14",
+            "2 Chronicles 36:23"
+        ],
+        "application": "Seek God in repentance; He heals and restores.",
+        "setting": "Postexilic Judah recounting history with theological emphasis.",
+        "audience": "Community of returned exiles encouraged to seek God.",
+        "debate": "Chronicler’s selective retelling of Kings; theological motive."
+    },
+    "Ezra": {
+        "date": "457–444 BC",
+        "date_academic_stance": "Widely accepted postexilic dating",
+        "category": "History",
+        "author": "Ezra (traditional); anonymous compiler (critical)",
+        "language": "Hebrew/Aramaic",
+        "chapters": 10,
+        "jesus_revealed": "Restorer of the temple—God dwelling with His people.",
+        "key_verses": [
+            "Ezra 7:10",
+            "Ezra 9:9"
+        ],
+        "application": "Devote yourself to study, obedience, and teaching God’s word.",
+        "setting": "Return from Babylonian exile; rebuilding of temple.",
+        "audience": "Returned exiles seeking purity and covenant renewal.",
+        "debate": "Integration with Nehemiah; composition stages."
+    },
+    "Nehemiah": {
+        "date": "445–425 BC",
+        "date_academic_stance": "Widely accepted postexilic dating",
+        "category": "History",
+        "author": "Nehemiah (traditional); combined with Ezra material (critical)",
+        "language": "Hebrew/Aramaic",
+        "chapters": 13,
+        "jesus_revealed": "Rebuilder of ruined walls—restorer of people.",
+        "key_verses": [
+            "Nehemiah 2:18",
+            "Nehemiah 8:10"
+        ],
+        "application": "Work with prayerful resolve to rebuild what’s broken.",
+        "setting": "Jerusalem during Persian period; rebuilding city walls.",
+        "audience": "Exiles returning to rebuild city and community.",
+        "debate": "Unity of Ezra-Nehemiah; role of memoir sources."
+    },
+    "Esther": {
+        "date": "483–473 BC",
+        "date_academic_stance": "Traditional dating with some scholarly debate",
+        "category": "History",
+        "author": "Unknown (traditional: Mordecai); anonymous (critical)",
+        "language": "Hebrew",
+        "chapters": 10,
+        "jesus_revealed": "Hidden Providence who preserves His people from destruction.",
+        "key_verses": [
+            "Esther 4:14",
+            "Esther 9:22"
+        ],
+        "application": "Trust God’s unseen hand; act with courage in your moment.",
+        "setting": "Persian Empire under King Xerxes (Ahasuerus).",
+        "audience": "Jews in diaspora encouraged in God’s providence.",
+        "debate": "Historic vs. literary tale; absence of God’s name."
+    },
+    "Job": {
+        "date": "2000–1800 BC (possible), written later 700–400 BC",
+        "date_academic_stance": "Uncertain; final form likely from 700–400 BC",
+        "category": "Wisdom",
+        "author": "Job (traditional); anonymous sage (critical)",
+        "language": "Hebrew (with Aramaic features)",
+        "chapters": 42,
+        "jesus_revealed": "Righteous Sufferer and living Redeemer.",
+        "key_verses": [
+            "Job 1:21",
+            "Job 19:25"
+        ],
+        "application": "Fear God in mystery and suffering; He is wise and just.",
+        "setting": "Patriarchal setting in Uz; dialogues with friends.",
+        "audience": "Believers wrestling with suffering and divine justice.",
+        "debate": "Dating of composition; prose frame vs. poetic core."
+    },
+    "Psalms": {
+        "date": "1440–400 BC",
+        "date_academic_stance": "Multiple authorship over centuries",
+        "category": "Poetry",
+        "author": "David, Asaph, others (traditional); multiple authors/editors (critical)",
+        "language": "Hebrew",
+        "chapters": 150,
+        "jesus_revealed": "Anointed King, Good Shepherd, and Suffering Messiah.",
+        "key_verses": [
+            "Psalm 23:1",
+            "Psalm 110:1"
+        ],
+        "application": "Pray all of life—lament, praise, and trust—in God’s presence.",
+        "setting": "Temple worship and personal devotion across centuries.",
+        "audience": "Israel in worship; believers seeking expression before God.",
+        "debate": "Davidic authorship scope; editorial shaping into five books."
+    },
+    "Proverbs": {
+        "date": "971–686 BC",
+        "date_academic_stance": "Traditional dating; some scholarly caution",
+        "category": "Wisdom",
+        "author": "Solomon (traditional); sages/collectors (critical)",
+        "language": "Hebrew",
+        "chapters": 31,
+        "jesus_revealed": "Wisdom of God made flesh.",
+        "key_verses": [
+            "Proverbs 1:7",
+            "Proverbs 3:5–6"
+        ],
+        "application": "Pursue the fear of the Lord and skill for godly living.",
+        "setting": "Royal court wisdom traditions and later compilations.",
+        "audience": "Young people and community seeking wisdom and discipline.",
+        "debate": "Extent of Solomonic authorship; date of final compilation."
+    },
+    "Ecclesiastes": {
+        "date": "940–931 BC",
+        "date_academic_stance": "Traditional dating; widely debated",
+        "category": "Wisdom",
+        "author": "Solomon (traditional); anonymous 'Qoheleth' (critical)",
+        "language": "Hebrew",
+        "chapters": 12,
+        "jesus_revealed": "True meaning beyond vanity; eternal Shepherd of souls.",
+        "key_verses": [
+            "Ecclesiastes 1:2",
+            "Ecclesiastes 12:13"
+        ],
+        "application": "Fear God and keep His commandments amid life’s vapor.",
+        "setting": "Royal or wisdom tradition context; reflection on human toil.",
+        "audience": "Israelites reflecting on meaning and mortality.",
+        "debate": "Authorship, dating, and coherence of its pessimistic tone."
+    },
+    "Song of Solomon": {
+        "date": "971–931 BC",
+        "date_academic_stance": "Traditional dating; scholarly debates exist",
+        "category": "Wisdom",
+        "author": "Solomon (traditional); anonymous (critical)",
+        "language": "Hebrew",
+        "chapters": 8,
+        "jesus_revealed": "Bridegroom who delights in His people.",
+        "key_verses": [
+            "Song of Solomon 2:4",
+            "Song of Solomon 8:6"
+        ],
+        "application": "Honor covenant love; reflect Christ’s love for His bride.",
+        "setting": "Love poetry with royal and pastoral imagery.",
+        "audience": "Israel, celebrating covenantal love and intimacy.",
+        "debate": "Allegory vs. literal love poetry; authorship."
+    },
+    "Isaiah": {
+        "date": "740–680 BC",
+        "date_academic_stance": "Multiple authorship; first part traditional",
+        "category": "Prophecy",
+        "author": "Isaiah son of Amoz (traditional); multiple contributors (critical)",
+        "language": "Hebrew",
+        "chapters": 66,
+        "jesus_revealed": "Holy King and Suffering Servant who saves.",
+        "key_verses": [
+            "Isaiah 7:14",
+            "Isaiah 53:5",
+            "Isaiah 61:1"
+        ],
+        "application": "Trust the Servant-King; await His righteous kingdom.",
+        "setting": "Judah during Assyrian threat; later exilic/postexilic additions.",
+        "audience": "Judah and nations; future exiles and returnees.",
+        "debate": "Unity vs. Deutero- and Trito-Isaiah; messianic interpretations."
+    },
+    "Jeremiah": {
+        "date": "627–586 BC",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Prophecy",
+        "author": "Jeremiah (traditional); Baruch as scribe (critical)",
+        "language": "Hebrew",
+        "chapters": 52,
+        "jesus_revealed": "Mediator of the New Covenant written on hearts.",
+        "key_verses": [
+            "Jeremiah 1:5",
+            "Jeremiah 31:33"
+        ],
+        "application": "Return to God; He gives new hearts and steadfast hope.",
+        "setting": "Judah before and during Babylonian invasion.",
+        "audience": "Judah and exiles facing judgment and restoration.",
+        "debate": "Two textual traditions (MT vs. LXX); arrangement differences."
+    },
+    "Lamentations": {
+        "date": "586 BC",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Poetry",
+        "author": "Jeremiah (traditional); anonymous poet (critical)",
+        "language": "Hebrew",
+        "chapters": 5,
+        "jesus_revealed": "Man of Sorrows bearing our griefs.",
+        "key_verses": [
+            "Lamentations 3:22–23",
+            "Lamentations 3:31–33"
+        ],
+        "application": "Grieve sin and cling to God’s mercies that never end.",
+        "setting": "Destruction of Jerusalem by Babylon.",
+        "audience": "Exiles mourning the fall of Jerusalem.",
+        "debate": "Authorship and poetic structure."
+    },
+    "Ezekiel": {
+        "date": "593–571 BC",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Prophecy",
+        "author": "Ezekiel (traditional); priest-prophet in exile",
+        "language": "Hebrew (some Aramaic terms)",
+        "chapters": 48,
+        "jesus_revealed": "Glory of God and Shepherd-King who gives a new spirit.",
+        "key_verses": [
+            "Ezekiel 36:26–27",
+            "Ezekiel 37:4–5"
+        ],
+        "application": "Receive a new heart and walk by the Spirit.",
+        "setting": "Babylonian exile along the Kebar River.",
+        "audience": "Exiled Judeans in Babylon.",
+        "debate": "Visionary symbolism; temple vision historic vs. eschatological."
+    },
+    "Daniel": {
+        "date": "605–536 BC",
+        "date_academic_stance": "Traditional date; critical scholarship favors later 2nd century BC",
+        "category": "Prophecy",
+        "author": "Daniel (traditional); anonymous apocalyptic seer (critical)",
+        "language": "Hebrew and Aramaic",
+        "chapters": 12,
+        "jesus_revealed": "Son of Man to whom dominion is given.",
+        "key_verses": [
+            "Daniel 2:44",
+            "Daniel 7:13–14"
+        ],
+        "application": "Remain faithful in exile; God rules over kings.",
+        "setting": "Babylonian and Persian courts.",
+        "audience": "Jews in exile encouraged by God’s sovereignty.",
+        "debate": "Prophecy vs. vaticinium ex eventu; apocalyptic dating."
+    },
+    "Hosea": {
+        "date": "755–715 BC",
+        "date_academic_stance": "Widely accepted prophetic dating",
+        "category": "Prophecy",
+        "author": "Hosea (traditional); prophet in Israel",
+        "language": "Hebrew",
+        "chapters": 14,
+        "jesus_revealed": "Faithful Husband who redeems an unfaithful people.",
+        "key_verses": [
+            "Hosea 2:19–20",
+            "Hosea 6:6"
+        ],
+        "application": "Return to the Lord; His love heals and restores.",
+        "setting": "Northern Kingdom (Israel) during Assyrian threat.",
+        "audience": "Israel, warning of judgment yet hope of restoration.",
+        "debate": "Structure of oracles; symbolic marriage accounts."
+    },
+    "Joel": {
+        "date": "835–796 BC (some date 500–400 BC)",
+        "date_academic_stance": "Debated; scholarly consensus unclear",
+        "category": "Prophecy",
+        "author": "Joel son of Pethuel (traditional); unknown (critical)",
+        "language": "Hebrew",
+        "chapters": 3,
+        "jesus_revealed": "Spirit-baptizer pouring out power on all flesh.",
+        "key_verses": [
+            "Joel 2:28–29",
+            "Joel 2:32"
+        ],
+        "application": "Repent and call on the Lord; He restores years lost.",
+        "setting": "Judah during locust plague and drought.",
+        "audience": "Judah, exhorted to repent and await God’s Spirit.",
+        "debate": "Dating (preexilic vs. postexilic); order of chapters."
+    },
+    "Amos": {
+        "date": "760–750 BC",
+        "date_academic_stance": "Widely accepted prophetic dating",
+        "category": "Prophecy",
+        "author": "Amos, shepherd from Tekoa (traditional/critical)",
+        "language": "Hebrew",
+        "chapters": 9,
+        "jesus_revealed": "Righteous Judge who restores David’s fallen tent.",
+        "key_verses": [
+            "Amos 5:24",
+            "Amos 9:11"
+        ],
+        "application": "Let justice roll down; true worship includes justice.",
+        "setting": "Northern Kingdom (Israel) during Jeroboam II.",
+        "audience": "Israel warned of judgment for injustice.",
+        "debate": "Extent of later redaction; links to Deuteronomistic editors."
+    },
+    "Obadiah": {
+        "date": "586 BC (alt. 848–841 BC)",
+        "date_academic_stance": "Debated; multiple possible dates",
+        "category": "Prophecy",
+        "author": "Obadiah (traditional); unknown (critical)",
+        "language": "Hebrew",
+        "chapters": 1,
+        "jesus_revealed": "Judge of the nations and Savior of Zion.",
+        "key_verses": [
+            "Obadiah 1:15",
+            "Obadiah 1:21"
+        ],
+        "application": "God humbles the proud and preserves His people.",
+        "setting": "Judah after destruction of Jerusalem, judgment on Edom.",
+        "audience": "Judah and surrounding nations.",
+        "debate": "Dating tied to either Babylonian destruction (586 BC) or earlier conflicts."
+    },
+    "Jonah": {
+        "date": "785–760 BC",
+        "date_academic_stance": "Traditional with some debate",
+        "category": "Prophecy",
+        "author": "Jonah son of Amittai (traditional); anonymous narrator (critical)",
+        "language": "Hebrew",
+        "chapters": 4,
+        "jesus_revealed": "Sign of three days—death and resurrection for the nations.",
+        "key_verses": [
+            "Jonah 2:9",
+            "Jonah 3:10"
+        ],
+        "application": "Share God’s mercy with enemies; His grace is sovereign.",
+        "setting": "Nineveh and sea voyage; Assyrian empire context.",
+        "audience": "Israelites reminded of God’s mercy to nations.",
+        "debate": "Historical prophet vs. parabolic story; date of writing."
+    },
+    "Micah": {
+        "date": "735–700 BC",
+        "date_academic_stance": "Widely accepted prophetic dating",
+        "category": "Prophecy",
+        "author": "Micah of Moresheth (traditional/critical)",
+        "language": "Hebrew",
+        "chapters": 7,
+        "jesus_revealed": "Ruler from Bethlehem; requirement of justice, mercy, humility.",
+        "key_verses": [
+            "Micah 5:2",
+            "Micah 6:8"
+        ],
+        "application": "Walk humbly with God; hope in the coming Shepherd-King.",
+        "setting": "Judah during reigns of Jotham, Ahaz, and Hezekiah.",
+        "audience": "Judah and Israel warned of judgment and given hope.",
+        "debate": "Later additions debated; messianic prophecies scrutinized."
+    },
+    "Nahum": {
+        "date": "663–612 BC",
+        "date_academic_stance": "Generally agreed prophetic dating",
+        "category": "Prophecy",
+        "author": "Nahum of Elkosh (traditional/critical)",
+        "language": "Hebrew",
+        "chapters": 3,
+        "jesus_revealed": "Avenger of evil and refuge for the oppressed.",
+        "key_verses": [
+            "Nahum 1:7",
+            "Nahum 1:15"
+        ],
+        "application": "Take refuge in the Lord; He will right every wrong.",
+        "setting": "Prophecy against Nineveh during Assyrian dominance.",
+        "audience": "Judah and nations oppressed by Assyria.",
+        "debate": "Exact location of Elkosh and date refinement debated."
+    },
+    "Habakkuk": {
+        "date": "609–605 BC",
+        "date_academic_stance": "Widely accepted dating",
+        "category": "Prophecy",
+        "author": "Habakkuk (traditional/critical)",
+        "language": "Hebrew",
+        "chapters": 3,
+        "jesus_revealed": "Righteous One by whom the righteous live by faith.",
+        "key_verses": [
+            "Habakkuk 2:4",
+            "Habakkuk 3:17–18"
+        ],
+        "application": "Trust God’s timing; rejoice though fig trees fail.",
+        "setting": "Judah anticipating Babylonian invasion.",
+        "audience": "Judah struggling with God’s justice and judgment.",
+        "debate": "Structure as dialogue or lament; placement in prophetic corpus."
+    },
+    "Zephaniah": {
+        "date": "640–609 BC",
+        "date_academic_stance": "Widely accepted prophetic dating",
+        "category": "Prophecy",
+        "author": "Zephaniah (traditional/critical)",
+        "language": "Hebrew",
+        "chapters": 3,
+        "jesus_revealed": "Mighty One who saves and rejoices over His people.",
+        "key_verses": [
+            "Zephaniah 1:14–15",
+            "Zephaniah 3:17"
+        ],
+        "application": "Seek the Lord; He sings over the humble and repentant.",
+        "setting": "Judah during reign of Josiah, just before reforms.",
+        "audience": "Judah warned of coming Day of the Lord.",
+        "debate": "Extent of Josianic influence; relation to Deuteronomistic theology."
+    },
+    "Haggai": {
+        "date": "520 BC",
+        "date_academic_stance": "High scholarly consensus on postexilic date",
+        "category": "Prophecy",
+        "author": "Haggai (traditional/critical)",
+        "language": "Hebrew",
+        "chapters": 2,
+        "jesus_revealed": "Greater glory of the latter temple fulfilled in Christ.",
+        "key_verses": [
+            "Haggai 1:7–8",
+            "Haggai 2:9"
+        ],
+        "application": "Put God’s house first; He supplies glory and peace.",
+        "setting": "Jerusalem after return from exile; rebuilding the temple.",
+        "audience": "Returned exiles challenged to prioritize God’s house.",
+        "debate": "Precise dating and relation to Zechariah."
+    },
+    "Zechariah": {
+        "date": "520–470 BC",
+        "date_academic_stance": "Multiple authors; postexilic consensus",
+        "category": "Prophecy",
+        "author": "Zechariah (traditional); possible multiple contributors (critical)",
+        "language": "Hebrew",
+        "chapters": 14,
+        "jesus_revealed": "Pierced King and humble Shepherd.",
+        "key_verses": [
+            "Zechariah 9:9",
+            "Zechariah 12:10"
+        ],
+        "application": "Look on Him whom we pierced; expect the coming King.",
+        "setting": "Postexilic Judah during temple rebuilding.",
+        "audience": "Returned exiles awaiting God’s future kingdom.",
+        "debate": "Unity of chapters 9–14 with earlier visions."
+    },
+    "Malachi": {
+        "date": "433–424 BC",
+        "date_academic_stance": "Widely accepted postexilic date",
+        "category": "Prophecy",
+        "author": "Malachi (traditional); anonymous compiler (critical)",
+        "language": "Hebrew",
+        "chapters": 4,
+        "jesus_revealed": "Sun of Righteousness who brings healing.",
+        "key_verses": [
+            "Malachi 3:1",
+            "Malachi 4:2"
+        ],
+        "application": "Return to the Lord; honor Him in worship and life.",
+        "setting": "Postexilic Judah under Persian rule.",
+        "audience": "Complacent priests and people needing covenant renewal.",
+        "debate": "Identity of Malachi (name vs. title); dating precision."
+    },
+    "Matthew": {
+        "date": "c. AD 50–70",
+        "date_academic_stance": "Traditional; some scholars date later (80–90 AD)",
+        "category": "Gospel",
+        "author": "Matthew the apostle (traditional); anonymous (critical)",
+        "language": "Greek",
+        "chapters": 28,
+        "jesus_revealed": "Messiah-King, fulfillment of the Law and Prophets.",
+        "key_verses": [
+            "Matthew 5:17",
+            "Matthew 28:19–20"
+        ],
+        "application": "Follow the King; live the ethics of the kingdom.",
+        "setting": "Written to Jewish-Christian audience under Roman rule.",
+        "audience": "Jewish believers and early church communities.",
+        "debate": "Order of Gospel composition; dependence on Mark/Q-source."
+    },
+    "Mark": {
+        "date": "c. AD 50–60",
+        "date_academic_stance": "Traditional; majority scholars prefer c. 66–70 AD",
+        "category": "Gospel",
+        "author": "John Mark, associate of Peter (traditional); anonymous (critical)",
+        "language": "Greek",
+        "chapters": 16,
+        "jesus_revealed": "Servant-Son who gives His life as a ransom.",
+        "key_verses": [
+            "Mark 10:45",
+            "Mark 16:6"
+        ],
+        "application": "Follow Jesus in sacrificial service and urgency.",
+        "setting": "Likely written in Rome during persecution.",
+        "audience": "Gentile believers facing suffering and persecution.",
+        "debate": "Ending of Mark (shorter vs. longer); priority of Mark in synoptics."
+    },
+    "Luke": {
+        "date": "c. AD 60–61",
+        "date_academic_stance": "Traditional; some date to 70–90 AD",
+        "category": "Gospel",
+        "author": "Luke the physician, companion of Paul (traditional); anonymous (critical)",
+        "language": "Greek",
+        "chapters": 24,
+        "jesus_revealed": "Savior for all nations; compassionate Healer.",
+        "key_verses": [
+            "Luke 19:10",
+            "Luke 24:46–47"
+        ],
+        "application": "Join Jesus’ mission to seek and save the lost.",
+        "setting": "Possibly Antioch, Rome, or another Gentile setting.",
+        "audience": "Theophilus and wider Gentile-Christian audience.",
+        "debate": "Sources (Mark, Q, special L); historicity of infancy narratives."
+    },
+    "John": {
+        "date": "AD 85–95",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Gospel",
+        "author": "John the apostle (traditional); Johannine community (critical)",
+        "language": "Greek",
+        "chapters": 21,
+        "jesus_revealed": "Word made flesh; Son of God who gives eternal life.",
+        "key_verses": [
+            "John 1:1",
+            "John 3:16",
+            "John 20:31"
+        ],
+        "application": "Believe and have life in His name.",
+        "setting": "Likely written from Ephesus or Asia Minor.",
+        "audience": "Churches needing assurance of faith in Christ.",
+        "debate": "Authorship, relation to synoptics, prologue vs. later additions."
+    },
+    "Acts": {
+        "date": "c. AD 62",
+        "date_academic_stance": "Traditional; some scholars prefer late 80s AD",
+        "category": "History",
+        "author": "Luke the physician (traditional); anonymous (critical)",
+        "language": "Greek",
+        "chapters": 28,
+        "jesus_revealed": "Risen Lord who pours out the Spirit and builds His church.",
+        "key_verses": [
+            "Acts 1:8",
+            "Acts 2:38",
+            "Acts 4:12"
+        ],
+        "application": "Be Spirit-empowered witnesses to the ends of the earth.",
+        "setting": "Jerusalem to Rome, tracing expansion of early church.",
+        "audience": "Theophilus and early Christian communities.",
+        "debate": "Historical reliability; relation to Paul’s letters."
+    },
+    "Romans": {
+        "date": "AD 57",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 16,
+        "jesus_revealed": "Righteousness of God revealed through faith in Christ.",
+        "key_verses": [
+            "Romans 1:16–17",
+            "Romans 8:38–39"
+        ],
+        "application": "Live by faith; present your body as a living sacrifice.",
+        "setting": "Written from Corinth during Paul’s third missionary journey.",
+        "audience": "Christians in Rome, both Jews and Gentiles.",
+        "debate": "Integrity of chapters 15–16; purpose (theological treatise vs. missionary support)."
+    },
+    "1 Corinthians": {
+        "date": "AD 55",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 16,
+        "jesus_revealed": "Crucified and risen wisdom and power of God.",
+        "key_verses": [
+            "1 Corinthians 1:23–24",
+            "1 Corinthians 13:13",
+            "1 Corinthians 15:3–4"
+        ],
+        "application": "Pursue holiness and love; build up Christ’s body.",
+        "setting": "Written from Ephesus during Paul’s third missionary journey.",
+        "audience": "Church in Corinth facing divisions and moral issues.",
+        "debate": "Unity of the letter; interpolation theories."
+    },
+    "2 Corinthians": {
+        "date": "AD 56",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 13,
+        "jesus_revealed": "Suffering Servant whose grace is sufficient.",
+        "key_verses": [
+            "2 Corinthians 4:7–9",
+            "2 Corinthians 12:9"
+        ],
+        "application": "Boast in weakness; ministry flows from God’s power.",
+        "setting": "Written from Macedonia after painful visits to Corinth.",
+        "audience": "Church in Corinth needing reconciliation and encouragement.",
+        "debate": "Possibly composite of multiple letters; tone variations."
+    },
+    "Galatians": {
+        "date": "AD 48–49",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 6,
+        "jesus_revealed": "Redeemer who frees from the curse of the law.",
+        "key_verses": [
+            "Galatians 2:20",
+            "Galatians 5:1",
+            "Galatians 5:22–23"
+        ],
+        "application": "Stand firm in gospel freedom; walk by the Spirit.",
+        "setting": "Likely written from Antioch or Corinth.",
+        "audience": "Churches of Galatia struggling with Judaizers’ influence.",
+        "debate": "North vs. South Galatia theory; chronology relative to Acts 15."
+    },
+    "Ephesians": {
+        "date": "AD 60–62",
+        "date_academic_stance": "Debated; possibly pseudepigraphal",
+        "category": "Epistle",
+        "author": "Paul (traditional); disputed by some scholars (critical)",
+        "language": "Greek",
+        "chapters": 6,
+        "jesus_revealed": "Head of the church; unites all things in Himself.",
+        "key_verses": [
+            "Ephesians 1:10",
+            "Ephesians 2:8–9",
+            "Ephesians 6:10–11"
+        ],
+        "application": "Live your new identity; maintain unity in love.",
+        "setting": "Prison letter, possibly from Rome.",
+        "audience": "Churches in Asia Minor (circular letter).",
+        "debate": "Authenticity, style, and relation to Colossians."
+    },
+    "Philippians": {
+        "date": "AD 60–62",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 4,
+        "jesus_revealed": "Exalted Lord who humbled Himself to the cross.",
+        "key_verses": [
+            "Philippians 1:6",
+            "Philippians 2:9–11",
+            "Philippians 4:13"
+        ],
+        "application": "Pursue joyful humility and gospel partnership.",
+        "setting": "Prison letter, likely from Rome.",
+        "audience": "Church at Philippi, Paul’s first European congregation.",
+        "debate": "Unity of the letter (one vs. multiple letters)."
+    },
+    "Colossians": {
+        "date": "AD 60–62",
+        "date_academic_stance": "Debated; possible pseudepigraphy",
+        "category": "Epistle",
+        "author": "Paul (traditional); disputed by some scholars (critical)",
+        "language": "Greek",
+        "chapters": 4,
+        "jesus_revealed": "Image of the invisible God; fullness of deity in bodily form.",
+        "key_verses": [
+            "Colossians 1:15–16",
+            "Colossians 2:9–10"
+        ],
+        "application": "Root your life in Christ, not human tradition.",
+        "setting": "Prison letter, likely from Rome.",
+        "audience": "Christians in Colossae, Asia Minor.",
+        "debate": "Authorship questioned due to vocabulary/style similarities with Ephesians."
+    },
+    "1 Thessalonians": {
+        "date": "AD 50–51",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 5,
+        "jesus_revealed": "Returning Lord who sanctifies His people completely.",
+        "key_verses": [
+            "1 Thessalonians 4:16–17",
+            "1 Thessalonians 5:23"
+        ],
+        "application": "Live in hope and holiness awaiting His coming.",
+        "setting": "Written from Corinth during Paul’s second missionary journey.",
+        "audience": "Young church in Thessalonica facing persecution.",
+        "debate": "None significant; earliest Pauline letter consensus."
+    },
+    "2 Thessalonians": {
+        "date": "AD 51–52",
+        "date_academic_stance": "Debated; some question authorship",
+        "category": "Epistle",
+        "author": "Paul (traditional); disputed in critical scholarship",
+        "language": "Greek",
+        "chapters": 3,
+        "jesus_revealed": "Righteous Judge who destroys lawlessness.",
+        "key_verses": [
+            "2 Thessalonians 2:1–3",
+            "2 Thessalonians 3:3"
+        ],
+        "application": "Stand firm; do not be shaken by false reports.",
+        "setting": "Likely written from Corinth shortly after 1 Thessalonians.",
+        "audience": "Church in Thessalonica clarifying eschatological confusion.",
+        "debate": "Authenticity debated; eschatology timing questioned."
+    },
+    "1 Timothy": {
+        "date": "AD 62–64",
+        "date_academic_stance": "Debated; likely pseudepigraphal",
+        "category": "Epistle",
+        "author": "Paul (traditional); later disciple (critical)",
+        "language": "Greek",
+        "chapters": 6,
+        "jesus_revealed": "One Mediator between God and mankind.",
+        "key_verses": [
+            "1 Timothy 2:5",
+            "1 Timothy 4:12"
+        ],
+        "application": "Guard sound doctrine; lead with integrity.",
+        "setting": "Post-imprisonment, possibly Macedonia.",
+        "audience": "Timothy in Ephesus, charged to lead the church.",
+        "debate": "Authorship and date heavily disputed in scholarship."
+    },
+    "2 Timothy": {
+        "date": "AD 66–67",
+        "date_academic_stance": "Debated; likely pseudepigraphal",
+        "category": "Epistle",
+        "author": "Paul (traditional); later disciple (critical)",
+        "language": "Greek",
+        "chapters": 4,
+        "jesus_revealed": "Faithful Lord who guards the good deposit.",
+        "key_verses": [
+            "2 Timothy 1:12",
+            "2 Timothy 3:16–17"
+        ],
+        "application": "Endure hardship; preach the word in season and out.",
+        "setting": "Written from Roman prison shortly before Paul’s death (traditional).",
+        "audience": "Timothy, encouraged to endure as a faithful minister.",
+        "debate": "Authenticity, style, and historical fit debated."
+    },
+    "Titus": {
+        "date": "AD 63–65",
+        "date_academic_stance": "Debated; likely pseudepigraphal",
+        "category": "Epistle",
+        "author": "Paul (traditional); later disciple (critical)",
+        "language": "Greek",
+        "chapters": 3,
+        "jesus_revealed": "Savior who trains us to live godly lives.",
+        "key_verses": [
+            "Titus 2:11–12",
+            "Titus 3:5"
+        ],
+        "application": "Devote to good works as fruit of grace.",
+        "setting": "Written after Paul’s release, possibly from Macedonia.",
+        "audience": "Titus in Crete, organizing church leadership.",
+        "debate": "Authorship questioned due to vocabulary and church structure."
+    },
+    "Philemon": {
+        "date": "AD 60–62",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Epistle",
+        "author": "Paul the apostle (traditional/critical consensus)",
+        "language": "Greek",
+        "chapters": 1,
+        "jesus_revealed": "Reconciler who makes slaves brothers.",
+        "key_verses": [
+            "Philemon 1:16",
+            "Philemon 1:17"
+        ],
+        "application": "Practice gospel reconciliation and costly forgiveness.",
+        "setting": "Prison letter, likely from Rome.",
+        "audience": "Philemon and the church in his house at Colossae.",
+        "debate": "Interpretation of slavery; minor authenticity debates."
+    },
+    "Hebrews": {
+        "date": "AD 60–70",
+        "date_academic_stance": "Debated authorship and date; consensus on 1st century",
+        "category": "Epistle",
+        "author": "Anonymous (traditional: Paul, Barnabas, Apollos; critical: unknown)",
+        "language": "Greek",
+        "chapters": 13,
+        "jesus_revealed": "Great High Priest and final sacrifice.",
+        "key_verses": [
+            "Hebrews 4:14–16",
+            "Hebrews 12:2"
+        ],
+        "application": "Draw near with confidence; hold fast to Christ.",
+        "setting": "Written to Jewish Christians facing persecution.",
+        "audience": "Jewish believers tempted to revert to Judaism.",
+        "debate": "Authorship and audience debated; relation to temple practices."
+    },
+    "James": {
+        "date": "AD 44–49",
+        "date_academic_stance": "Early date; debated authenticity",
+        "category": "Epistle",
+        "author": "James the Just, brother of Jesus (traditional); disputed by some scholars (critical)",
+        "language": "Greek",
+        "chapters": 5,
+        "jesus_revealed": "Lord of glory whose wisdom produces works of faith.",
+        "key_verses": [
+            "James 1:22",
+            "James 2:17",
+            "James 5:16"
+        ],
+        "application": "Be doers of the word; pursue wholehearted integrity.",
+        "setting": "Early Jerusalem church context.",
+        "audience": "Jewish Christians dispersed among the nations.",
+        "debate": "Faith vs. works tension with Paul; authorship questioned."
+    },
+    "1 Peter": {
+        "date": "AD 62–64",
+        "date_academic_stance": "Moderate consensus; debated authorship",
+        "category": "Epistle",
+        "author": "Peter the apostle (traditional); disputed (critical)",
+        "language": "Greek",
+        "chapters": 5,
+        "jesus_revealed": "Cornerstone; example of suffering unto glory.",
+        "key_verses": [
+            "1 Peter 1:3–4",
+            "1 Peter 2:9",
+            "1 Peter 5:10"
+        ],
+        "application": "Endure trials; live holy among the nations.",
+        "setting": "Written from 'Babylon' (likely Rome).",
+        "audience": "Scattered Christians in Asia Minor facing persecution.",
+        "debate": "Authorship due to polished Greek style."
+    },
+    "2 Peter": {
+        "date": "AD 64–68",
+        "date_academic_stance": "Late date; debated and likely pseudepigraphal",
+        "category": "Epistle",
+        "author": "Peter (traditional); widely disputed (critical)",
+        "language": "Greek",
+        "chapters": 3,
+        "jesus_revealed": "Coming Lord; Word more sure than spectacles.",
+        "key_verses": [
+            "2 Peter 1:19",
+            "2 Peter 3:9"
+        ],
+        "application": "Grow in grace; watch for false teachers.",
+        "setting": "Final exhortation before Peter’s death (traditional view).",
+        "audience": "Believers needing warning against false teachers.",
+        "debate": "Authorship strongly disputed; relation to Jude."
+    },
+    "1 John": {
+        "date": "AD 85–95",
+        "date_academic_stance": "Moderate to high scholarly consensus",
+        "category": "Epistle",
+        "author": "John the apostle (traditional); Johannine community (critical)",
+        "language": "Greek",
+        "chapters": 5,
+        "jesus_revealed": "Incarnate Life; God is light and love in Him.",
+        "key_verses": [
+            "1 John 1:9",
+            "1 John 4:7–8",
+            "1 John 5:12"
+        ],
+        "application": "Abide in truth and love; assurance in the Son.",
+        "setting": "Late 1st century Asia Minor.",
+        "audience": "Churches combating early Gnostic/Docetic teachings.",
+        "debate": "Authorship and relation to Gospel of John."
+    },
+    "2 John": {
+        "date": "AD 90–95",
+        "date_academic_stance": "Moderate scholarly consensus",
+        "category": "Epistle",
+        "author": "John the apostle (traditional); Johannine elder (critical)",
+        "language": "Greek",
+        "chapters": 1,
+        "jesus_revealed": "Truth incarnate; doctrine of Christ protects the church.",
+        "key_verses": [
+            "2 John 1:6",
+            "2 John 1:9"
+        ],
+        "application": "Walk in truth and love; do not receive deceivers.",
+        "setting": "Likely written from Asia Minor.",
+        "audience": "The 'elect lady' and her children (church community).",
+        "debate": "Identity of author and recipients."
+    },
+    "3 John": {
+        "date": "AD 90–95",
+        "date_academic_stance": "Moderate scholarly consensus",
+        "category": "Epistle",
+        "author": "John the apostle (traditional); Johannine elder (critical)",
+        "language": "Greek",
+        "chapters": 1,
+        "jesus_revealed": "Lord who commends faithful hospitality and truth.",
+        "key_verses": [
+            "3 John 1:4",
+            "3 John 1:11"
+        ],
+        "application": "Support gospel workers; imitate good, not evil.",
+        "setting": "Likely written from Asia Minor.",
+        "audience": "Gaius, a church leader; contrasted with Diotrephes.",
+        "debate": "Relation to 2 John and Johannine community context."
+    },
+    "Jude": {
+        "date": "AD 65–80",
+        "date_academic_stance": "Debated late date; disputed authorship",
+        "category": "Epistle",
+        "author": "Jude, brother of Jesus (traditional); disputed (critical)",
+        "language": "Greek",
+        "chapters": 1,
+        "jesus_revealed": "Lord who keeps His people and judges falsehood.",
+        "key_verses": [
+            "Jude 1:3",
+            "Jude 1:24–25"
+        ],
+        "application": "Contend for the faith; rest in His keeping power.",
+        "setting": "General epistle combating false teachers.",
+        "audience": "Christians warned against ungodly infiltrators.",
+        "debate": "Dependence on 2 Peter; pseudepigraphy debate."
+    },
+    "Revelation": {
+        "date": "AD 95",
+        "date_academic_stance": "High scholarly consensus",
+        "category": "Apocalyptic",
+        "author": "John the apostle (traditional); John of Patmos (critical)",
+        "language": "Greek",
+        "chapters": 22,
+        "jesus_revealed": "Alpha and Omega; slain Lamb and reigning King.",
+        "key_verses": [
+            "Revelation 1:17–18",
+            "Revelation 21:4",
+            "Revelation 22:12–13"
+        ],
+        "application": "Conquer by faithful witness; await the new creation.",
+        "setting": "Patmos, visions of heaven and earth’s consummation.",
+        "audience": "Seven churches of Asia Minor under persecution.",
+        "debate": "Date of writing (Neronian vs. Domitian); symbolism vs. futurism."
+    }
+}

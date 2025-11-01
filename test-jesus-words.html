@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Jesus Words Parser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .jesus-words {
+            color: #dc2626;
+            font-weight: 500;
+        }
+        .verse {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Jesus Words Feature</h1>
+    <div>
+        <button onclick="testJohn3()">Test John 3</button>
+        <button onclick="testMatthew5()">Test Matthew 5</button>
+        <button onclick="toggleRedLetter()">Toggle Red Letter Mode</button>
+    </div>
+    <div id="output"></div>
+
+    <script type="module">
+        let redLetterMode = false;
+        let jesusWordsData = null;
+
+        // Load the data
+        async function loadData() {
+            const response = await fetch('/api/resources/jesus_words/jesus_words_references.json');
+            jesusWordsData = await response.json();
+            console.info('Loaded Jesus words data:', jesusWordsData);
+        }
+
+        function parseVerseRange(rangeString) {
+            const range = rangeString.trim();
+            if (range.includes('-')) {
+                const [start, end] = range.split('-').map(num => parseInt(num.trim()));
+                const verses = [];
+                for (let i = start; i <= end; i++) {
+                    verses.push(i);
+                }
+                return verses;
+            }
+            return [parseInt(range)];
+        }
+
+        function getJesusWordsVerses(bookName, chapterNumber) {
+            if (!jesusWordsData || !jesusWordsData.references[bookName]) {
+                return new Set();
+            }
+            
+            const bookData = jesusWordsData.references[bookName];
+            const chapterData = bookData[chapterNumber.toString()];
+            
+            if (!chapterData || !Array.isArray(chapterData)) {
+                return new Set();
+            }
+            
+            const verses = new Set();
+            chapterData.forEach(rangeString => {
+                const parsedVerses = parseVerseRange(rangeString);
+                parsedVerses.forEach(verse => verses.add(verse));
+            });
+            
+            return verses;
+        }
+
+        window.testJohn3 = function() {
+            const verses = getJesusWordsVerses('John', 3);
+            const output = document.getElementById('output');
+            output.innerHTML = '<h2>John 3 - Jesus Words Verses</h2>';
+            output.innerHTML += '<p>Verses with Jesus words: ' + Array.from(verses).join(', ') + '</p>';
+            
+            // Show sample verses
+            for (let i = 1; i <= 21; i++) {
+                const isJesusWords = verses.has(i);
+                const className = redLetterMode && isJesusWords ? 'verse jesus-words' : 'verse';
+                output.innerHTML += `<div class="${className}">Verse ${i} ${isJesusWords ? '(Jesus speaks)' : ''}</div>`;
+            }
+        };
+
+        window.testMatthew5 = function() {
+            const verses = getJesusWordsVerses('Matthew', 5);
+            const output = document.getElementById('output');
+            output.innerHTML = '<h2>Matthew 5 - Jesus Words Verses</h2>';
+            output.innerHTML += '<p>Verses with Jesus words: ' + Array.from(verses).join(', ') + '</p>';
+            
+            // Show sample verses
+            for (let i = 1; i <= 20; i++) {
+                const isJesusWords = verses.has(i);
+                const className = redLetterMode && isJesusWords ? 'verse jesus-words' : 'verse';
+                output.innerHTML += `<div class="${className}">Verse ${i} ${isJesusWords ? '(Jesus speaks)' : ''}</div>`;
+            }
+        };
+
+        window.toggleRedLetter = function() {
+            redLetterMode = !redLetterMode;
+            console.info('Red letter mode:', redLetterMode);
+            // Re-render current view
+            const output = document.getElementById('output');
+            if (output.innerHTML) {
+                // Trigger a re-render
+                if (output.innerHTML.includes('John 3')) {
+                    window.testJohn3();
+                } else if (output.innerHTML.includes('Matthew 5')) {
+                    window.testMatthew5();
+                }
+            }
+        };
+
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+.book-timeline-container {
+  --timeline-background: rgba(255, 255, 255, 0.92);
+  --timeline-border-color: rgba(148, 163, 184, 0.25);
+  --timeline-title-color: rgba(30, 41, 59, 0.75);
+  --timeline-subtitle-color: rgba(71, 85, 105, 0.65);
+  --axis-color-soft: rgba(51, 65, 85, 0.18);
+  --axis-color-strong: rgba(51, 65, 85, 0.35);
+  --marker-label-color: rgba(71, 85, 105, 0.65);
+  --tick-color: rgba(71, 85, 105, 0.45);
+  --divider-line-color: rgba(100, 116, 139, 0.4);
+  --divider-cross-color: rgba(71, 85, 105, 0.7);
+  --divider-cross-hover-color: rgba(15, 23, 42, 0.85);
+  --tooltip-background: rgba(255, 255, 255, 0.95);
+  --tooltip-border-color: rgba(148, 163, 184, 0.2);
+  --tooltip-text-color: rgba(15, 23, 42, 0.88);
+  --tooltip-subtext-color: rgba(71, 85, 105, 0.7);
+  --tooltip-category-color: rgba(30, 41, 59, 0.85);
+  --tooltip-shadow-color: rgba(15, 23, 42, 0.12);
+  --tooltip-caret-color: rgba(255, 255, 255, 0.95);
+  --hover-marker-shadow: rgba(148, 163, 184, 0.45);
+  --selected-marker-ring: rgba(148, 163, 184, 0.35);
+  --selected-marker-glow: currentColor;
+  width: 100%;
+  padding: 1.5rem;
+  margin: 0.75rem 0;
+  background: var(--timeline-background);
+  border: 1px solid var(--timeline-border-color);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dark-theme .book-timeline-container {
+  --timeline-background: transparent;
+  --timeline-border-color: rgba(255, 255, 255, 0.08);
+  --timeline-title-color: rgba(255, 255, 255, 0.7);
+  --timeline-subtitle-color: rgba(255, 255, 255, 0.4);
+  --axis-color-soft: rgba(255, 255, 255, 0.15);
+  --axis-color-strong: rgba(255, 255, 255, 0.3);
+  --marker-label-color: rgba(255, 255, 255, 0.4);
+  --tick-color: rgba(255, 255, 255, 0.3);
+  --divider-line-color: rgba(255, 255, 255, 0.2);
+  --divider-cross-color: rgba(255, 255, 255, 0.5);
+  --divider-cross-hover-color: rgba(255, 255, 255, 0.8);
+  --tooltip-background: rgba(30, 30, 30, 0.7);
+  --tooltip-border-color: rgba(255, 255, 255, 0.1);
+  --tooltip-text-color: rgba(255, 255, 255, 0.9);
+  --tooltip-subtext-color: rgba(255, 255, 255, 0.6);
+  --tooltip-category-color: rgba(255, 255, 255, 0.9);
+  --tooltip-shadow-color: rgba(0, 0, 0, 0.2);
+  --tooltip-caret-color: rgba(30, 30, 30, 0.7);
+  --hover-marker-shadow: currentColor;
+  --selected-marker-ring: rgba(255, 255, 255, 0.3);
+}
+
+.timeline-header {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--timeline-title-color);
+  margin: 0 0 0.2rem 0;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.timeline-subtitle {
+  font-size: 0.7rem;
+  color: var(--timeline-subtitle-color);
+  margin: 0;
+  font-weight: 300;
+}
+
+.timeline-wrapper {
+  position: relative;
+  height: 60px;
+  padding: 0;
+}
+
+.timeline-axis {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.timeline-axis::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--axis-color-soft) 5%,
+    var(--axis-color-strong) 50%,
+    var(--axis-color-soft) 95%,
+    transparent 100%
+  );
+  transform: translateY(-50%);
+}
+
+.year-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.year-marker {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tick-mark {
+  width: 2px;
+  height: 12px;
+  background: var(--tick-color);
+  margin-bottom: 4px;
+}
+
+.marker-label {
+  position: absolute;
+  top: 100%;
+  margin-top: 16px;
+  font-size: 0.7rem;
+  color: var(--marker-label-color);
+  white-space: nowrap;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Prevent edge markers from going off screen */
+.year-marker:first-child .marker-label {
+  transform: translateX(0);
+  left: 0;
+}
+
+.year-marker:last-child .marker-label {
+  transform: translateX(-100%);
+  right: 0;
+  left: auto;
+}
+
+.bc-ad-divider {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: all;
+}
+
+.divider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: var(--divider-line-color);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.divider-cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: var(--divider-cross-color);
+  user-select: none;
+  cursor: help;
+  transition: all 0.2s ease;
+}
+
+.divider-cross:hover {
+  color: var(--divider-cross-hover-color);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.cross-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tooltip-background);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--tooltip-border-color);
+  color: var(--tooltip-text-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: fadeInScale 0.2s ease;
+  box-shadow: 0 2px 8px var(--tooltip-shadow-color);
+}
+
+.cross-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--tooltip-caret-color);
+}
+
+.cross-tooltip-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+  letter-spacing: 0.3px;
+}
+
+.cross-tooltip-subtitle {
+  font-size: 0.7rem;
+  color: var(--tooltip-subtext-color);
+  font-weight: 300;
+}
+
+.book-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+.book-marker {
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  opacity: 0.7;
+}
+
+.book-marker:hover {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  z-index: 20;
+  box-shadow: 0 0 8px var(--hover-marker-shadow);
+}
+
+.book-marker.selected {
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  box-shadow: 0 0 0 3px var(--selected-marker-ring), 0 0 12px var(--selected-marker-glow);
+  z-index: 30;
+  animation: pulseGlow 2.4s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    animation: pulseGlow 2.4s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(148, 163, 184, 0.18), 0 0 20px rgba(148, 163, 184, 0.45);
+    opacity: 0.7;
+  }
+}
+
+.book-tooltip {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tooltip-background);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--tooltip-border-color);
+  color: var(--tooltip-text-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: fadeInScale 0.2s ease;
+  box-shadow: 0 2px 8px var(--tooltip-shadow-color);
+}
+
+.book-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--tooltip-caret-color);
+}
+
+.book-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+  letter-spacing: 0.3px;
+  color: var(--tooltip-text-color);
+}
+
+.book-meta {
+  font-size: 0.7rem;
+  color: var(--tooltip-subtext-color);
+  font-weight: 300;
+}
+
+.book-category {
+  font-size: 0.65rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+  color: var(--tooltip-category-color);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .book-timeline-container {
+    margin: 0.5rem 0;
+    padding: 2.5rem 0.5rem 0 0.5rem;
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+  
+  .timeline-wrapper {
+    height: 50px;
+    min-width: 100%;
+    padding: 0 0.5rem;
+  }
+  
+  .marker-label {
+    font-size: 0.65rem;
+    margin-top: 14px;
+  }
+  
+  .tick-mark {
+    height: 10px;
+  }
+  
+  .divider-cross {
+    font-size: 1.15rem;
+  }
+  
+  .cross-tooltip {
+    /* Ensure tooltip stays visible on mobile */
+    max-width: 200px;
+    white-space: normal;
+    text-align: center;
+  }
+  
+  .cross-tooltip-title {
+    font-size: 0.75rem;
+  }
+  
+  .cross-tooltip-subtitle {
+    font-size: 0.65rem;
+  }
+  
+  .book-marker {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* On touch devices, make markers bigger for easier tapping */
+  .book-marker::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+  
+  .book-marker:hover {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .book-marker.selected {
+    width: 10px;
+    height: 10px;
+    box-shadow: 0 0 0 2px var(--selected-marker-ring), 0 0 8px var(--selected-marker-glow);
+  }
+  
+  .book-tooltip {
+    padding: 0.4rem 0.6rem;
+    max-width: 180px;
+    white-space: normal;
+    text-align: center;
+    left: auto;
+    right: auto;
+    transform: translateX(-50%);
+  }
+  
+  /* Prevent tooltips from going off-screen */
+  .book-marker:first-child .book-tooltip {
+    left: 0;
+    right: auto;
+    transform: none;
+  }
+  
+  .book-marker:last-child .book-tooltip {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+  
+  .book-name {
+    font-size: 0.75rem;
+  }
+  
+  .book-meta {
+    font-size: 0.65rem;
+  }
+  
+  .book-category {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-timeline-container {
+    padding: 2rem 0.25rem 0 0.25rem;
+  }
+  
+  .timeline-wrapper {
+    height: 45px;
+    padding: 0 0.25rem;
+  }
+  
+  .marker-label {
+    font-size: 0.55rem;
+    margin-top: 12px;
+  }
+  
+  .tick-mark {
+    height: 8px;
+  }
+  
+  .divider-cross {
+    font-size: 1rem;
+  }
+  
+  .book-tooltip {
+    font-size: 0.7rem;
+    max-width: 150px;
+    padding: 0.35rem 0.5rem;
+  }
+  
+  .book-name {
+    font-size: 0.7rem;
+  }
+  
+  .book-meta {
+    font-size: 0.6rem;
+  }
+  
+  .book-category {
+    font-size: 0.55rem;
+  }
+  
+  .cross-tooltip {
+    max-width: 160px;
+  }
+}
+
+/* Optimize for very small screens */
+@media (max-width: 375px) {
+  .book-timeline-container {
+    padding: 1.5rem 0.25rem 0 0.25rem;
+  }
+  
+  .timeline-wrapper {
+    height: 40px;
+  }
+  
+  .marker-label {
+    font-size: 0.5rem;
+    margin-top: 10px;
+  }
+  
+  /* Hide some year labels to prevent overlap */
+  .year-marker:nth-child(2),
+  .year-marker:nth-child(4) {
+    display: none;
+  }
+  
+  .book-marker {
+    width: 7px;
+    height: 7px;
+  }
+  
+  .book-marker.selected,
+  .book-marker:hover {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Make markers easier to tap on touch devices */
+  .book-marker {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .book-marker.selected {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .book-marker:hover {
+    width: 10px;
+    height: 10px;
+    box-shadow: none;
+  }
+  
+  .divider-cross:hover {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  /* Show tooltip on tap/touch */
+  .book-marker:active .book-tooltip {
+    display: block;
+  }
+}

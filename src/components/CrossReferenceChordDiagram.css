@@ -1,0 +1,424 @@
+/* Cross Reference Chord Diagram Styles */
+.chord-diagram-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+.chord-diagram-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chord-diagram-header h4 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.chord-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item span {
+  color: #475569;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.chord-diagram-wrapper {
+  flex: 1;
+  min-height: 400px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+}
+
+.chord-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.chord-instructions {
+  text-align: center;
+}
+
+.chord-control-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.chord-control-btn {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chord-control-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+}
+
+.chord-control-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chord-instructions p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.chord-diagram-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.chord-diagram-empty p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+/* Chord diagram element styles */
+.chord-group {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.chord-group:hover {
+  opacity: 0.8;
+}
+
+.chord-ribbon {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.chord-ribbon:hover {
+  opacity: 0.8;
+}
+
+.chord-label {
+  font-size: 11px;
+  font-weight: 500;
+  fill: var(--text-color, #374151);
+  text-anchor: middle;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+.chord-label:hover {
+  fill: var(--primary-color, #3b82f6);
+  font-weight: 600;
+}
+
+/* Tooltip styles */
+.chord-tooltip {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95));
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 250px;
+  word-wrap: break-word;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+/* Empty state */
+.chord-diagram-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted, #6b7280);
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.chord-diagram-empty svg {
+  opacity: 0.5;
+}
+
+/* Component structure */
+.chord-diagram-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chord-diagram-header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.chord-diagram-header h4 {
+  margin: 0 0 8px 0;
+  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chord-description {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+/* Dark theme support */
+.dark-theme .chord-diagram-container {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: #334155;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+}
+
+.dark-theme .chord-diagram-header h4 {
+  color: #f1f5f9;
+  background: linear-gradient(135deg, #a78bfa, #67e8f9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark-theme .legend-item span {
+  color: #cbd5e1;
+}
+
+.dark-theme .chord-diagram-wrapper {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: #475569;
+}
+
+.dark-theme .chord-diagram-empty {
+  color: #94a3b8;
+}
+
+.dark-theme .chord-instructions p {
+  color: #94a3b8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chord-diagram-container {
+    padding: 16px;
+  }
+  
+  .chord-diagram-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .chord-legend {
+    gap: 8px;
+  }
+  
+  .chord-tooltip {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+}
+
+/* Breadcrumb Navigation Styles */
+.chord-breadcrumb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.8) 100%);
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.breadcrumb-separator {
+  color: #64748b;
+  font-weight: 300;
+  margin: 0 4px;
+}
+
+.breadcrumb-link {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.breadcrumb-link:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.breadcrumb-link:disabled,
+.breadcrumb-link.current {
+  color: #64748b;
+  cursor: default;
+  background: rgba(148, 163, 184, 0.1);
+  font-weight: 600;
+}
+
+.breadcrumb-back-button {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-back-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+}
+
+.breadcrumb-back-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode styles for breadcrumbs */
+.chord-diagram-container.dark .chord-breadcrumb {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.8) 100%);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.chord-diagram-container.dark .breadcrumb-separator {
+  color: #94a3b8;
+}
+
+.chord-diagram-container.dark .breadcrumb-link {
+  color: #60a5fa;
+}
+
+.chord-diagram-container.dark .breadcrumb-link:hover:not(:disabled) {
+  background: rgba(96, 165, 250, 0.1);
+  color: #93c5fd;
+}
+
+.chord-diagram-container.dark .breadcrumb-link:disabled,
+.chord-diagram-container.dark .breadcrumb-link.current {
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+/* Dark mode styles for control buttons */
+.chord-diagram-container.dark .chord-control-btn {
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.chord-diagram-container.dark .chord-control-btn:hover {
+  background: linear-gradient(135deg, #6d28d9, #0e7490);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive breadcrumb styles */
+@media (max-width: 768px) {
+  .chord-breadcrumb {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .breadcrumb-trail {
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+  
+  .breadcrumb-back-button {
+    align-self: center;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}

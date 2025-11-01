@@ -1,0 +1,548 @@
+/* 
+  RESPONSIVE STYLES FOR SEEKFIRST WEBAPP
+  =====================================
+  
+  This file contains all responsive styles organized by breakpoints:
+  - Desktop: Default styles (> 1024px)
+  - Tablet/iPad: 769px - 1024px 
+  - Mobile: <= 768px
+  
+  Breakpoint strategy:
+  - Mobile-first approach where base styles target mobile
+  - Tablet styles override mobile for medium screens
+  - Desktop styles override both for large screens
+*/
+
+/* =============================================================================
+   LARGE TABLET / SMALL DESKTOP STYLES
+   Breakpoint: max-width 1280px
+   ============================================================================= */
+
+/* @media (max-width: 1280px) { */
+  /* Removed header centering - keep side-by-side layout for desktop/tablet */
+  
+  /* .header-text h1 {
+    font-size: clamp(2.75rem, 8vw, 7.5rem);
+  }
+
+  .site-footer {
+    padding: 2.75rem 1.5rem 3.25rem;
+    gap: 2.5rem;
+  }
+
+  .footer-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .footer-columns {
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .footer-cta {
+    padding: 2rem 1.75rem;
+  } */
+/*} */
+
+/* =============================================================================
+   TABLET STYLES (iPad and similar devices)
+   Breakpoint: max-width 1024px
+   ============================================================================= */
+
+@media (max-width: 1024px) {
+  /* Bible Main Content - Force single column layout on tablets */
+  .bible-main-content {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  
+  /* Override all multi-column layouts for tablets */
+  .bible-view:not(.full-width) .bible-main-content {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .bible-view.three-panel .bible-main-content {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Panels become static (stacked) instead of side-by-side */
+  .cross-reference-panel-container,
+  .explanation-panel {
+    position: static;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  /* Adjust content padding for tablets */
+  .verse-content-container {
+    padding: 0.75rem;
+  }
+  
+  /* === BOOK TIMELINE === */
+  .book-timeline-container {
+    margin: 1rem 0;
+  }
+
+  .site-footer {
+    padding: 2.5rem 1.75rem 3rem 2.5rem;
+    gap: 2.5rem;
+  }
+
+  .footer-container {
+    grid-template-columns: minmax(220px, 1fr);
+    grid-template-areas:
+      "brand"
+      "cta"
+      "links";
+    justify-items: center;
+  }
+
+  .footer-cta {
+    padding: 1.75rem 1.5rem;
+    justify-self: center;
+  }
+
+  .footer-bottom {
+    padding: 1.5rem 0 0 0;
+    text-align: center;
+  }
+
+  .footer-brand {
+    text-align: center;
+  }
+
+  .footer-columns {
+    width: 100%;
+    justify-items: center;
+  }
+}
+
+/* =============================================================================
+   MOBILE STYLES (Smartphones)
+   Breakpoint: max-width 768px
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  
+  /* === APP HEADER STYLES === */
+  .App-header {
+    padding: 2rem 1rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .header-text {
+    text-align: center;
+    padding-right: 0;
+  }
+  
+  .header-text h1 {
+    font-size: 2rem;
+  }
+  
+  .theme-toggle-btn {
+    align-self: flex-end;
+  }
+
+  .site-footer {
+    padding: 2.25rem 1.25rem 2.5rem;
+    gap: 2rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "brand"
+      "cta"
+      "links";
+    justify-items: center;
+  }
+
+  .footer-cta {
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .footer-column,
+  .footer-bottom {
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    padding: 1.5rem 0 0 0;
+  }
+  
+  /* === MAIN LAYOUT === */
+  main {
+    padding: 0 0.5rem 1rem 0.5rem;
+  }
+  
+  /* === BIBLE CONTROLS === */
+  .bible-controls {
+    padding: 0 0.5rem;
+  }
+  
+  .action-buttons {
+    justify-content: stretch;
+    gap: 0.5rem;
+  }
+  
+  .action-buttons .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  /* === BIBLE CONTENT LAYOUT === */
+  .bible-main-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  /* === BOOK TIMELINE MOBILE OPTIMIZATIONS === */
+  .book-timeline-container {
+    margin: 0.75rem 0;
+  }
+  
+  /* === RESPONSIVE LAYOUT FOR SMALLER SCREENS === */
+  .chapter-title-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .jesus-description {
+    min-width: unset;
+  }
+  
+  .jesus-revealed-text {
+    font-size: 0.85rem;
+  }
+  
+  /* === CHAPTER AND VERSE CONTENT === */
+  .chapter-header {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .verse-content {
+    padding: 1rem;
+  }
+  
+  .verse {
+    padding: 0.5rem;
+  }
+  
+  .verse-number {
+    min-width: 1.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  .verse-content-container {
+    padding: 0.75rem;
+  }
+  
+  /* === PANELS === */
+  .explanation-panel {
+    position: static;
+    max-height: none;
+  }
+  
+  .cross-reference-panel-container,
+  .explanation-panel {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  /* === EXPLANATION PANEL SPECIFICS === */
+  .panel-header {
+    padding: 1rem;
+  }
+  
+  .panel-title h3 {
+    font-size: 1rem;
+  }
+  
+  .panel-content {
+    padding: 1rem;
+  }
+  
+  .selected-verses-summary {
+    padding: 0.75rem;
+  }
+  
+  .explanation-section {
+    padding: 1rem;
+  }
+  
+  .section-content {
+    font-size: 0.85rem;
+  }
+  
+  /* === BIBLE SELECTION CONTROLS === */
+  .controls-content {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .chapter-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .chapter-nav-btn {
+    /* Keep buttons compact instead of full width on mobile */
+    width: auto;
+    min-width: 44px;
+    padding: 0.4rem;
+    border-radius: 6px;
+  }
+  
+  .chapter-select {
+    /* Let the select take remaining space while staying responsive */
+    flex: 1;
+    width: auto;
+    min-width: 120px;
+  }
+}
+
+/* =============================================================================
+   MOBILE LANDSCAPE OPTIMIZATIONS
+   For phones in landscape mode
+   ============================================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .App-header {
+    padding: 1rem;
+  }
+  
+  .header-text h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Reduce vertical spacing in landscape */
+  .bible-main-content {
+    gap: 0.5rem;
+  }
+  
+  .chapter-header {
+    padding: 0.75rem;
+  }
+  
+  .verse-content {
+    padding: 0.5rem;
+  }
+}
+
+/* =============================================================================
+   LARGE MOBILE DEVICES (iPhone Plus, etc.)
+   Breakpoint: 414px - 768px
+   ============================================================================= */
+
+@media (min-width: 415px) and (max-width: 768px) {
+  .action-buttons .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .chapter-header {
+    padding: 1.25rem;
+  }
+  
+  .verse-content {
+    padding: 1.25rem;
+  }
+}
+
+/* =============================================================================
+   SMALL MOBILE DEVICES 
+   Breakpoint: max-width 414px (iPhone 6/7/8, etc.)
+   ============================================================================= */
+
+@media (max-width: 414px) {
+  .App-header {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .header-text h1 {
+    font-size: 1.75rem;
+  }
+  
+  main {
+    padding: 0 0.25rem 0.5rem 0.25rem;
+  }
+  
+  .bible-controls {
+    padding: 0 0.25rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+    padding: 0.75rem;
+  }
+  
+  .verse-content {
+    padding: 0.75rem;
+  }
+  
+  .verse {
+    padding: 0.4rem;
+  }
+  
+  .panel-content,
+  .explanation-section {
+    padding: 0.75rem;
+  }
+  
+  .controls-content {
+    padding: 0.75rem;
+  }
+}
+
+/* =============================================================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Increase touch targets for better mobile usability */
+  .action-buttons .btn {
+    min-height: 44px; /* iOS recommended touch target size */
+  }
+  
+  .chapter-nav-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .verse {
+    /* Slightly larger touch target for verse selection */
+    min-height: 44px;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .action-buttons .btn:hover,
+  .chapter-nav-btn:hover,
+  .verse:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* =============================================================================
+   HIGH DPI / RETINA DISPLAY OPTIMIZATIONS
+   ============================================================================= */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Ensure crisp text rendering on high DPI displays */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Adjust border widths for retina displays */
+  .verse {
+    border-width: 0.5px;
+  }
+  
+  .chapter-header {
+    border-bottom-width: 0.5px;
+  }
+}
+
+/* =============================================================================
+   ACCESSIBILITY IMPROVEMENTS FOR MOBILE
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Ensure sufficient color contrast on mobile */
+  .verse-text {
+    font-size: 16px; /* Prevent iOS zoom on focus */
+    line-height: 1.5;
+  }
+  
+  /* Improve focus indicators for keyboard navigation */
+  .action-buttons .btn:focus,
+  .chapter-nav-btn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+  }
+  
+  /* Ensure loading states are visible on mobile */
+  .loading-container {
+    min-height: 200px;
+    padding: 2rem;
+  }
+  
+  .loading-text {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+/* =============================================================================
+   PERFORMANCE OPTIMIZATIONS FOR MOBILE
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  .verse {
+    animation-duration: 0.3s;
+  }
+  
+  /* Simplify complex animations on mobile */
+  .bible-main-content {
+    animation: none;
+  }
+  
+  .action-buttons > * {
+    animation: none;
+  }
+  
+  /* Reduce transform effects */
+  .font-size-controls button:hover {
+    transform: none;
+  }
+}
+
+/* =============================================================================
+   PRINT STYLES (when users want to print on mobile/tablet)
+   ============================================================================= */
+
+@media print {
+  .action-buttons,
+  .bible-controls,
+  .theme-toggle-btn {
+    display: none !important;
+  }
+  
+  .bible-main-content {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .verse-content {
+    padding: 0;
+  }
+  
+  .chapter-header {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}

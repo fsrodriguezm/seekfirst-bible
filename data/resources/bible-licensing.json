@@ -1,0 +1,73 @@
+[
+    {
+        "abbreviation": "AKJV",
+        "copyright": "Public Domain",
+        "permissionRequired": "No",
+        "fullName": "American King James Version (Public Domain)",
+        "url": "https://creationism.org/BibleAKJV/",
+        "publisher": "Cambridge University Press"
+    },
+    {
+        "abbreviation": "ASV",
+        "copyright": "Public Domain",
+        "permissionRequired": "No",
+        "fullName": "American Standard Version (Public Domain, 1901)",
+        "url": "https://ebible.org/asv/"
+    },
+    {
+        "abbreviation": "GNV",
+        "copyright": "Public Domain",
+        "permissionRequired": "No",
+        "fullName": "Geneva Bible (Public Domain, courtesy of eBible.org)",
+        "url": "https://ebible.org/enggnv/",
+        "publisher": "eBible.org"
+    },
+    {
+        "abbreviation": "JUB",
+        "copyright": "© Ransom Press International",
+        "permissionRequired": "Allowed for non-commercial use",
+        "fullName": "Jubilee Bible 2000 (JUB) © Ransom Press International — used courtesy of publisher",
+        "url": "https://www.ransompress.com/",
+        "publisher": "Ransom Press International"
+    },
+    {
+        "abbreviation": "KJ21",
+        "copyright": "© 1994 Deuel Enterprises, Inc.",
+        "permissionRequired": "Yes (by permission only)",
+        "fullName": "21st Century King James Version (KJ21) © 1994 Deuel Enterprises, Inc. Used by permission.",
+        "url": "https://www.biblegateway.com/versions/21st-Century-King-James-Version-KJ21-Bible/",
+        "publisher": "Deuel Enterprises, Inc."
+    },
+    {
+        "abbreviation": "KJV",
+        "copyright": "Public Domain (Crown rights in UK)",
+        "permissionRequired": "No (outside UK)",
+        "fullName": "King James Version (Public Domain outside UK; Crown rights apply in UK)",
+        "url": "https://www.cambridge.org/us/universitypress/bibles/about/rights-and-permissions",
+        "publisher": "Cambridge University Press"
+    },
+    {
+        "abbreviation": "WEB",
+        "copyright": "Public Domain (Trademarked name)",
+        "permissionRequired": "No",
+        "fullName": "World English Bible (Public Domain; trademark used unmodified)",
+        "url": "https://worldenglish.bible/",
+        "publisher": "World English Bible"
+    },
+    {
+        "abbreviation": "YLT",
+        "copyright": "Public Domain",
+        "permissionRequired": "No",
+        "fullName": "Young’s Literal Translation (Public Domain, 1898)",
+        "url": "https://ebible.org/find/show.php?id=engylt",
+        "publisher": "eBible.org"
+    },
+    {
+        "abbreviation": "RVA1602",
+        "copyright": "Public Domain",
+        "permissionRequired": "No",
+        "fullName": "Reina-Valera Antigua 1602 (Public Domain)",
+        "url": "https://www.biblegateway.com/versions/Reina-Valera-Antigua-RVA-Biblia/",
+        "publisher": "Bible Gateway"
+    }
+]

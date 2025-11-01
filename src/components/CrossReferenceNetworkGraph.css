@@ -1,0 +1,395 @@
+.network-graph-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+
+.network-graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+.network-graph-header h4 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+.graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+}
+
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.legend-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.legend-item span {
+  color: #475569;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+
+.force-graph-wrapper {
+  flex: 1;
+  min-height: 400px;
+  border: 1px solid rgba(203, 213, 225, 0.6);
+  border-radius: 8px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  position: relative;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+.network-wrapper {
+  flex: 1;
+  min-height: 400px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 6px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+}
+
+
+.network-canvas {
+  width: 100%;
+  height: 400px;
+}
+
+
+.graph-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.graph-interactions {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.graph-interactions p {
+  margin: 2px 0;
+}
+
+.graph-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+
+.graph-control-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+
+.graph-control-btn:hover {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+}
+
+
+.graph-control-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+}
+
+
+.network-graph-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text-muted, #9ca3af);
+  font-style: italic;
+  background: var(--bg-secondary, #f8fafc);
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .network-graph-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .graph-legend {
+    font-size: 0.8rem;
+  }
+
+
+  .force-graph-wrapper {
+    min-height: 300px;
+  }
+
+
+  .graph-controls {
+    gap: 8px;
+  }
+  
+  .graph-interactions {
+    font-size: 0.8rem;
+  }
+  
+  .graph-buttons {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* Dark theme support */
+.dark-theme .network-graph-container {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: #334155;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+}
+
+.dark-theme .network-graph-header h4 {
+  color: #f1f5f9;
+  background: linear-gradient(135deg, #a78bfa, #67e8f9);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark-theme .legend-item span {
+  color: #cbd5e1;
+}
+
+.dark-theme .force-graph-wrapper {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: #475569;
+}
+
+.dark-theme .network-wrapper {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-color: #475569;
+}
+
+.dark-theme .network-graph-empty {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+.dark-theme .graph-control-btn {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
+}
+
+.dark-theme .graph-control-btn:hover {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.4);
+}
+
+
+/* Animation for loading state */
+.network-graph-container.loading {
+  opacity: 0.7;
+}
+
+
+.network-graph-container.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid #e5e7eb;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Breadcrumb Navigation Styles for Network Graph */
+.network-breadcrumb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.8) 0%, rgba(241, 245, 249, 0.8) 100%);
+  border: 1px solid rgba(203, 213, 225, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.network-breadcrumb .breadcrumb-trail {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.network-breadcrumb .breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.network-breadcrumb .breadcrumb-separator {
+  color: #64748b;
+  font-weight: 300;
+  margin: 0 4px;
+}
+
+.network-breadcrumb .breadcrumb-link {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.network-breadcrumb .breadcrumb-link:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.network-breadcrumb .breadcrumb-link:disabled,
+.network-breadcrumb .breadcrumb-link.current {
+  color: #64748b;
+  cursor: default;
+  background: rgba(148, 163, 184, 0.1);
+  font-weight: 600;
+}
+
+.network-breadcrumb .breadcrumb-back-button {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.network-breadcrumb .breadcrumb-back-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #7c3aed, #0891b2);
+}
+
+.network-breadcrumb .breadcrumb-back-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode styles for network breadcrumbs */
+.network-graph-container.dark .network-breadcrumb {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(51, 65, 85, 0.8) 100%);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.network-graph-container.dark .network-breadcrumb .breadcrumb-separator {
+  color: #94a3b8;
+}
+
+.network-graph-container.dark .network-breadcrumb .breadcrumb-link {
+  color: #60a5fa;
+}
+
+.network-graph-container.dark .network-breadcrumb .breadcrumb-link:hover:not(:disabled) {
+  background: rgba(96, 165, 250, 0.1);
+  color: #93c5fd;
+}
+
+.network-graph-container.dark .network-breadcrumb .breadcrumb-link:disabled,
+.network-graph-container.dark .network-breadcrumb .breadcrumb-link.current {
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.1);
+}
+
+/* Responsive breadcrumb styles for network graph */
+@media (max-width: 768px) {
+  .network-breadcrumb {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .network-breadcrumb .breadcrumb-trail {
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+  
+  .network-breadcrumb .breadcrumb-back-button {
+    align-self: center;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}

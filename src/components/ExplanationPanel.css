@@ -1,0 +1,343 @@
+.explanation-panel-container {
+  background: rgba(255, 255, 255, 0.95);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: slideInFromRight 0.8s ease-out;
+}
+
+.explanation-panel-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dark-theme .explanation-panel-container {
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.panel-header:hover::before {
+  left: 100%;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.panel-title h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.copy-btn, .refresh-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.5rem;
+  min-width: auto;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.copy-btn::before, .refresh-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  transform: translate(-50%, -50%);
+}
+
+.copy-btn:hover::before, .refresh-btn:hover::before {
+  width: 80px;
+  height: 80px;
+}
+
+.copy-btn:hover, .refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.panel-content {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.ai-disclaimer {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+  border-left: 4px solid #ffc107;
+  border-radius: 8px;
+  color: #856404;
+  font-size: 0.9em;
+  line-height: 1.5;
+  animation: fadeInSlide 0.6s ease-out;
+}
+
+.ai-disclaimer strong {
+  color: #664d03;
+}
+
+.dark-theme .ai-disclaimer {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 193, 7, 0.1) 100%);
+  color: #ffc107;
+  border-left-color: #ffc107;
+}
+
+.dark-theme .ai-disclaimer strong {
+  color: #ffd454;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.selected-verses-summary {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.dark-theme .selected-verses-summary {
+  background: rgba(51, 65, 85, 0.8);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.selected-verses-summary h4 {
+  margin: 0 0 0.75rem 0;
+  color: #495057;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.dark-theme .selected-verses-summary h4 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.verses-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.verse-preview {
+  font-size: 0.9em;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
+.more-verses {
+  font-size: 0.9em;
+  color: #667eea;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+.loading-section .spinner {
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loading-section p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.error-section {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #dc3545;
+}
+
+.error-message {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  color: #721c24;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.explanation-content {
+  text-align: left;
+}
+
+.explanation-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.explanation-section {
+  padding: 1.25rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.dark-theme .explanation-section {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.section-title {
+  margin: 0 0 0.75rem 0;
+  color: #667eea;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.dark-theme .section-title {
+  color: #a5b4fc;
+}
+
+.section-content {
+  margin: 0;
+  line-height: 1.6;
+  color: #495057;
+  white-space: pre-line;
+  font-size: inherit;
+}
+
+.dark-theme .section-content {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+.empty-state svg {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.dark-theme .empty-state {
+  background: rgba(30, 41, 59, 0.95);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.font-size-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.font-size-controls button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.font-size-controls button:hover {
+  background-color: var(--button-hover-bg-color);
+}
+
+/* Mobile styles moved to /src/styles/responsive.css */

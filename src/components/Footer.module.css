@@ -1,0 +1,10 @@
+.legalLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.legalLink:focus,
+.legalLink:focus-visible {
+  outline: 2px dashed rgba(0, 0, 0, 0.12);
+  outline-offset: 3px;
+}

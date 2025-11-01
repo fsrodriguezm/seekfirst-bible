@@ -1,0 +1,251 @@
+.verse-content {
+  padding: 1.5rem;
+  text-align: left;
+  animation: fadeInContent 0.6s ease-out;
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.no-verses {
+  text-align: center;
+  padding: 2rem;
+  color: #64748b;
+}
+
+.dark-theme .no-verses {
+  color: #94a3b8;
+}
+
+.verse {
+  display: flex;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  /* keep container clicks/select for selection UI, but allow text selection inside */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInVerse 0.5s ease-out var(--verse-delay, 0s) both;
+}
+
+.verse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.verse:hover {
+  background: rgba(148, 163, 184, 0.1);
+  transform: translateX(6px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.verse:hover::before {
+  left: 100%;
+}
+
+@keyframes fadeInVerse {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dark-theme .verse:hover {
+  background: rgba(71, 85, 105, 0.2);
+}
+
+.verse.selected {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: #6366f1;
+  transform: translateX(12px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.2);
+  animation: pulseSelection 0.6s ease-out;
+}
+
+@keyframes pulseSelection {
+  0% {
+    transform: translateX(12px) scale(1.02);
+  }
+  50% {
+    transform: translateX(15px) scale(1.05);
+  }
+  100% {
+    transform: translateX(12px) scale(1.02);
+  }
+}
+
+.dark-theme .verse.selected {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: #8b5cf6;
+}
+
+.verse.highlighted {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #f59e0b;
+  animation: highlight-pulse 3s ease-out, glow 2s ease-in-out infinite alternate;
+}
+
+.verse.current-verse {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
+  border-left: 4px solid #10b981;
+  transform: translateX(8px) scale(1.01);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+  animation: currentVersePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes currentVersePulse {
+  0% { 
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+    background: rgba(16, 185, 129, 0.15);
+  }
+  100% { 
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    background: rgba(16, 185, 129, 0.2);
+  }
+}
+
+.dark-theme .verse.current-verse {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
+@keyframes highlight-pulse {
+  0% { 
+    transform: scale(1.05);
+    background: rgba(245, 158, 11, 0.3);
+  }
+  50% { 
+    transform: scale(1.08);
+    background: rgba(245, 158, 11, 0.4);
+  }
+  100% { 
+    transform: scale(1);
+    background: rgba(245, 158, 11, 0.2);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(245, 158, 11, 0.4);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+  }
+}
+
+@keyframes highlight-pulse {
+  0% { 
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+  }
+  50% { 
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+  }
+  100% { 
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+.verse-number {
+  font-weight: 700;
+  color: #6366f1;
+  margin-right: 0.75rem;
+  min-width: 2rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.dark-theme .verse-number {
+  color: #8b5cf6;
+}
+
+.verse-text {
+  flex: 1;
+  line-height: 1.6;
+  color: #475569;
+  /* allow users to select and copy verse text even though the verse container
+    itself is clickable (pointer). This overrides the container's user-select. */
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+.dark-theme .verse-text {
+  color: #cbd5e1;
+}
+
+.verse-text.jesus-words {
+  color: #dc2626;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(220, 38, 38, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark-theme .verse-text.jesus-words {
+  color: #ef4444;
+  text-shadow: 0 1px 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Add a subtle highlight effect when hovering over Jesus' words */
+.verse:hover .verse-text.jesus-words {
+  color: #b91c1c;
+  text-shadow: 0 2px 4px rgba(220, 38, 38, 0.2);
+}
+
+.dark-theme .verse:hover .verse-text.jesus-words {
+  color: #f87171;
+  text-shadow: 0 2px 5px rgba(239, 68, 68, 0.3);
+}
+
+/* God's words styling (Old Testament) */
+.verse-text.god-words {
+  color: #2563eb;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(37, 99, 235, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dark-theme .verse-text.god-words {
+  color: #60a5fa;
+  text-shadow: 0 1px 3px rgba(96, 165, 250, 0.2);
+}
+
+/* Add a subtle highlight effect when hovering over God's words */
+.verse:hover .verse-text.god-words {
+  color: #1d4ed8;
+  text-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+}
+
+.dark-theme .verse:hover .verse-text.god-words {
+  color: #93c5fd;
+  text-shadow: 0 2px 5px rgba(96, 165, 250, 0.3);
+}
+
+/* Mobile styles moved to /src/styles/responsive.css */

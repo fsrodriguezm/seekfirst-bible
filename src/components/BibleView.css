@@ -1,0 +1,711 @@
+.bible-view {
+  width: 100%;
+  animation: slideInFromBottom 0.6s ease-out;
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bible-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  animation: fadeInStagger 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeInStagger {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeInButtons 1s ease-out 0.5s both;
+}
+
+.action-buttons > * {
+  animation: bounceIn 0.6s ease-out var(--delay, 0s) both;
+}
+
+.action-buttons > *:nth-child(1) { --delay: 0.1s; }
+.action-buttons > *:nth-child(2) { --delay: 0.2s; }
+.action-buttons > *:nth-child(3) { --delay: 0.3s; }
+.action-buttons > *:nth-child(4) { --delay: 0.4s; }
+.action-buttons > *:nth-child(5) { --delay: 0.5s; }
+.action-buttons > *:nth-child(6) { --delay: 0.6s; }
+.action-buttons > *:nth-child(7) { --delay: 0.7s; }
+
+@keyframes fadeInButtons {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-5px);
+  }
+  70% {
+    transform: scale(0.95) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Red Letter Button Styles */
+.btn-red-letter-active {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(185, 28, 28, 0.15)) !important;
+  border: 2px solid rgba(220, 38, 38, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+.btn-red-letter-active:hover {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(185, 28, 28, 0.25)) !important;
+  border-color: rgba(220, 38, 38, 0.7) !important;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+}
+
+.bible-main-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  min-height: 800px;
+  animation: slideInContent 0.8s ease-out 0.4s both;
+}
+
+/* When explanation panel is showing */
+.bible-view:not(.full-width) .bible-main-content {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* When both explanation and cross-reference panels are showing */
+.bible-view.three-panel .bible-main-content {
+  grid-template-columns: 1fr 1fr;
+}
+
+@keyframes slideInContent {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bible-left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bible-license-card {
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #334155;
+  max-width: 720px;
+  animation: fadeInButtons 0.6s ease-out;
+}
+
+.dark .bible-license-card {
+  color: #e2e8f0;
+}
+
+.bible-license-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bible-license-card a:hover {
+  color: #ffffff;
+}
+
+.bible-license-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(59, 130, 246, 0.95);
+  font-weight: 600;
+}
+
+.dark .bible-license-label {
+  color: rgba(96, 165, 250, 0.95);
+}
+
+.bible-license-name {
+  font-weight: 600;
+}
+
+.bible-license-meta {
+  font-size: 0.8rem;
+  color: inherit;
+}
+
+.explanation-panel {
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.cross-reference-panel-container {
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  z-index: 1;
+}
+
+/* Right-side panel container for when both panels are showing */
+.bible-right-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+  max-height: calc(100vh - 2rem);
+}
+
+/* Adjust individual panels when stacked vertically */
+.bible-view.three-panel .explanation-panel {
+  position: static;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.bible-view.three-panel .cross-reference-panel-container {
+  position: static;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.verse-content-container {
+  padding: 1rem;
+}
+
+/* Only apply scrolling when cross-reference mode is active */
+.bible-view:not(.full-width) .verse-content-container {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.search-section {
+  margin-bottom: 0;
+}
+
+.bible-content {
+  min-height: 400px;
+}
+
+.chapter-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  text-align: left;
+  animation: slideInHeader 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.chapter-header:hover::before {
+  left: 100%;
+}
+
+@keyframes slideInHeader {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dark-theme .chapter-header {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  border-bottom-color: rgba(71, 85, 105, 0.3);
+}
+
+.chapter-header h2 {
+  margin: 0;
+  color: #475569;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.chapter-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.dark-theme .chapter-header h2 {
+  color: #e2e8f0;
+}
+
+.selected-count {
+  margin: 0.5rem 0 0 0;
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.dark-theme .selected-count {
+  color: #8b5cf6;
+}
+
+.jesus-description {
+  flex: 0 0 auto;
+  max-width: 60%;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  background: rgba(99, 102, 241, 0.05);
+  border-left: 3px solid #6366f1;
+  border-radius: 4px;
+  animation: fadeInDescription 0.6s ease-out 0.3s both;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.dark-theme .jesus-description {
+  background: rgba(139, 92, 246, 0.1);
+  border-left-color: #8b5cf6;
+}
+
+.jesus-revealed-text {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  font-style: italic;
+  font-weight: 500;
+  text-align: right;
+}
+
+.dark-theme .jesus-revealed-text {
+  color: #cbd5e1;
+}
+
+@keyframes fadeInDescription {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive layout styles moved to /src/styles/responsive.css */
+
+.verse-content {
+  padding: 1.5rem;
+}
+
+.verse {
+  display: flex;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInVerse 0.5s ease-out var(--verse-delay, 0s) both;
+}
+
+.verse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.verse:hover {
+  background: #f8f9fa;
+  transform: translateX(6px) scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.verse:hover::before {
+  left: 100%;
+}
+
+@keyframes fadeInVerse {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.verse.selected {
+  background: rgba(102, 126, 234, 0.1);
+  border-color: #667eea;
+  transform: translateX(12px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+  animation: pulseSelection 0.6s ease-out;
+}
+
+@keyframes pulseSelection {
+  0% {
+    transform: translateX(12px) scale(1.02);
+  }
+  50% {
+    transform: translateX(15px) scale(1.05);
+  }
+  100% {
+    transform: translateX(12px) scale(1.02);
+  }
+}
+
+.verse.highlighted {
+  background: rgba(255, 193, 7, 0.2);
+  border-color: #ffc107;
+  animation: highlight-pulse 3s ease-out, glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes highlight-pulse {
+  0% { 
+    transform: scale(1.05);
+    background: rgba(255, 193, 7, 0.3);
+  }
+  50% { 
+    transform: scale(1.08);
+    background: rgba(255, 193, 7, 0.4);
+  }
+  100% { 
+    transform: scale(1);
+    background: rgba(255, 193, 7, 0.2);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.4);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+  }
+}
+
+.verse-number {
+  font-weight: 700;
+  color: #667eea;
+  margin-right: 0.75rem;
+  min-width: 2rem;
+  font-size: 0.9rem;
+}
+
+.verse-text {
+  flex: 1;
+  line-height: 1.6;
+  color: #495057;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.bible-view.full-width .bible-main-content {
+  grid-template-columns: 1fr;
+}
+
+.font-size-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+.font-size-controls button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.9rem;
+  min-width: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.font-size-controls button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  transform: translate(-50%, -50%);
+}
+
+.font-size-controls button:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+.font-size-controls button:hover {
+  background-color: var(--button-hover-bg-color);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile styles moved to /src/styles/responsive.css */
+
+/* Loading States */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(102, 126, 234, 0.1);
+  border-left: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
+  position: relative;
+}
+
+.loading-spinner::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 2px solid transparent;
+  border-top: 2px solid rgba(139, 92, 246, 0.6);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite reverse;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: #64748b;
+  font-size: 1.1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Staggered verse animations */
+.verse-content .verse:nth-child(1) { --verse-delay: 0.1s; }
+.verse-content .verse:nth-child(2) { --verse-delay: 0.15s; }
+.verse-content .verse:nth-child(3) { --verse-delay: 0.2s; }
+.verse-content .verse:nth-child(4) { --verse-delay: 0.25s; }
+.verse-content .verse:nth-child(5) { --verse-delay: 0.3s; }
+.verse-content .verse:nth-child(6) { --verse-delay: 0.35s; }
+.verse-content .verse:nth-child(7) { --verse-delay: 0.4s; }
+.verse-content .verse:nth-child(8) { --verse-delay: 0.45s; }
+.verse-content .verse:nth-child(9) { --verse-delay: 0.5s; }
+.verse-content .verse:nth-child(10) { --verse-delay: 0.55s; }
+
+/* Scroll animations */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bible-left-panel {
+  animation: slideInFromLeft 0.8s ease-out 0.3s both;
+}
+
+.explanation-panel {
+  animation: slideInFromRight 0.8s ease-out 0.5s both;
+}
+
+.cross-reference-panel-container {
+  animation: slideInFromRight 0.8s ease-out 0.6s both;
+}
+
+/* Mobile and tablet responsiveness moved to /src/styles/responsive.css */
+
+/* Search Results Panel Styles */
+.search-results-panel {
+  margin-bottom: 1rem;
+  animation: slideInFromTop 0.4s ease-out;
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-results-header {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-results-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.search-results-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  margin-bottom: 0.25rem;
+}
+
+.search-result-item:hover {
+  background: rgba(99, 102, 241, 0.05);
+  transform: translateX(4px);
+  border-left: 3px solid #6366f1;
+  padding-left: calc(1rem - 3px);
+}
+
+.result-reference {
+  font-weight: 600;
+  color: #6366f1;
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.result-text {
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.results-truncated {
+  padding: 1rem;
+  text-align: center;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.dark-theme .search-results-panel {
+  background: rgba(30, 41, 59, 0.95);
+}
+
+.dark-theme .search-result-item:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-left-color: #8b5cf6;
+}
+
+.dark-theme .result-reference {
+  color: #a78bfa;
+}
+
+.dark-theme .result-text {
+  color: #cbd5e1;
+}

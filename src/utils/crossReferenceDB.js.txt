@@ -1,0 +1,158 @@
+import initSqlJs from 'sql.js'
+
+let SQL = null
+let db = null
+
+// Initialize SQL.js and load the database
+const initDatabase = async () => {
+  if (SQL && db) return db
+
+  try {
+    // Initialize SQL.js
+    SQL = await initSqlJs({
+      // Point to the sql-wasm.wasm file in the public directory
+      locateFile: file => `/${file}`
+    })
+
+    // Load the database file
+    const response = await fetch('/api/resources/cross_refs/crossrefs.db')
+    if (!response.ok) {
+      throw new Error(`Failed to load database: ${response.statusText}`)
+    }
+    
+    const dbBuffer = await response.arrayBuffer()
+    db = new SQL.Database(new Uint8Array(dbBuffer))
+    
+    console.log('SQLite database loaded successfully')
+    return db
+  } catch (error) {
+    console.error('Error initializing database:', error)
+    throw error
+  }
+}
+
+// Parse verse reference like "Matthew 24:15" into components
+const parseVerseReference = (verseRef) => {
+  // Handle ranges like 'Luke 21:5-Luke 21.36' by taking just the first verse
+  if (verseRef.includes('-')) {
+    verseRef = verseRef.split('-')[0]
+  }
+  
+  // Pattern to match: Book Chapter:Verse
+  const pattern = /^(.+?)\s+(\d+):(\d+)$/
+  const match = verseRef.trim().match(pattern)
+  
+  if (!match) {
+    return null
+  }
+  
+  return {
+    book: match[1].trim(),
+    chapter: parseInt(match[2]),
+    verse: parseInt(match[3])
+  }
+}
+
+// Get cross references for a specific verse
+export const getCrossReferences = async (book, chapter, verse) => {
+  try {
+    console.log(`Fetching cross references for ${book} ${chapter}:${verse}`)
+    const database = await initDatabase()
+    
+    // Query the database for cross references
+    const query = `
+      SELECT from_verse, to_verse, votes 
+      FROM cross_references 
+      WHERE from_verse LIKE ? 
+      ORDER BY votes DESC
+    `
+    
+    const searchPattern = `${book} ${chapter}:${verse}`
+    console.log(`Search pattern: ${searchPattern}`)
+    
+    const stmt = database.prepare(query)
+    const results = []
+    
+    stmt.bind([searchPattern])
+    
+    while (stmt.step()) {
+      const row = stmt.getAsObject()
+      const toVerseParsed = parseVerseReference(row.to_verse)
+      
+      if (toVerseParsed) {
+        // Create a weight based on votes (normalize to 0-1 scale)
+        // Assuming max votes is around 20 based on sample data
+        const weight = Math.min((row.votes || 0) / 20.0, 1.0)
+        
+        results.push({
+          ref: row.to_verse,
+          weight: Math.round(weight * 100) / 100, // Round to 2 decimal places
+          votes: row.votes || 0,
+          reason: 'cross-reference'
+        })
+      }
+    }
+    
+    stmt.free()
+    console.log(`Found ${results.length} cross references`)
+    return results
+  } catch (error) {
+    console.error('Error fetching cross references:', error)
+    return []
+  }
+}
+
+// Get all cross references for a chapter
+export const getCrossReferencesForChapter = async (book, chapter) => {
+  try {
+    const database = await initDatabase()
+    
+    const query = `
+      SELECT from_verse, to_verse, votes 
+      FROM cross_references 
+      WHERE from_verse LIKE ? 
+      ORDER BY from_verse, votes DESC
+    `
+    
+    const searchPattern = `${book} ${chapter}:%`
+    const stmt = database.prepare(query)
+    const results = {}
+    
+    stmt.bind([searchPattern])
+    
+    while (stmt.step()) {
+      const row = stmt.getAsObject()
+      const fromVerseParsed = parseVerseReference(row.from_verse)
+      const toVerseParsed = parseVerseReference(row.to_verse)
+      
+      if (fromVerseParsed && toVerseParsed) {
+        const verseNum = fromVerseParsed.verse
+        if (!results[verseNum]) {
+          results[verseNum] = []
+        }
+        
+        // Create a weight based on votes
+        const weight = Math.min((row.votes || 0) / 20.0, 1.0)
+        
+        results[verseNum].push({
+          ref: row.to_verse,
+          weight: Math.round(weight * 100) / 100,
+          votes: row.votes || 0,
+          reason: 'cross-reference'
+        })
+      }
+    }
+    
+    stmt.free()
+    return results
+  } catch (error) {
+    console.error('Error fetching chapter cross references:', error)
+    return {}
+  }
+}
+
+export default {
+  getCrossReferences,
+  getCrossReferencesForChapter,
+  initDatabase
+}
