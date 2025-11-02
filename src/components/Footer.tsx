@@ -32,7 +32,7 @@ export default function Footer({ currentYear = new Date().getFullYear() }: Foote
           </div>
         </div>
         <div className="footer-cta">
-          <h2>We'd love your feedback</h2>
+          <h2>We&apos;d love your feedback</h2>
           <p>Please share your honest thoughts — this helps improve the site for everyone.</p>
           <a
             className="feedback-link"

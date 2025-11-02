@@ -26,7 +26,7 @@ const TermsPage: NextPage = () => {
             <section>
               <h2>Purpose</h2>
               <p>
-                SeekFirst exists to help people study the Bible freely. All features are provided "as-is" for educational and spiritual use.
+                SeekFirst exists to help people study the Bible freely. All features are provided &quot;as-is&quot; for educational and spiritual use.
               </p>
             </section>
 
@@ -46,7 +46,7 @@ const TermsPage: NextPage = () => {
             <section>
               <h2>AI explanations</h2>
               <p>
-                AI-generated explanations are tools for study, not substitutes for prayer or the Holy Spirit's guidance. We strive for accuracy, but SeekFirst makes no guarantees about theological interpretation or completeness.
+                AI-generated explanations are tools for study, not substitutes for prayer or the Holy Spirit&apos;s guidance. We strive for accuracy, but SeekFirst makes no guarantees about theological interpretation or completeness.
               </p>
             </section>
 

@@ -7,7 +7,6 @@ type ThemeContextValue = {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined)
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = (): ThemeContextValue => {
   const context = useContext(ThemeContext)
   if (!context) {
@@ -20,7 +19,7 @@ type ThemeProviderProps = {
   children: ReactNode
 }
 
-export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => {
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [isDark, setIsDark] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false
     const saved = window.localStorage.getItem('theme')

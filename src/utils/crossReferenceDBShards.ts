@@ -4,8 +4,6 @@ import {
   translateReferenceToSpanish,
 } from './bookNameMappings'
 import {
-  OLD_TESTAMENT_BOOKS_EN,
-  NEW_TESTAMENT_BOOKS_EN,
   getTestamentForBook,
 } from './bibleBookLists'
 
@@ -72,8 +70,8 @@ const initDatabase = async (): Promise<{ otDb: Database; ntDb: Database }> => {
   })
 
   const [otResponse, ntResponse] = await Promise.all([
-    fetch('/api/resources/cross_refs/crossrefs_ot.db'),
-    fetch('/api/resources/cross_refs/crossrefs_nt.db'),
+    fetch('/cross_refs/crossrefs_ot.db'),
+    fetch('/cross_refs/crossrefs_nt.db'),
   ])
 
   if (!otResponse.ok) {

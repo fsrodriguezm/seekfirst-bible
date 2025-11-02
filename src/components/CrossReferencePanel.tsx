@@ -64,7 +64,7 @@ const CrossReferencePanel = ({
   fontSize = 16,
   verseSelectionLocked = false,
   onToggleLock,
-}: CrossReferencePanelProps): JSX.Element => {
+}: CrossReferencePanelProps) => {
   const [crossReferences, setCrossReferences] = useState<CrossReference[]>([])
   const [referencesWithText, setReferencesWithText] = useState<ReferenceWithText[]>([])
   const [isLoading, setIsLoading] = useState(false)

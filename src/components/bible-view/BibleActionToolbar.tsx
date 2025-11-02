@@ -4,7 +4,6 @@ import { isSpanishVersion } from '../../utils/versionMap'
 interface BibleActionToolbarProps {
   hasSelectedVerses: boolean
   onCopySelectedVerses: () => void
-  showExplanationPanel: boolean
   onToggleExplanation: () => void
   crossReferenceMode: boolean
   onToggleCrossReferences: () => void
@@ -19,7 +18,6 @@ interface BibleActionToolbarProps {
 const BibleActionToolbar = ({
   hasSelectedVerses,
   onCopySelectedVerses,
-  showExplanationPanel,
   onToggleExplanation,
   crossReferenceMode,
   onToggleCrossReferences,
@@ -29,7 +27,7 @@ const BibleActionToolbar = ({
   onIncreaseFontSize,
   getButtonRef,
   selectedBible,
-}: BibleActionToolbarProps): JSX.Element => {
+}: BibleActionToolbarProps) => {
   const redLetterLabel = isSpanishVersion(selectedBible) ? 'Letras Rojas' : 'Red Letters'
 
   return (
