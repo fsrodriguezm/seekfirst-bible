@@ -36,7 +36,7 @@ const resolveCloudflareEnv = async (): Promise<CloudflareEnv | undefined> => {
 const loadFromR2 = async (importPath: string): Promise<unknown | null> => {
   try {
     const env = await resolveCloudflareEnv()
-    const bucket = (env as { BIBLE_DATA_BUCKET?: { get: (key: string) => Promise<any> } })?.BIBLE_DATA_BUCKET
+    const bucket = env?.BIBLE_DATA_BUCKET
     if (!bucket) {
       return null
     }
