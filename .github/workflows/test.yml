@@ -29,8 +29,11 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      - name: Build
-        run: npm run build
+      - name: Build worker bundle
+        run: npm run cf:build
+
+      - name: Check worker bundle size
+        run: npm run cf:check-size
 
       - name: Security audit
         run: npm audit
