@@ -4,6 +4,10 @@ import { getCloudflareContext } from '@opennextjs/cloudflare'
 const BIBLE_DATA_PREFIX = 'data/bibles'
 const CACHE_CONTROL_HEADER = 'public, max-age=3600'
 
+type BibleDataBucket = {
+  get: (key: string) => Promise<{ text: () => Promise<string> } | null>
+}
+
 const isValidSegment = (segment: string): boolean =>
   segment.length > 0 && !segment.includes('..') && !segment.startsWith('.')
 
@@ -36,7 +40,7 @@ const resolveCloudflareEnv = async (): Promise<CloudflareEnv | undefined> => {
 const loadFromR2 = async (importPath: string): Promise<unknown | null> => {
   try {
     const env = await resolveCloudflareEnv()
-    const bucket = env?.BIBLE_DATA_BUCKET
+    const bucket = (env as CloudflareEnv & { BIBLE_DATA_BUCKET?: BibleDataBucket })?.BIBLE_DATA_BUCKET
     if (!bucket) {
       return null
     }
