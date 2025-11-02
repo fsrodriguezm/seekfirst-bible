@@ -22,7 +22,7 @@ A modern React web application for Bible study with search functionality and AI-
 1. Navigate to the project directory:
 
    ```bash
-   cd seekfirst-webapp
+   cd seekfirst-bible
    ```
 
 2. Install dependencies:
