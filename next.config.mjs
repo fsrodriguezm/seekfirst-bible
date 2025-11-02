@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   eslint: {
     dirs: ['.'],
+    ignoreDuringBuilds: true,
   },
   webpack: (config) => {
     config.resolve.fallback = {

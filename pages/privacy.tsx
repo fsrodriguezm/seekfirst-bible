@@ -20,7 +20,7 @@ const PrivacyPage: NextPage = () => {
 
           <div className="legal-content">
             <p className="intro">
-              At SeekFirst, your privacy matters. We believe you should be able to study God's Word without being tracked or profiled.
+              At SeekFirst, your privacy matters. We believe you should be able to study God&apos;s Word without being tracked or profiled.
             </p>
 
             <section>
@@ -37,7 +37,7 @@ const PrivacyPage: NextPage = () => {
             </section>
 
             <section>
-              <h2>What we don't collect</h2>
+              <h2>What we don&apos;t collect</h2>
               <ul>
                 <li>No account registration is required.</li>
                 <li>No email, GPS, or personal contact data is stored.</li>
@@ -60,7 +60,7 @@ const PrivacyPage: NextPage = () => {
             </section>
 
             <section>
-              <h2>Children's privacy</h2>
+              <h2>Children&apos;s privacy</h2>
               <p>
                 SeekFirst is designed for all audiences, but we encourage parents to guide younger readers. We do not knowingly collect data from children under 13.
               </p>
@@ -69,7 +69,7 @@ const PrivacyPage: NextPage = () => {
             <section>
               <h2>Changes</h2>
               <p>
-                If this policy changes, the "last updated" date above will be revised. Major updates will be announced within the app.
+                If this policy changes, the &quot;last updated&quot; date above will be revised. Major updates will be announced within the app.
               </p>
             </section>
 

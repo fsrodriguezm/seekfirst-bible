@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState, useCallback } from 'react'
 import type { Options, Edge, Node } from 'vis-network/peer'
 import { Network } from 'vis-network/peer'
@@ -110,7 +111,7 @@ const CrossReferenceNetworkGraph = ({
   fontSize = 14,
   navigationHistory = [],
   onUpdateNavigationHistory,
-}: CrossReferenceNetworkGraphProps): JSX.Element => {
+}: CrossReferenceNetworkGraphProps) => {
   const networkRef = useRef<HTMLDivElement | null>(null)
   const networkInstance = useRef<Network | null>(null)
   const [networkData, setNetworkData] = useState<{

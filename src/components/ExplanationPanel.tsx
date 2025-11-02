@@ -20,7 +20,7 @@ const ExplanationPanel = ({
   allVerses,
   fontSize = 16,
   language = 'english'
-}: ExplanationPanelProps): JSX.Element => {
+}: ExplanationPanelProps) => {
   const [explanation, setExplanation] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')

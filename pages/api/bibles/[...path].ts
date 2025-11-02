@@ -1,26 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { promises as fs } from 'node:fs'
-import path from 'node:path'
-
-const BIBLES_ROOT = path.join(process.cwd(), 'data', 'bibles')
 
 const isValidSegment = (segment: string): boolean =>
   segment.length > 0 && !segment.includes('..') && !segment.startsWith('.')
 
-const buildFilePath = (segments: string[]): string => {
+const buildImportPath = (segments: string[]): string => {
   const normalizedSegments = [...segments]
   const lastIndex = normalizedSegments.length - 1
   const lastSegment = normalizedSegments[lastIndex]
-  normalizedSegments[lastIndex] = lastSegment.endsWith('.json') ? lastSegment : `${lastSegment}.json`
+  
+  // Remove .json extension if present for the import path
+  normalizedSegments[lastIndex] = lastSegment.endsWith('.json') 
+    ? lastSegment.slice(0, -5) 
+    : lastSegment
 
-  const resolvedPath = path.join(BIBLES_ROOT, ...normalizedSegments)
-  const normalizedPath = path.normalize(resolvedPath)
-
-  if (!normalizedPath.startsWith(BIBLES_ROOT)) {
-    throw new Error('Invalid path')
-  }
-
-  return normalizedPath
+  return normalizedSegments.join('/')
 }
 
 export default async function handler(
@@ -41,26 +34,17 @@ export default async function handler(
     return
   }
 
-  let filePath: string
-  try {
-    filePath = buildFilePath(pathSegments)
-  } catch {
-    res.status(400).json({ error: 'Invalid path' })
-    return
-  }
+  const importPath = buildImportPath(pathSegments)
 
   try {
-    const fileContents = await fs.readFile(filePath, 'utf8')
+    // Dynamically import the JSON file from the data/bibles directory
+    const bibleData = await import(`../../../data/bibles/${importPath}.json`)
+    
     res.setHeader('Content-Type', 'application/json')
     res.setHeader('Cache-Control', 'public, max-age=3600')
-    res.status(200).send(fileContents)
+    res.status(200).json(bibleData.default || bibleData)
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      res.status(404).json({ error: 'Bible not found' })
-      return
-    }
-
-    console.error(`Error loading bible file at ${filePath}`, error)
-    res.status(500).json({ error: 'Failed to load bible data' })
+    console.error(`Error loading bible file for path: ${importPath}`, error)
+    res.status(404).json({ error: 'Bible not found' })
   }
 }

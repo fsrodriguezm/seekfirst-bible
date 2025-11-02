@@ -20,7 +20,7 @@ const BibleVerseContent = ({
   redLetterMode = false,
   jesusWordsVerses = new Set<number>(),
   godWordsVerses = new Set<number>()
-}: BibleVerseContentProps): JSX.Element => {
+}: BibleVerseContentProps) => {
   if (!verses || Object.keys(verses).length === 0) {
     return (
       <div className="verse-content">

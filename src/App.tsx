@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
 import BibleView from './components/bible-view/BibleView'

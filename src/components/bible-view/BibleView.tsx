@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, useMemo, type MutableRefObject } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import BibleSelectionControls from '../BibleSelectionControls'
@@ -7,7 +7,7 @@ import BibleActionToolbar from './BibleActionToolbar'
 import BibleSearchResults from './BibleSearchResults'
 import BibleChapterContent from './BibleChapterContent'
 import BibleSidePanels from './BibleSidePanels'
-import { SPANISH_TO_ENGLISH_BOOKS, ENGLISH_TO_SPANISH_BOOKS } from '../../utils/bookNameMappings'
+import { SPANISH_TO_ENGLISH_BOOKS } from '../../utils/bookNameMappings'
 import { buildCanonicalPath, normalizeBookSlug } from '../../utils/bookSlugNormalizer'
 import {
   getVersionSlug,
@@ -30,13 +30,6 @@ const CrossReferencePanel = dynamic(() => import('../CrossReferencePanel'), {
   loading: () => <div className="cross-reference-loading">Loading cross references...</div>,
 })
 
-type SelectionParseResult = {
-  book: string
-  chapter: string
-  verse: string
-  text: string
-}
-
 interface BibleViewProps {
   initialBook?: string
   initialChapter?: number
@@ -44,7 +37,7 @@ interface BibleViewProps {
   initialVerses?: string
 }
 
-const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewProps = {}): JSX.Element => {
+const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewProps = {}) => {
   const router = useRouter()
   const [selectedBible, setSelectedBible] = useState<string>(initialVersion || 'KJV')
   const [selectedBook, setSelectedBook] = useState<string>(initialBook || 'Genesis')
@@ -336,7 +329,6 @@ const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewPro
         <BibleActionToolbar
           hasSelectedVerses={selectedVerses.length > 0}
           onCopySelectedVerses={handleCopySelectedVerses}
-          showExplanationPanel={showExplanationPanel}
           onToggleExplanation={handleExplanationToggle}
           crossReferenceMode={crossReferenceMode}
           onToggleCrossReferences={handleCrossReferenceToggle}

@@ -9,9 +9,12 @@ lerna-debug.log*
 
 node_modules
 .next
+.open-next
+.vercel
 dist
 dist-ssr
 *.local
+.wrangler/tmp/
 
 # Editor directories and files
 .vscode/*

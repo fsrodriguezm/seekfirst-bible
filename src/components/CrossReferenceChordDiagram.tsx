@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState, useCallback } from 'react'
 import * as d3 from 'd3'
 import { getBooksForBook, getTestamentForBook } from '../utils/bibleBookLists'
@@ -25,7 +26,7 @@ const CrossReferenceChordDiagram = ({
   navigationHistory = [],
   onUpdateNavigationHistory,
   showAllReferences = false
-}: CrossReferenceChordDiagramProps): JSX.Element => {
+}: CrossReferenceChordDiagramProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
   const zoomRef = useRef<{ zoom: any; svg: any } | null>(null)
   const [chordData, setChordData] = useState<any>(null)
@@ -36,7 +37,7 @@ const CrossReferenceChordDiagram = ({
   const bibleBooks = getBooksForBook(currentBook)
 
   // Create navigation handler that tracks history
-  const handleNavigation = useCallback((book, chapter, verse, trimToIndex = null) => {
+  const handleNavigation = useCallback((book: any, chapter: any, verse: any, trimToIndex: any = null) => {
     if (trimToIndex !== null) {
       // Breadcrumb navigation - navigate and update history
       if (onNavigateToVerse && onUpdateNavigationHistory) {

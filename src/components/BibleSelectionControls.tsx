@@ -26,7 +26,7 @@ const BibleSelectionControls = ({
   chapterCount,
   onSearch,
   onReferenceNavigate
-}: BibleSelectionControlsProps): JSX.Element => {
+}: BibleSelectionControlsProps) => {
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)

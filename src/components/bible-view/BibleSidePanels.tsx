@@ -52,7 +52,7 @@ const BibleSidePanels = ({
   onToggleLock,
   onNavigateToVerse,
   CrossReferencePanelComponent,
-}: BibleSidePanelsProps): JSX.Element | null => {
+}: BibleSidePanelsProps) => {
   const shouldRenderExplanation = showExplanationPanel
   const shouldRenderCrossRefs = crossReferenceMode
 

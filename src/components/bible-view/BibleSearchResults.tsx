@@ -12,7 +12,7 @@ const BibleSearchResults = ({
   results,
   onNavigate,
   maxResults = DEFAULT_MAX_RESULTS,
-}: BibleSearchResultsProps): JSX.Element | null => {
+}: BibleSearchResultsProps) => {
   if (!results.length) {
     return null
   }

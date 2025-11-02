@@ -38,7 +38,7 @@ const BibleChapterContent = ({
   jesusWordsVerses,
   godWordsVerses,
   jesusDescription,
-}: BibleChapterContentProps): JSX.Element => {
+}: BibleChapterContentProps) => {
   return (
     <div className="bible-content card">
       <div className="chapter-header">

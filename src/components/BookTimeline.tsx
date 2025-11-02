@@ -17,7 +17,7 @@ type TimelineBook = {
   author?: string
 }
 
-const BookTimeline = ({ selectedBook, onBookSelect, bookMetadata, isSpanish = false }: BookTimelineProps): JSX.Element => {
+const BookTimeline = ({ selectedBook, onBookSelect, bookMetadata, isSpanish = false }: BookTimelineProps) => {
   const [hoveredBook, setHoveredBook] = useState<string | null>(null)
   const [showCrossTooltip, setShowCrossTooltip] = useState(false)
   
