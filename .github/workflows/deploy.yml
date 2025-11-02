@@ -31,7 +31,7 @@ jobs:
         run: npx @opennextjs/cloudflare build
 
       - name: Upload GROQ API key secret
-        if: "${{ secrets.GROQ_API_KEY != '' }}"
+        if: ${{ secrets.GROQ_API_KEY != '' }}
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: printf '%s\n' "$GROQ_API_KEY" | npx wrangler secret put GROQ_API_KEY --config wrangler.jsonc
