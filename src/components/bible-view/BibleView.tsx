@@ -217,9 +217,16 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
 
     if (selectedVersesArray.length > 0) {
       setSelectedVerses(selectedVersesArray)
+    }
+    setInitialVersesLoaded(true)
+  }, [initialVerses, verses, selectedBook, selectedChapter, initialVersesLoaded])
+
+  // Mark as loaded once verses data is available (for manual selection)
+  useEffect(() => {
+    if (!initialVersesLoaded && verses && Object.keys(verses).length > 0) {
       setInitialVersesLoaded(true)
     }
-  }, [initialVerses, verses, selectedBook, selectedChapter, initialVersesLoaded])
+  }, [verses, initialVersesLoaded])
 
   // Clear selected verses when navigating to a new location
   useEffect(() => {
