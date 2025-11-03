@@ -37,7 +37,7 @@ interface BibleViewProps {
   initialVerses?: string
 }
 
-const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewProps = {}) => {
+const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses }: BibleViewProps = {}) => {
   const router = useRouter()
   const [selectedBible, setSelectedBible] = useState<string>(initialVersion || 'KJV')
   const [selectedBook, setSelectedBook] = useState<string>(initialBook || 'Genesis')
@@ -49,6 +49,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewPro
   const [verseSelectionLocked, setVerseSelectionLocked] = useState<boolean>(false)
   const [fontSize, setFontSize] = useState<number>(16)
   const [redLetterMode, setRedLetterMode] = useState<boolean>(false)
+  const [initialVersesLoaded, setInitialVersesLoaded] = useState<boolean>(false)
   const buttonRefs = useRef<Array<HTMLButtonElement | null>>([])
   const selectedCountRef = useRef<HTMLParagraphElement | null>(null)
   const explanationPanelRef = useRef<HTMLDivElement | null>(null)
@@ -134,20 +135,49 @@ const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewPro
     
     // Build the new path using version language for book slugs
     const versionSlug = getVersionSlug(selectedBible)
+    
+    // Extract verse numbers from selectedVerses if they exist and verses are loaded
+    let versesParam: string | undefined
+    if (selectedVerses.length > 0 && initialVersesLoaded) {
+      const verseNumbers = selectedVerses
+        .map(v => {
+          const match = v.match(/:(\d+)\s/)
+          return match ? parseInt(match[1], 10) : null
+        })
+        .filter((n): n is number => n !== null)
+        .sort((a, b) => a - b)
+
+      if (verseNumbers.length > 0) {
+        // Check if consecutive
+        const isConsecutive = verseNumbers.every((num, idx) => 
+          idx === 0 || num === verseNumbers[idx - 1] + 1
+        )
+
+        if (isConsecutive && verseNumbers.length > 1) {
+          versesParam = `${verseNumbers[0]}-${verseNumbers[verseNumbers.length - 1]}`
+        } else if (verseNumbers.length === 1) {
+          versesParam = String(verseNumbers[0])
+        } else {
+          // For non-consecutive, just use first and last with dash
+          versesParam = `${verseNumbers[0]}-${verseNumbers[verseNumbers.length - 1]}`
+        }
+      }
+    }
+    
     const newPath = buildCanonicalPath(
       urlLang, // Use version-appropriate language in URL
       versionSlug,
       normalizedBookName,
       selectedChapter,
-      undefined,
+      versesParam,
       versionLang // Pass version language for slug generation
     )
     
     // Only update if the path is different from current
     if (newPath && router.asPath !== newPath) {
-      router.push(newPath, undefined, { shallow: false })
+      router.push(newPath, undefined, { shallow: true })
     }
-  }, [selectedBible, selectedBook, selectedChapter, router])
+  }, [selectedBible, selectedBook, selectedChapter, selectedVerses, router, initialVersesLoaded])
 
   // Load Bible data
   useLocalStorageSync('selectedBible', selectedBible)
@@ -155,10 +185,55 @@ const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewPro
   useLocalStorageSync('selectedChapter', selectedChapter)
   useLocalStorageSync('redLetterMode', redLetterMode)
 
+  // Load initial verses from URL when data is ready
+  useEffect(() => {
+    if (!initialVerses || initialVersesLoaded || !verses || Object.keys(verses).length === 0) return
+
+    const parseVerseRange = (verseStr: string): number[] => {
+      if (verseStr.includes('-')) {
+        const [start, end] = verseStr.split('-').map(Number)
+        if (!isNaN(start) && !isNaN(end)) {
+          return Array.from({ length: end - start + 1 }, (_, i) => start + i)
+        }
+      } else {
+        const num = Number(verseStr)
+        if (!isNaN(num)) {
+          return [num]
+        }
+      }
+      return []
+    }
+
+    const verseNumbers = parseVerseRange(initialVerses)
+    const selectedVersesArray: string[] = []
+
+    verseNumbers.forEach(verseNumber => {
+      const verseKey = `${selectedBook} ${selectedChapter}:${verseNumber}`
+      const verseText = verses[String(verseNumber)]
+      if (verseText) {
+        selectedVersesArray.push(`${verseKey} ${verseText}`)
+      }
+    })
+
+    if (selectedVersesArray.length > 0) {
+      setSelectedVerses(selectedVersesArray)
+    }
+    setInitialVersesLoaded(true)
+  }, [initialVerses, verses, selectedBook, selectedChapter, initialVersesLoaded])
+
+  // Mark as loaded once verses data is available (for manual selection)
+  useEffect(() => {
+    if (!initialVersesLoaded && verses && Object.keys(verses).length > 0) {
+      setInitialVersesLoaded(true)
+    }
+  }, [verses, initialVersesLoaded])
+
   // Clear selected verses when navigating to a new location
   useEffect(() => {
     setSelectedVerses([])
+    setInitialVersesLoaded(false)
   }, [selectedBible, selectedBook, selectedChapter])
+
   // Update selected verse count without animation
   useEffect(() => {
     if (selectedCountRef.current) {
@@ -269,7 +344,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewPro
   const handleCopySelectedVerses = async () => {
     if (selectedVerses.length === 0) return
 
-    const formattedText = formatSelectedVersesForCopy(selectedVerses)
+    const formattedText = formatSelectedVersesForCopy(selectedVerses, selectedBible, selectedBibleLanguage)
     if (!formattedText) {
       console.error('Unable to format selected verses for copy')
       return

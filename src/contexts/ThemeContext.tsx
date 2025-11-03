@@ -20,11 +20,17 @@ type ThemeProviderProps = {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false
-    const saved = window.localStorage.getItem('theme')
-    return saved ? saved === 'dark' : false
-  })
+  const [isDark, setIsDark] = useState<boolean>(false)
+  const [mounted, setMounted] = useState<boolean>(false)
+
+  useEffect(() => {
+    // Load theme from localStorage after mount
+    if (typeof window !== 'undefined') {
+      const saved = window.localStorage.getItem('theme')
+      setIsDark(saved === 'dark')
+      setMounted(true)
+    }
+  }, [])
 
   useEffect(() => {
     // Apply theme to document body
@@ -32,10 +38,10 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
       document.body.classList.toggle('dark-theme', isDark)
     }
     // Save to localStorage
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && mounted) {
       window.localStorage.setItem('theme', isDark ? 'dark' : 'light')
     }
-  }, [isDark])
+  }, [isDark, mounted])
 
   const toggleTheme = () => {
     setIsDark((prev) => !prev)
