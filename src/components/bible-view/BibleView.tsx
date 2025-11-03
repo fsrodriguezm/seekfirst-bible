@@ -269,7 +269,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion }: BibleViewPro
   const handleCopySelectedVerses = async () => {
     if (selectedVerses.length === 0) return
 
-    const formattedText = formatSelectedVersesForCopy(selectedVerses)
+    const formattedText = formatSelectedVersesForCopy(selectedVerses, selectedBible, selectedBibleLanguage)
     if (!formattedText) {
       console.error('Unable to format selected verses for copy')
       return
