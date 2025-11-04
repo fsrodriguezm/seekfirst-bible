@@ -53,11 +53,11 @@ body.dark-theme[data-palette="classic"] {
   --sf-surface-alt: rgba(30, 41, 59, 0.75);
   --sf-surface-border: rgba(71, 85, 105, 0.35);
   --sf-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-  --sf-accent: #a855f7;
-  --sf-accent-hover: #c084fc;
+  --sf-accent: #6366f1;
+  --sf-accent-hover: #8b5cf6;
   --sf-accent-contrast: #0f172a;
   --sf-accent-soft: rgba(168, 85, 247, 0.24);
-  --sf-link-color: #a855f7;
+  --sf-link-color: #ffffff;
   --sf-link-hover: #c084fc;
   --sf-footer-bg: rgba(15, 23, 42, 0.85);
   --sf-footer-border: rgba(71, 85, 105, 0.25);
