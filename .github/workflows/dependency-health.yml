@@ -1,0 +1,38 @@
+name: Dependency Health
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate dependency reports
+        run: |
+          mkdir -p reports
+          npm outdated --json > reports/npm-outdated.json || true
+          npm outdated >> reports/npm-outdated.txt || true
+          npm audit --json > reports/npm-audit.json || true
+          npm audit >> reports/npm-audit.txt || true
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-health
+          path: reports/
+          retention-days: 14
