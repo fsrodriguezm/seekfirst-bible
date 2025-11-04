@@ -1,0 +1,12 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://seekfirstbible.com/api/sitemap.xml
+
+# Disallow API routes from being indexed
+Disallow: /api/
+
+# Crawl delay (optional - adjust if needed)
+Crawl-delay: 1
