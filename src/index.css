@@ -59,24 +59,6 @@ button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: all 0.5s ease;
-  transform: translate(-50%, -50%);
-}
-
-.btn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
 .btn:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);

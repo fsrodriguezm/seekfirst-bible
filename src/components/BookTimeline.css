@@ -87,23 +87,6 @@
   align-items: center;
 }
 
-.timeline-axis::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    var(--axis-color-soft) 5%,
-    var(--axis-color-strong) 50%,
-    var(--axis-color-soft) 95%,
-    transparent 100%
-  );
-  transform: translateY(-50%);
-}
 
 .year-markers {
   position: absolute;
@@ -395,17 +378,6 @@
   }
   
   /* On touch devices, make markers bigger for easier tapping */
-  .book-marker::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-  }
-  
   .book-marker:hover {
     width: 10px;
     height: 10px;

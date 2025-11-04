@@ -38,25 +38,10 @@
   animation: fadeInVerse 0.5s ease-out var(--verse-delay, 0s) both;
 }
 
-.verse::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, var(--sf-accent-soft), transparent);
-  transition: left 0.6s ease;
-}
-
 .verse:hover {
   background: var(--sf-surface);
   transform: translateX(6px) scale(1.01);
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
-}
-
-.verse:hover::before {
-  left: 100%;
 }
 
 @keyframes fadeInVerse {

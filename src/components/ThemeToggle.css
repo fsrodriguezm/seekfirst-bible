@@ -15,24 +15,6 @@
   box-shadow: none;
 }
 
-.theme-toggle::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  transition: all 0.4s ease;
-  transform: translate(-50%, -50%);
-}
-
-.theme-toggle:hover::before {
-  width: 100px;
-  height: 100px;
-}
-
 .theme-toggle:hover {
   background: var(--sf-toggle-hover-bg);
   transform: translateY(-2px) scale(1.05);
@@ -62,10 +44,6 @@
   color: var(--sf-toggle-floating-color);
   backdrop-filter: blur(12px);
   animation: themeToggleFloatIn 0.6s ease-out forwards;
-}
-
-.theme-toggle--floating::before {
-  background: rgba(148, 163, 184, 0.25);
 }
 
 .theme-toggle--floating:hover {
