@@ -3,15 +3,36 @@ import Link from 'next/link'
 import type { NextPage } from 'next'
 
 const AboutPage: NextPage = () => {
+  const title = 'About - SeekFirst Bible'
+  const description = 'Learn about SeekFirst Bible, a free AI-powered application designed for rich, contextual Bible study and Scripture exploration.'
+  const url = 'https://seekfirstbible.com/about'
+  const ogImage = 'https://seekfirstbible.com/og-bible-image.png'
+
   return (
     <>
       <Head>
-        <title>About - SeekFirst Bible</title>
-        <meta name="description" content="Learn about SeekFirst Bible, a free AI-powered application designed for rich, contextual Bible study and Scripture exploration." />
+        {/* Basic Meta Tags */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <link rel="canonical" href="https://seekfirstbible.com/about" />
+        <link rel="canonical" href={url} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:site_name" content="SeekFirst Bible" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="About SeekFirst Bible" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
       </Head>
       <div className="legal-page">
         <div className="legal-container">

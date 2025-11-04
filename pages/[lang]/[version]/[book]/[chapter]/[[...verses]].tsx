@@ -20,16 +20,75 @@ export default function BiblePage({ version, book, chapter, verses, canonicalUrl
     : `${book} ${chapter} - ${version.toUpperCase()}`
   
   const description = `Read and study ${book} chapter ${chapter}${verses ? ` verses ${verses}` : ''} in the ${version.toUpperCase()} translation with cross-references and context. SeekFirst Bible helps you explore Scripture deeply.`
+  
+  const pageTitle = `${title} | SeekFirst Bible`
+  const ogImage = 'https://seekfirstbible.com/og-bible-image.png' // You'll need to create this
+  
+  // Keywords for smaller search engines
+  const keywords = `${book}, Bible, Scripture, ${version.toUpperCase()}, Bible study, cross references, biblical context, chapter ${chapter}, online Bible`
+  
+  // Structured data for Google rich results
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description: description,
+    articleSection: 'Scripture',
+    isPartOf: {
+      '@type': 'Book',
+      name: 'The Bible',
+      bookEdition: version.toUpperCase(),
+    },
+    about: {
+      '@type': 'Thing',
+      name: `${book} Chapter ${chapter}`,
+    },
+    url: canonicalUrl,
+    mainEntityOfPage: canonicalUrl,
+    publisher: {
+      '@type': 'Organization',
+      name: 'SeekFirst Bible',
+      url: 'https://seekfirstbible.com',
+    },
+    inLanguage: version === 'RVR1960' || version === 'KJV' ? 'es' : 'en',
+  }
 
   return (
     <>
       <Head>
-        <title>{`${title} | SeekFirst Bible`}</title>
+        {/* Basic Meta Tags */}
+        <title>{pageTitle}</title>
         <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        
+        {/* Open Graph Tags for Facebook, WhatsApp, iMessage, Slack, Discord */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="SeekFirst Bible" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content={`${book} ${chapter} - Bible passage preview`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content={version === 'RVR1960' || version === 'KJV' ? 'es_ES' : 'en_US'} />
+        
+        {/* Twitter Card Tags for X (Twitter) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content={`${book} ${chapter} - Bible passage preview`} />
+        
+        {/* Structured Data (JSON-LD) for Google Rich Results */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </Head>
       <App 
         initialBook={book}
