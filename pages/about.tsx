@@ -6,9 +6,11 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>About - SeekFirst</title>
+        <title>About - SeekFirst Bible</title>
+        <meta name="description" content="Learn about SeekFirst Bible, a free AI-powered application designed for rich, contextual Bible study and Scripture exploration." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
+        <link rel="canonical" href="https://seekfirstbible.com/about" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       <div className="legal-page">

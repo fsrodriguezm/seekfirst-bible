@@ -11,22 +11,24 @@ interface BiblePageProps {
   book: string
   chapter: number
   verses?: string
+  canonicalUrl: string
 }
 
-export default function BiblePage({ version, book, chapter, verses }: BiblePageProps) {
+export default function BiblePage({ version, book, chapter, verses, canonicalUrl }: BiblePageProps) {
   const title = verses
     ? `${book} ${chapter}:${verses} - ${version.toUpperCase()}`
     : `${book} ${chapter} - ${version.toUpperCase()}`
   
-  const description = `Read ${book} chapter ${chapter}${verses ? ` verses ${verses}` : ''} in the ${version.toUpperCase()} translation`
+  const description = `Read and study ${book} chapter ${chapter}${verses ? ` verses ${verses}` : ''} in the ${version.toUpperCase()} translation with cross-references and context. SeekFirst Bible helps you explore Scripture deeply.`
 
   return (
     <>
       <Head>
-        <title>{`${title} | SeekFirst`}</title>
+        <title>{`${title} | SeekFirst Bible`}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
+        <link rel="canonical" href={canonicalUrl} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </Head>
       <App 
@@ -208,12 +210,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ? (ENGLISH_TO_SPANISH_BOOKS[normalizedBook] || normalizedBook)
     : normalizedBook
 
+  // Build canonical URL
+  const versePath = verseStr ? `/${verseStr}` : ''
+  const canonicalUrl = `https://seekfirstbible.com/${lang}/${canonicalVersionSlug}/${canonicalBookSlug}/${chapter}${versePath}`
+
   return {
     props: {
       lang,
       version: versionInfo.id,
       book: bookNameForBible,
       chapter: chapterNum,
+      canonicalUrl,
       ...(verseStr ? { verses: verseStr } : {}), // Only include verses if it exists
     },
   }
