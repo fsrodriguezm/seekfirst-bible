@@ -15,7 +15,8 @@ import '../src/components/ExplanationPanel.css'
 import type { AppProps } from 'next/app'
 
 const GA_ID = 'G-ZTGQNRES3N'
-const isAnalyticsEnabled = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true'
+// Enable analytics by default, disable only if explicitly set to 'false'
+const isAnalyticsEnabled = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS !== 'false'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -40,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {/* Google Analytics - Only load if enabled */}
+      {/* Google Analytics - Enabled by default unless NEXT_PUBLIC_ENABLE_ANALYTICS=false */}
       {isAnalyticsEnabled && (
         <>
           <Script
