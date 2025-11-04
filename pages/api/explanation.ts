@@ -5,13 +5,119 @@ type ExplanationRequest = {
   userPrompt?: string
 }
 
+type ExplanationSection = {
+  title: string
+  content: string
+  bulletPoints?: string[]
+  scriptureReferences?: string[]
+}
+
+type SectionKey =
+  | 'context'
+  | 'originalLanguage'
+  | 'wordStudy'
+  | 'explanation'
+  | 'crossReferences'
+  | 'application'
+  | 'reflectionQuestions'
+
+type ExplanationSections = Record<SectionKey, ExplanationSection>
+
+type StructuredExplanation = {
+  sections: ExplanationSections
+  metadata?: {
+    explanationType?: 'chapter' | 'verses'
+    language?: 'english' | 'spanish'
+    reference?: string
+  }
+}
+
 type ExplanationResponse = {
-  content?: string
+  content?: StructuredExplanation
   error?: string
 }
 
 const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions'
 const MODEL_NAME = 'meta-llama/llama-4-scout-17b-16e-instruct'
+
+const createSectionSchema = (title: string) => ({
+  type: 'object',
+  properties: {
+    title: {
+      type: 'string',
+      const: title
+    },
+    content: {
+      type: 'string'
+    },
+    bulletPoints: {
+      type: 'array',
+      items: {
+        type: 'string'
+      }
+    },
+    scriptureReferences: {
+      type: 'array',
+      items: {
+        type: 'string'
+      }
+    }
+  },
+  required: ['title', 'content'],
+  additionalProperties: false
+})
+
+const explanationSchema = {
+  name: 'structured_bible_explanation',
+  schema: {
+    type: 'object',
+    properties: {
+      metadata: {
+        type: 'object',
+        properties: {
+          explanationType: {
+            type: 'string',
+            enum: ['chapter', 'verses']
+          },
+          language: {
+            type: 'string',
+            enum: ['english', 'spanish']
+          },
+          reference: {
+            type: 'string',
+            description: 'The Bible reference covered in the explanation.'
+          }
+        },
+        additionalProperties: false
+      },
+      sections: {
+        type: 'object',
+        description: 'Structured explanation sections keyed by canonical section name.',
+        properties: {
+          context: createSectionSchema('Context'),
+          originalLanguage: createSectionSchema('Original Language'),
+          wordStudy: createSectionSchema("Word Study"),
+          explanation: createSectionSchema('Explanation'),
+          crossReferences: createSectionSchema('Cross-References'),
+          application: createSectionSchema('Application'),
+          reflectionQuestions: createSectionSchema('Reflection / Questions')
+        },
+        required: [
+          'context',
+          'originalLanguage',
+          'wordStudy',
+          'explanation',
+          'crossReferences',
+          'application',
+          'reflectionQuestions'
+        ],
+        additionalProperties: false
+      }
+    },
+    required: ['sections'],
+    additionalProperties: false
+  }
+}
 
 export default async function handler(
   req: NextApiRequest,
@@ -49,7 +155,11 @@ export default async function handler(
         temperature: 0.7,
         max_completion_tokens: 1024,
         top_p: 1,
-        stream: false
+        stream: false,
+        response_format: {
+          type: 'json_schema',
+          json_schema: explanationSchema
+        }
       })
     })
 
@@ -65,7 +175,15 @@ export default async function handler(
       return res.status(500).json({ error: 'Unexpected response format from Groq API.' })
     }
 
-    return res.status(200).json({ content })
+    let parsedContent: StructuredExplanation
+
+    try {
+      parsedContent = JSON.parse(content) as StructuredExplanation
+    } catch (error) {
+      return res.status(500).json({ error: 'Groq response was not valid JSON for the requested schema.' })
+    }
+
+    return res.status(200).json({ content: parsedContent })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown error'
     return res.status(500).json({ error: `Failed to fetch explanation: ${message}` })

@@ -12,6 +12,52 @@ type ExplanationPanelProps = {
 type ExplanationSection = {
   title: string
   content: string
+  bulletPoints?: string[]
+  scriptureReferences?: string[]
+}
+
+type SectionKey =
+  | 'context'
+  | 'originalLanguage'
+  | 'wordStudy'
+  | 'explanation'
+  | 'crossReferences'
+  | 'application'
+  | 'reflectionQuestions'
+
+type ExplanationSections = Record<SectionKey, ExplanationSection>
+
+type ExplanationContent = {
+  sections: ExplanationSections
+  metadata?: {
+    explanationType?: 'chapter' | 'verses'
+    language?: 'english' | 'spanish'
+    reference?: string
+  }
+}
+
+const SECTION_DISPLAY_ORDER: Array<{ key: SectionKey; label: string }> = [
+  { key: 'context', label: 'Context' },
+  { key: 'originalLanguage', label: 'Original Language' },
+  { key: 'wordStudy', label: 'Word Study' },
+  { key: 'explanation', label: 'Explanation' },
+  { key: 'crossReferences', label: 'Cross-References' },
+  { key: 'application', label: 'Application' },
+  { key: 'reflectionQuestions', label: 'Reflection / Questions' }
+]
+
+const buildSectionInstruction = (scope: 'chapter' | 'verses') => {
+  const scopeLabel = scope === 'chapter' ? 'chapter' : 'verse(s)'
+
+  return `Always respond with JSON that conforms to the provided schema. Populate the "sections" object with the following keys, keeping each title exactly as written. Use approachable, pastoral language while staying faithful to the text. Keep paragraphs concise but personal. Include bullet points only when they sharpen clarity, and always include the Application section even if it is brief.
+
+1. context → title "Context" – Historical and narrative background of the ${scopeLabel}.
+2. originalLanguage → title "Original Language" – Provide the original Greek or Hebrew, a literal translation, and key grammatical/lexical insights.
+3. wordStudy → title "Word Study" – Define key terms using Strong's Concordance, and show where else those words appear in Scripture.
+4. explanation → title "Explanation" – Pull together the above insights to explain the ${scopeLabel} clearly.
+5. crossReferences → title "Cross-References" – List related Scriptures that help clarify the meaning.
+6. application → title "Application" – State a principle or insight for today's believer that flows directly from the passage.
+7. reflectionQuestions → title "Reflection / Questions" – Invite the reader to think prayerfully and critically about the passage.`
 }
 
 const ExplanationPanel = ({
@@ -21,12 +67,16 @@ const ExplanationPanel = ({
   fontSize = 16,
   language = 'english'
 }: ExplanationPanelProps) => {
-  const [explanation, setExplanation] = useState<string>('')
+  const [explanation, setExplanation] = useState<ExplanationContent | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [explanationType, setExplanationType] = useState<'chapter' | 'verses'>('chapter')
 
-  const makeAPICall = useCallback(async (systemContent: string, userPrompt: string) => {
+  const makeAPICall = useCallback(async (
+    systemContent: string,
+    userPrompt: string,
+    options: { explanationType: 'chapter' | 'verses'; reference?: string }
+  ) => {
     const response = await fetch('/api/explanation', {
       method: 'POST',
       headers: {
@@ -42,22 +92,31 @@ const ExplanationPanel = ({
       throw new Error(`API request failed with status ${response.status}`)
     }
 
-    const data: { content?: string; error?: string } = await response.json()
+    const data: { content?: ExplanationContent; error?: string } = await response.json()
 
     if (data.error) {
       throw new Error(data.error)
     }
 
     if (data.content) {
-      setExplanation(data.content)
+      setExplanation({
+        ...data.content,
+        metadata: {
+          explanationType: options.explanationType,
+          language,
+          reference: options.reference,
+          ...data.content.metadata
+        }
+      })
     } else {
       throw new Error('Unexpected response format from API')
     }
-  }, [])
+  }, [language])
 
   const fetchChapterExplanationViaVersesFunction = useCallback(async (chapterReference: string) => {
     setIsLoading(true)
     setError('')
+    setExplanation(null)
 
     try {
   const langInstruction = language === 'spanish' ? 'Responde en español.' : 'Respond in English.'
@@ -68,18 +127,14 @@ and cross-referencing other parts of Scripture. You do not include commentary fr
 or church tradition. You must explain the original intent of the passage as it would have been understood by 
 its first recipients.
 
-Always structure your response using the following sections:
-1. Context – Historical and narrative background of the chapter.
-2. Original Language – Provide key original Greek or Hebrew insights and important terms from the chapter.
-3. Word Study – Define key terms using Strong's Concordance, and show where else those words appear in Scripture.
-4. Explanation – Pull together the above insights to explain the chapter clearly.
-5. Cross-References – List related Scriptures that help clarify the meaning.
-6. Application – (Optional) State a principle or insight for today's believer, only if it directly follows from the meaning.
-7. Reflection / Questions – Invite the reader to think critically about the passage.`
+${buildSectionInstruction('chapter')}`
 
-  const userPrompt = `${langInstruction} Please exegete and explain the following chapter using the 7-section format:\n\n${chapterReference}`
+  const userPrompt = `${langInstruction} Please exegete and explain the following chapter using the 7-section format. Fill the JSON schema fields precisely:\n\n${chapterReference}`
 
-      await makeAPICall(systemContent, userPrompt)
+      await makeAPICall(systemContent, userPrompt, {
+        explanationType: 'chapter',
+        reference: chapterReference
+      })
     } catch (err) {
       setError(`Error fetching chapter explanation: ${err.message}`)
       console.error('Error:', err)
@@ -99,6 +154,7 @@ Always structure your response using the following sections:
     
     setIsLoading(true)
     setError('')
+    setExplanation(null)
 
     try {
       const joinedVerses = selectedVerses.join('\n')
@@ -111,18 +167,13 @@ and cross-referencing other parts of Scripture. You do not include commentary fr
 or church tradition. You must explain the original intent of the passage as it would have been understood by 
 its first recipients.
 
-Always structure your response using the following sections:
-1. Context – Historical and narrative background of the verse.
-2. Original Language – Provide the original Greek or Hebrew, a literal translation, and key grammatical/lexical insights.
-3. Word Study – Define key terms using Strong's Concordance, and show where else those words appear in Scripture.
-4. Explanation – Pull together the above insights to explain the verse clearly.
-5. Cross-References – List related Scriptures that help clarify the meaning.
-6. Application – (Optional) State a principle or insight for today's believer, only if it directly follows from the meaning.
-7. Reflection / Questions – Invite the reader to think critically about the passage.`
+${buildSectionInstruction('verses')}`
 
-  const userPrompt = `${langInstruction} Please exegete and explain the following verse(s) using the 7-section format:\n\n${joinedVerses}`
+  const userPrompt = `${langInstruction} Please exegete and explain the following verse(s) using the 7-section format. Fill the JSON schema fields precisely:\n\n${joinedVerses}`
 
-      await makeAPICall(systemContent, userPrompt)
+      await makeAPICall(systemContent, userPrompt, {
+        explanationType: 'verses'
+      })
     } catch (err) {
       setError(`Error fetching explanation: ${err.message}`)
       console.error('Error:', err)
@@ -152,62 +203,15 @@ Always structure your response using the following sections:
   }, [selectedVerses, currentChapter, allVerses, fetchVersesExplanation])
 
   const copyToClipboard = () => {
-    if (typeof navigator === 'undefined' || !navigator.clipboard) return
+    if (typeof navigator === 'undefined' || !navigator.clipboard || !explanation) return
 
-    navigator.clipboard.writeText(explanation).then(() => {
+    navigator.clipboard.writeText(JSON.stringify(explanation, null, 2)).then(() => {
       if (typeof window !== 'undefined') {
         alert('Explanation copied to clipboard!')
       }
     }).catch(err => {
       console.error('Failed to copy:', err)
     })
-  }
-
-  const replaceAsterisksWithBullets = (text: string) => {
-    return text.replace(/^\*\s/gm, '• ')
-  }
-
-  const parseExplanationSections = (text: string): ExplanationSection[] => {
-    const sections: ExplanationSection[] = []
-    const lines = replaceAsterisksWithBullets(text).split('\n')
-    let currentTitle = ''
-    let currentContent = ''
-
-    for (const line of lines) {
-      const trimmedLine = line.trim();
-
-      // Detect section titles based on the **<section>** pattern
-      const sectionMatch = trimmedLine.match(/^\*\*\d+\.\s(.+?)\*\*$/);
-      if (sectionMatch) {
-        if (currentTitle && currentContent) {
-          sections.push({
-            title: currentTitle,
-            content: currentContent.trim(),
-          })
-        }
-        currentTitle = sectionMatch[1] // Extract the section title
-        currentContent = ''
-      } else if (trimmedLine && currentTitle) {
-        if (currentContent) currentContent += '\n'
-        currentContent += trimmedLine
-      }
-    }
-
-    if (currentTitle && currentContent) {
-      sections.push({
-        title: currentTitle,
-        content: currentContent.trim(),
-      })
-    }
-
-    if (sections.length === 0 && text) {
-      sections.push({
-        title: explanationType === 'chapter' ? 'Chapter Overview' : 'Explanation',
-        content: text.trim(),
-      })
-    }
-
-    return sections
   }
 
   return (
@@ -286,12 +290,43 @@ Always structure your response using the following sections:
         {explanation && !isLoading && (
           <div className="explanation-content">
             <div className="explanation-sections">
-              {parseExplanationSections(explanation).map((section, index) => (
-                <div key={index} className="explanation-section">
-                  <h4 className="section-title">{section.title}</h4>
-                  <div className="section-content">{section.content}</div>
-                </div>
-              ))}
+              {SECTION_DISPLAY_ORDER.map(({ key, label }) => {
+                const section = explanation.sections[key]
+                if (!section) return null
+
+                const paragraphs = section.content
+                  .split('\n')
+                  .map(paragraph => paragraph.trim())
+                  .filter(Boolean)
+
+                return (
+                  <div key={key} className="explanation-section">
+                    <h4 className="section-title">{section.title || label}</h4>
+                    <div className="section-content">
+                      {paragraphs.map((paragraph, paragraphIndex) => (
+                        <p key={`${key}-paragraph-${paragraphIndex}`}>{paragraph}</p>
+                      ))}
+                      {section.bulletPoints && section.bulletPoints.length > 0 && (
+                        <ul>
+                          {section.bulletPoints.map((point, pointIndex) => (
+                            <li key={`${key}-point-${pointIndex}`}>{point}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {section.scriptureReferences && section.scriptureReferences.length > 0 && (
+                        <div className="section-references">
+                          <strong>Scripture References:</strong>
+                          <ul>
+                            {section.scriptureReferences.map((ref, refIndex) => (
+                              <li key={`${key}-ref-${refIndex}`}>{ref}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
