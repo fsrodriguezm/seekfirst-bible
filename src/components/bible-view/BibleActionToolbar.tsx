@@ -44,7 +44,7 @@ const BibleActionToolbar = ({
         </button>
       )}
 
-      <button
+      {/* <button
         ref={getButtonRef(2)}
         className={`btn btn-secondary btn-morphing`}
         onClick={onToggleExplanation}
@@ -53,6 +53,16 @@ const BibleActionToolbar = ({
       >
         <BookOpen size={20} />
         AI Insights (Coming Soon)
+      </button> */}
+
+      <button
+        ref={getButtonRef(2)}
+        className={`btn btn-secondary btn-morphing`}
+        onClick={onToggleExplanation}
+        title="Get AI-powered biblical explanations"
+      >
+        <BookOpen size={20} />
+        AI Insights
       </button>
 
       <button
