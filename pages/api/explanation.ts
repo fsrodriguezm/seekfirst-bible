@@ -179,7 +179,7 @@ export default async function handler(
 
     try {
       parsedContent = JSON.parse(content) as StructuredExplanation
-    } catch (error) {
+    } catch {
       return res.status(500).json({ error: 'Groq response was not valid JSON for the requested schema.' })
     }
 
