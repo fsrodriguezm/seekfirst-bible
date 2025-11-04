@@ -18,11 +18,7 @@
 .no-verses {
   text-align: center;
   padding: 2rem;
-  color: #64748b;
-}
-
-.dark-theme .no-verses {
-  color: #94a3b8;
+  color: var(--sf-text-secondary);
 }
 
 .verse {
@@ -49,14 +45,14 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, var(--sf-accent-soft), transparent);
   transition: left 0.6s ease;
 }
 
 .verse:hover {
-  background: rgba(148, 163, 184, 0.1);
+  background: var(--sf-surface);
   transform: translateX(6px) scale(1.01);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
 }
 
 .verse:hover::before {
@@ -74,15 +70,11 @@
   }
 }
 
-.dark-theme .verse:hover {
-  background: rgba(71, 85, 105, 0.2);
-}
-
 .verse.selected {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: #6366f1;
+  background: var(--sf-accent-soft);
+  border-color: var(--sf-accent);
   transform: translateX(12px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.18);
   animation: pulseSelection 0.6s ease-out;
 }
 
@@ -96,11 +88,6 @@
   100% {
     transform: translateX(12px) scale(1.02);
   }
-}
-
-.dark-theme .verse.selected {
-  background: rgba(139, 92, 246, 0.1);
-  border-color: #8b5cf6;
 }
 
 .verse.highlighted {
@@ -175,30 +162,22 @@
 
 .verse-number {
   font-weight: 700;
-  color: #6366f1;
+  color: var(--sf-accent);
   margin-right: 0.75rem;
   min-width: 2rem;
   font-size: 0.9rem;
   flex-shrink: 0;
 }
 
-.dark-theme .verse-number {
-  color: #8b5cf6;
-}
-
 .verse-text {
   flex: 1;
   line-height: 1.6;
-  color: #475569;
+  color: var(--sf-text-primary);
   /* allow users to select and copy verse text even though the verse container
     itself is clickable (pointer). This overrides the container's user-select. */
   -webkit-user-select: text;
   -moz-user-select: text;
   user-select: text;
-}
-
-.dark-theme .verse-text {
-  color: #cbd5e1;
 }
 
 .verse-text.jesus-words {

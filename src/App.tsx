@@ -1,8 +1,8 @@
-import { useRef, useEffect, useState } from 'react'
-import { Moon, Sun } from 'lucide-react'
+import { useRef, useEffect } from 'react'
 import BibleView from './components/bible-view/BibleView'
 import Footer from './components/Footer'
-import { ThemeProvider, useTheme } from './contexts/ThemeContext'
+import ThemeToggle from './components/ThemeToggle'
+import ThemePalettePicker from './components/ThemePalettePicker'
 
 interface AppContentProps {
   initialBook?: string
@@ -12,17 +12,11 @@ interface AppContentProps {
 }
 
 function AppContent({ initialBook, initialChapter, initialVersion, initialVerses }: AppContentProps) {
-  const { isDark, toggleTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const videoARef = useRef<HTMLVideoElement | null>(null)
   const videoBRef = useRef<HTMLVideoElement | null>(null)
   const fadingRef = useRef<boolean>(false)
   const activeRef = useRef<number>(0) // 0 => A active, 1 => B active
   const fadeSeconds = 3.0 // seconds to crossfade
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Refs and configuration for crossfade between two identical video elements
   useEffect(() => {
@@ -87,7 +81,7 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
   }, [])
 
   return (
-    <div className={`App ${isDark ? 'dark' : 'light'}`}>
+    <div className="App">
       <header className="App-header">
         <div className="header-content">
           <div className="header-text">
@@ -96,13 +90,10 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
             </h1>
             <p>the kingdom of God and his righteousness, and all these things will be added to you -Matthew 6:33</p>
           </div>
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {mounted ? (isDark ? <Sun size={24} /> : <Moon size={24} />) : null}
-          </button>
+          <div className="header-actions">
+            <ThemePalettePicker />
+            <ThemeToggle className="app-header-toggle" />
+          </div>
         </div>
       </header>
       <main>
@@ -127,14 +118,12 @@ interface AppProps {
 
 function App({ initialBook, initialChapter, initialVersion, initialVerses }: AppProps = {}) {
   return (
-    <ThemeProvider>
-      <AppContent 
-        initialBook={initialBook}
-        initialChapter={initialChapter}
-        initialVersion={initialVersion}
-        initialVerses={initialVerses}
-      />
-    </ThemeProvider>
+    <AppContent 
+      initialBook={initialBook}
+      initialChapter={initialChapter}
+      initialVersion={initialVersion}
+      initialVerses={initialVerses}
+    />
   )
 }
 

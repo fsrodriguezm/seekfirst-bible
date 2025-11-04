@@ -1,12 +1,13 @@
 .explanation-panel-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--sf-surface-alt);
+  border: 1px solid var(--sf-surface-border);
   height: 100%;
   display: flex;
   flex-direction: column;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--sf-card-shadow);
   animation: slideInFromRight 0.8s ease-out;
 }
 
@@ -26,17 +27,13 @@
   }
 }
 
-.dark-theme .explanation-panel-container {
-  background: rgba(30, 41, 59, 0.95);
-}
-
 .panel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-hover) 100%);
+  color: var(--sf-accent-contrast);
   margin: 0;
   position: relative;
   overflow: hidden;

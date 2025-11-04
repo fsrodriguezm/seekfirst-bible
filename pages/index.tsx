@@ -2,7 +2,11 @@ import Head from 'next/head'
 import type { NextPage } from 'next'
 import App from '../src/App'
 
-const HomePage: NextPage = () => {
+type NextPageWithOptions = NextPage & {
+  showFloatingThemeToggle?: boolean
+}
+
+const HomePage: NextPageWithOptions = () => {
   return (
     <>
       <Head>
@@ -15,5 +19,7 @@ const HomePage: NextPage = () => {
     </>
   )
 }
+
+HomePage.showFloatingThemeToggle = false
 
 export default HomePage

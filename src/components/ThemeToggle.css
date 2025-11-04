@@ -1,0 +1,104 @@
+.theme-toggle {
+  background: var(--sf-toggle-bg);
+  border: 1px solid var(--sf-toggle-border);
+  border-radius: 12px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--sf-toggle-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  transform: translate(-50%, -50%);
+}
+
+.theme-toggle:hover::before {
+  width: 100px;
+  height: 100px;
+}
+
+.theme-toggle:hover {
+  background: var(--sf-toggle-hover-bg);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.4);
+  outline-offset: 3px;
+}
+
+.theme-toggle__label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.theme-toggle--floating {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 1200;
+  padding: 0.85rem;
+  border-radius: 999px;
+  background: var(--sf-toggle-floating-bg);
+  border: 1px solid var(--sf-toggle-floating-border);
+  color: var(--sf-toggle-floating-color);
+  backdrop-filter: blur(12px);
+  animation: themeToggleFloatIn 0.6s ease-out forwards;
+}
+
+.theme-toggle--floating::before {
+  background: rgba(148, 163, 184, 0.25);
+}
+
+.theme-toggle--floating:hover {
+  background: var(--sf-toggle-floating-hover-bg);
+}
+
+@keyframes themeToggleFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-toggle--floating {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    padding: 0.6rem;
+    border-radius: 10px;
+  }
+
+  .theme-toggle--floating {
+    padding: 0.65rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

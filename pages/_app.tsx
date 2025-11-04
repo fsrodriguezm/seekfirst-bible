@@ -12,13 +12,26 @@ import '../src/components/CrossReferenceChordDiagram.css'
 import '../src/components/CrossReferenceNetworkGraph.css'
 import '../src/components/CrossReferencePanel.css'
 import '../src/components/ExplanationPanel.css'
+import '../src/components/ThemeToggle.css'
+import '../src/components/ThemePalettePicker.css'
+import '../src/styles/legal-pages.css'
+import '../src/styles/palettes.css'
+import { ThemeProvider } from '../src/contexts/ThemeContext'
+import ThemeToggle from '../src/components/ThemeToggle'
 import type { AppProps } from 'next/app'
+
+type AppPropsWithOptions = AppProps & {
+  Component: AppProps['Component'] & {
+    showFloatingThemeToggle?: boolean
+  }
+}
 
 const GA_ID = 'G-ZTGQNRES3N'
 const isAnalyticsEnabled = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppPropsWithOptions) {
   const router = useRouter()
+  const showFloatingToggle = Component.showFloatingThemeToggle !== false
 
   useEffect(() => {
     // Skip analytics if disabled
@@ -39,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.events])
 
   return (
-    <>
+    <ThemeProvider>
       {/* Google Analytics - Only load if enabled */}
       {isAnalyticsEnabled && (
         <>
@@ -61,8 +74,9 @@ export default function App({ Component, pageProps }: AppProps) {
           />
         </>
       )}
-      
+
       <Component {...pageProps} />
-    </>
+      {showFloatingToggle && <ThemeToggle variant="floating" />}
+    </ThemeProvider>
   )
 }

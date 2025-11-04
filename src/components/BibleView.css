@@ -137,13 +137,9 @@
   background: none;
   text-align: center;
   font-size: 0.85rem;
-  color: #334155;
+  color: var(--sf-text-primary);
   max-width: 720px;
   animation: fadeInButtons 0.6s ease-out;
-}
-
-.dark .bible-license-card {
-  color: #e2e8f0;
 }
 
 .bible-license-card a {
@@ -152,19 +148,15 @@
 }
 
 .bible-license-card a:hover {
-  color: #ffffff;
+  color: var(--sf-accent);
 }
 
 .bible-license-label {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(59, 130, 246, 0.95);
+  color: var(--sf-accent);
   font-weight: 600;
-}
-
-.dark .bible-license-label {
-  color: rgba(96, 165, 250, 0.95);
 }
 
 .bible-license-name {
@@ -221,6 +213,12 @@
   padding: 1rem;
 }
 
+body:not([data-palette="classic"]) .verse-content-container {
+  background: var(--sf-surface);
+  border-radius: 12px;
+  border: 1px solid var(--sf-surface-border);
+}
+
 /* Only apply scrolling when cross-reference mode is active */
 .bible-view:not(.full-width) .verse-content-container {
   max-height: calc(100vh - 200px);
@@ -237,12 +235,22 @@
 
 .chapter-header {
   padding: 1.5rem;
-  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  background: linear-gradient(135deg, var(--sf-surface) 0%, var(--sf-surface-alt) 100%);
+  border-bottom: 1px solid var(--sf-surface-border);
   text-align: left;
   animation: slideInHeader 0.6s ease-out;
   position: relative;
   overflow: hidden;
+}
+
+body[data-palette="classic"] .chapter-header {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.dark-theme[data-palette="classic"] .chapter-header {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+  border-bottom-color: rgba(71, 85, 105, 0.3);
 }
 
 .chapter-header::before {
@@ -271,14 +279,9 @@
   }
 }
 
-.dark-theme .chapter-header {
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
-  border-bottom-color: rgba(71, 85, 105, 0.3);
-}
-
 .chapter-header h2 {
   margin: 0;
-  color: #475569;
+  color: var(--sf-text-primary);
   font-size: 1.8rem;
   font-weight: 700;
 }
@@ -291,18 +294,10 @@
   justify-content: space-between;
 }
 
-.dark-theme .chapter-header h2 {
-  color: #e2e8f0;
-}
-
 .selected-count {
   margin: 0.5rem 0 0 0;
-  color: #6366f1;
+  color: var(--sf-accent);
   font-weight: 600;
-}
-
-.dark-theme .selected-count {
-  color: #8b5cf6;
 }
 
 .jesus-description {
@@ -310,22 +305,17 @@
   max-width: 60%;
   margin: 0;
   padding: 0.5rem 0.75rem;
-  background: rgba(99, 102, 241, 0.05);
-  border-left: 3px solid #6366f1;
+  background: var(--sf-accent-soft);
+  border-left: 3px solid var(--sf-accent);
   border-radius: 4px;
   animation: fadeInDescription 0.6s ease-out 0.3s both;
   width: fit-content;
   margin-left: auto;
 }
 
-.dark-theme .jesus-description {
-  background: rgba(139, 92, 246, 0.1);
-  border-left-color: #8b5cf6;
-}
-
 .jesus-revealed-text {
   margin: 0;
-  color: #64748b;
+  color: var(--sf-text-secondary);
   font-size: 0.9rem;
   line-height: 1.4;
   font-style: italic;
@@ -334,7 +324,7 @@
 }
 
 .dark-theme .jesus-revealed-text {
-  color: #cbd5e1;
+  color: var(--sf-text-secondary);
 }
 
 @keyframes fadeInDescription {
@@ -374,14 +364,14 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, var(--sf-accent-soft), transparent);
   transition: left 0.6s ease;
 }
 
 .verse:hover {
-  background: #f8f9fa;
+  background: var(--sf-surface);
   transform: translateX(6px) scale(1.01);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
 }
 
 .verse:hover::before {
@@ -400,10 +390,10 @@
 }
 
 .verse.selected {
-  background: rgba(102, 126, 234, 0.1);
-  border-color: #667eea;
+  background: var(--sf-accent-soft);
+  border-color: var(--sf-accent);
   transform: translateX(12px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.18);
   animation: pulseSelection 0.6s ease-out;
 }
 
@@ -451,7 +441,7 @@
 
 .verse-number {
   font-weight: 700;
-  color: #667eea;
+  color: var(--sf-accent);
   margin-right: 0.75rem;
   min-width: 2rem;
   font-size: 0.9rem;
@@ -460,15 +450,15 @@
 .verse-text {
   flex: 1;
   line-height: 1.6;
-  color: #495057;
+  color: var(--sf-text-primary);
 }
 
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
   padding: 1rem 1.5rem;
-  background: #f8f9fa;
-  border-top: 1px solid #dee2e6;
+  background: var(--sf-surface);
+  border-top: 1px solid var(--sf-surface-border);
 }
 
 .bible-view.full-width .bible-main-content {
@@ -535,8 +525,8 @@
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(102, 126, 234, 0.1);
-  border-left: 4px solid #667eea;
+  border: 4px solid var(--sf-accent-soft);
+  border-left: 4px solid var(--sf-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite, pulse 2s ease-in-out infinite;
   position: relative;
@@ -550,7 +540,7 @@
   right: 2px;
   bottom: 2px;
   border: 2px solid transparent;
-  border-top: 2px solid rgba(139, 92, 246, 0.6);
+  border-top: 2px solid var(--sf-accent);
   border-radius: 50%;
   animation: spin 1.5s linear infinite reverse;
 }
@@ -561,7 +551,7 @@
 }
 
 .loading-text {
-  color: #64748b;
+  color: var(--sf-text-secondary);
   font-size: 1.1rem;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -666,21 +656,21 @@
 }
 
 .search-result-item:hover {
-  background: rgba(99, 102, 241, 0.05);
+  background: var(--sf-accent-soft);
   transform: translateX(4px);
-  border-left: 3px solid #6366f1;
+  border-left: 3px solid var(--sf-accent);
   padding-left: calc(1rem - 3px);
 }
 
 .result-reference {
   font-weight: 600;
-  color: #6366f1;
+  color: var(--sf-accent);
   font-size: 0.9rem;
   margin-bottom: 0.25rem;
 }
 
 .result-text {
-  color: #64748b;
+  color: var(--sf-text-secondary);
   font-size: 0.85rem;
   line-height: 1.4;
 }
@@ -688,7 +678,7 @@
 .results-truncated {
   padding: 1rem;
   text-align: center;
-  color: #64748b;
+  color: var(--sf-text-secondary);
   font-size: 0.85rem;
   font-style: italic;
 }
@@ -698,14 +688,13 @@
 }
 
 .dark-theme .search-result-item:hover {
-  background: rgba(139, 92, 246, 0.1);
-  border-left-color: #8b5cf6;
+  border-left-color: var(--sf-accent);
 }
 
 .dark-theme .result-reference {
-  color: #a78bfa;
+  color: var(--sf-accent);
 }
 
 .dark-theme .result-text {
-  color: #cbd5e1;
+  color: var(--sf-text-secondary);
 }
