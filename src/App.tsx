@@ -1,8 +1,17 @@
 import { useRef, useEffect, useState } from 'react'
-import { Moon, Sun } from 'lucide-react'
+import { Badge, Moon, Sun } from 'lucide-react'
 import BibleView from './components/bible-view/BibleView'
 import Footer from './components/Footer'
 import { ThemeProvider, useTheme } from './contexts/ThemeContext'
+
+const toolbarActions = [
+  { label: 'Read' },
+  { label: 'Learn', badge: 'beta' },
+  // { label: 'Reason', badge: 'beta'},
+] as const
+
+type ToolbarAction = (typeof toolbarActions)[number]
+type ToolLabel = ToolbarAction['label']
 
 interface AppContentProps {
   initialBook?: string
@@ -12,8 +21,9 @@ interface AppContentProps {
 }
 
 function AppContent({ initialBook, initialChapter, initialVersion, initialVerses }: AppContentProps) {
-  const { isDark, toggleTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { isDark, toggleTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [activeTool, setActiveTool] = useState<ToolLabel>('Read')
   const videoARef = useRef<HTMLVideoElement | null>(null)
   const videoBRef = useRef<HTMLVideoElement | null>(null)
   const fadingRef = useRef<boolean>(false)
@@ -21,8 +31,8 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
   const fadeSeconds = 3.0 // seconds to crossfade
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   // Refs and configuration for crossfade between two identical video elements
   useEffect(() => {
@@ -89,6 +99,26 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
   return (
     <div className={`App ${isDark ? 'dark' : 'light'}`}>
       <header className="App-header">
+        <nav className="app-navbar" aria-label="Primary navigation">
+          <div className="navbar-brand">
+            <span className="brand-mark">SF</span>
+            <span className="brand-text">SeekFirst</span>
+          </div>
+          <div className="navbar-left">
+            {toolbarActions.map((action) => (
+              <button
+                key={action.label}
+                type="button"
+                className={`nav-item ${activeTool === action.label ? 'active' : ''}`}
+                onClick={() => setActiveTool(action.label)}
+                aria-current={activeTool === action.label ? 'page' : undefined}
+              >
+                <span className="nav-label">{action.label}</span>
+                {'badge' in action && action.badge && <span className="nav-badge">{action.badge}</span>}
+              </button>
+            ))}
+          </div>
+        </nav>
         <div className="header-content">
           <div className="header-text">
             <h1 onClick={() => window.location.reload()} style={{ cursor: "pointer" }}>
