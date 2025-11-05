@@ -20,7 +20,7 @@ export const renewPractices: RenewPractice[] = [
     title: 'Read',
     path: '/learn/renew/study',
     summary:
-      'Guided reading plans with context notes, timelines, and cross-references so you can build a whole-Bible view of each passage.',
+      'All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work. - 2 Timothy 3:16-17',
     practices: [
       'Pair each passage with historical and literary notes before journaling.',
       'Trace cross references to see how Scripture interprets Scripture.',
@@ -32,7 +32,7 @@ export const renewPractices: RenewPractice[] = [
     title: 'Memorization',
     path: '/learn/renew/memorization',
     summary:
-      'Simple repetition rhythms that move verses from short-term recall toward deep, Spirit-led meditation.',
+      'I have stored up your word in my heart, that I might not sin against you. - Psalm 119:11',
     practices: [
       'Review a verse morning and evening using spaced repetition prompts.',
       'Rewrite the verse in your own words, then check against the original.',

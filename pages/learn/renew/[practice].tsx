@@ -163,28 +163,28 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
                     faithfulness.
                   </p>
                   <ul className={styles.renewSubsectionList}>
-                    {practice.practices.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
+                {practice.practices.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
 
-                {practice.id === 'memorization' && (
-                  <div className={styles.memorizeHelperWrapper}>
-                    <MemorizeHelper />
-                  </div>
-                )}
+            <section className={styles.learnPracticeGrid}>
+              {otherPractices.map((other) => (
+                <Link key={other.id} href={other.path} className={styles.learnPracticeCard}>
+                  <h3>{other.title}</h3>
+                  <p>{other.summary}</p>
+                  <span className={styles.learnPracticeCta}>Explore →</span>
+                </Link>
+              ))}
+            </section>
+          </div>
 
-                <section className={styles.learnPracticeGrid}>
-                  {otherPractices.map((other) => (
-                    <Link key={other.id} href={other.path} className={styles.learnPracticeCard}>
-                      <h3>{other.title}</h3>
-                      <p>{other.summary}</p>
-                      <span className={styles.learnPracticeCta}>Explore →</span>
-                    </Link>
-                  ))}
-                </section>
-              </div>
+          {practice.id === 'memorization' && (
+            <div className={styles.memorizeHelperGrid}>
+              <MemorizeHelper />
+            </div>
+          )}
             </div>
           </div>
           <aside className={styles.learnRightRail}>
