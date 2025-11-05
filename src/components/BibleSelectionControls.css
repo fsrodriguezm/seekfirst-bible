@@ -29,7 +29,7 @@
 
 .controls-header {
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-deep) 100%);
   color: white;
   margin: 0;
   position: relative;
@@ -182,7 +182,7 @@
 
 .language-toggle .btn-primary {
   background: rgba(255, 255, 255, 0.9);
-  color: #6366f1;
+  color: var(--sf-accent-mid);
   border-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -386,7 +386,7 @@
 
 .language-toggle .btn-primary {
   background: rgba(255, 255, 255, 0.9);
-  color: #6366f1;
+  color: var(--sf-accent-mid);
   border-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -428,14 +428,14 @@
   flex: 1;
   padding: 0.5rem 0.75rem;
   font-size: 0.9rem;
-  border: 2px solid rgba(99, 102, 241, 0.2);
+  border: 2px solid var(--sf-accent-border);
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .compact-search-input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: var(--sf-accent);
+  box-shadow: 0 0 0 3px var(--sf-accent-focus);
 }
 
 .compact-search-btn {
@@ -450,7 +450,7 @@
 
 .compact-search-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 12px var(--sf-accent-shadow);
 }
 
 .compact-clear-btn {
@@ -489,7 +489,7 @@
   left: 0;
   right: 50px;
   background: white;
-  border: 2px solid rgba(99, 102, 241, 0.2);
+  border: 2px solid var(--sf-accent-border);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   max-height: 200px;
@@ -530,13 +530,13 @@
 }
 
 .compact-suggestion-item:hover {
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
+  background: var(--sf-accent-soft);
+  color: var(--sf-accent-mid);
 }
 
 .dark-theme .compact-suggestion-item:hover {
-  background: rgba(139, 92, 246, 0.2);
-  color: #8b5cf6;
+  background: var(--sf-accent-soft-alt);
+  color: var(--sf-accent-muted);
 }
 
 .compact-suggestion-item svg {

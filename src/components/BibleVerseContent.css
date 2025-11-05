@@ -79,10 +79,10 @@
 }
 
 .verse.selected {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: #6366f1;
+  background: var(--sf-accent-soft);
+  border-color: var(--sf-accent);
   transform: translateX(12px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.2);
+  box-shadow: 0 6px 20px var(--sf-accent-shadow);
   animation: pulseSelection 0.6s ease-out;
 }
 
@@ -99,13 +99,13 @@
 }
 
 .dark-theme .verse.selected {
-  background: rgba(139, 92, 246, 0.1);
-  border-color: #8b5cf6;
+  background: var(--sf-accent-soft);
+  border-color: var(--sf-accent);
 }
 
 .verse.highlighted {
-  background: rgba(245, 158, 11, 0.2);
-  border-color: #f59e0b;
+  background: var(--sf-accent-soft);
+  border-color: var(--sf-accent);
   animation: highlight-pulse 3s ease-out, glow 2s ease-in-out infinite alternate;
 }
 
@@ -135,39 +135,39 @@
 }
 
 @keyframes highlight-pulse {
-  0% { 
+  0% {
     transform: scale(1.05);
-    background: rgba(245, 158, 11, 0.3);
+    background: var(--sf-accent-soft);
   }
-  50% { 
+  50% {
     transform: scale(1.08);
-    background: rgba(245, 158, 11, 0.4);
+    background: var(--sf-accent-soft-alt);
   }
-  100% { 
+  100% {
     transform: scale(1);
-    background: rgba(245, 158, 11, 0.2);
+    background: var(--sf-accent-soft);
   }
 }
 
 @keyframes glow {
   from {
-    box-shadow: 0 0 5px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 5px var(--sf-accent-shadow);
   }
   to {
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+    box-shadow: 0 0 20px var(--sf-accent-shadow-strong);
   }
 }
 
 @keyframes highlight-pulse {
-  0% { 
+  0% {
     transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 20px var(--sf-accent-shadow);
   }
-  50% { 
+  50% {
     transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    box-shadow: 0 0 20px var(--sf-accent-shadow);
   }
-  100% { 
+  100% {
     transform: scale(1);
     box-shadow: none;
   }
@@ -175,7 +175,7 @@
 
 .verse-number {
   font-weight: 700;
-  color: #6366f1;
+  color: var(--sf-accent-mid);
   margin-right: 0.75rem;
   min-width: 2rem;
   font-size: 0.9rem;
@@ -183,7 +183,7 @@
 }
 
 .dark-theme .verse-number {
-  color: #8b5cf6;
+  color: var(--sf-accent-muted);
 }
 
 .verse-text {

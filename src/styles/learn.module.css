@@ -503,8 +503,8 @@
 
 :global(.dark-theme) .learnNavItemActive {
   color: #f8fafc;
-  border-left-color: #38bdf8;
-  background: rgba(56, 189, 248, 0.18);
+  border-left-color: var(--sf-accent);
+  background: var(--sf-accent-soft);
 }
 
 :global(.dark-theme) .learnNavItemDisabled {
@@ -534,8 +534,8 @@
 
 :global(.dark-theme) .learnSubNavLinkActive {
   color: #f8fafc;
-  border-left-color: #38bdf8;
-  background: rgba(56, 189, 248, 0.16);
+  border-left-color: var(--sf-accent);
+  background: var(--sf-accent-soft);
 }
 
 :global(.dark-theme) .learnSubNavLink + .learnSubNavLink {
@@ -547,11 +547,11 @@
 }
 
 :global(.dark-theme) .learnRightRail {
-  border-left-color: rgba(56, 189, 248, 0.25);
+  border-left-color: var(--sf-accent-border);
 }
 
 :global(.dark-theme) .learnRightRail .rightSection {
-  border-left-color: rgba(56, 189, 248, 0.45);
+  border-left-color: var(--sf-accent-shadow-strong);
 }
 
 :global(.dark-theme) .learnRightRail .rightSection h4 {
@@ -573,7 +573,7 @@
 }
 
 :global(.dark-theme) .learnPracticeCard:hover {
-  border-color: rgba(56, 189, 248, 0.35);
+  border-color: var(--sf-accent-border);
   box-shadow: 0 20px 40px rgba(4, 12, 24, 0.6);
 }
 
@@ -623,11 +623,11 @@
 }
 
 :global(.dark-theme) .learnRightRail {
-  border-left-color: rgba(56, 189, 248, 0.25);
+  border-left-color: var(--sf-accent-border);
 }
 
 :global(.dark-theme) .learnRightRail .rightSection {
-  border-left-color: rgba(56, 189, 248, 0.45);
+  border-left-color: var(--sf-accent-shadow-strong);
 }
 
 :global(.dark-theme) .learnRightRail .rightSection h4 {

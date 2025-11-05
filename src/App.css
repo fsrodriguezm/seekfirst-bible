@@ -624,14 +624,14 @@ main {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-deep) 100%);
   color: white;
   border: 1px solid transparent;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 6px 20px var(--sf-accent-shadow-strong);
 }
 
 .btn-primary:disabled {
@@ -674,14 +674,14 @@ main {
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-mid) 100%);
   color: white;
   border: 1px solid transparent;
 }
 
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 6px 20px var(--sf-accent-shadow-strong);
 }
 
 /* Form styles */
@@ -716,8 +716,8 @@ main {
 
 .form-input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  border-color: var(--sf-accent);
+  box-shadow: 0 0 0 3px var(--sf-accent-focus);
 }
 
 .dark-theme .form-input {
@@ -727,8 +727,8 @@ main {
 }
 
 .dark-theme .form-input:focus {
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  border-color: var(--sf-accent);
+  box-shadow: 0 0 0 3px var(--sf-accent-focus-strong);
 }
 
 .form-select {
@@ -765,7 +765,7 @@ main {
   width: 20px;
   height: 20px;
   border: 2px solid rgba(148, 163, 184, 0.3);
-  border-top: 2px solid #6366f1;
+  border-top: 2px solid var(--sf-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-right: 0.5rem;
@@ -773,7 +773,7 @@ main {
 
 .dark-theme .spinner {
   border-color: rgba(71, 85, 105, 0.4);
-  border-top-color: #8b5cf6;
+  border-top-color: var(--sf-accent);
 }
 
 @keyframes spin {

@@ -88,7 +88,7 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-deep) 100%);
 }
 
 .btn-secondary {
@@ -150,7 +150,7 @@ select, input[type="text"], input[type="search"] {
 select:focus, input[type="text"]:focus, input[type="search"]:focus {
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #6366f1;
+  border-color: var(--sf-accent);
   outline: none;
 }
 
@@ -248,7 +248,7 @@ select:focus, input[type="text"]:focus, input[type="search"]:focus {
   top: 0;
   transform: translateY(-50%);
   font-size: 0.8rem;
-  color: #6366f1;
+  color: var(--sf-accent-mid);
 }
 
 /* Enhanced hover effects */
@@ -311,7 +311,7 @@ select:focus, input[type="text"]:focus, input[type="search"]:focus {
 
 /* Gradient text animation */
 .gradient-text {
-  background: linear-gradient(45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
+  background: linear-gradient(45deg, var(--sf-accent), var(--sf-accent-mid), var(--sf-accent-deep));
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

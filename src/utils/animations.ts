@@ -92,7 +92,7 @@ export const removeLoadingSpinner = (spinner: HTMLElement): void => {
 // Animate number changes (for verse counts, chapter numbers, etc.)
 export const animateNumberChange = (element: HTMLElement, newValue: string | number): void => {
   element.style.transform = 'scale(1.2)'
-  element.style.color = '#6366f1'
+  element.style.color = 'var(--sf-accent-mid)'
 
   window.setTimeout(() => {
     element.textContent = String(newValue)
