@@ -100,7 +100,7 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
     <div className={`App ${isDark ? 'dark' : 'light'}`}>
       <header className="App-header">
         <nav className="app-navbar" aria-label="Primary navigation">
-          <div className="navbar-brand">
+          <div className="navbar-brand" onClick={() => window.location.reload()} style={{ cursor: "pointer" }}>
             <img src="/seekfirst_logo.png" alt="SeekFirst" className="brand-logo" />
             <span className="brand-text">SeekFirst</span>
           </div>
