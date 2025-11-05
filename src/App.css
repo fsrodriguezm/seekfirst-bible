@@ -674,14 +674,14 @@ main {
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-mid) 100%);
+  background: linear-gradient(135deg, var(--sf-button-accent) 0%, var(--sf-button-accent-deep) 100%);
   color: white;
   border: 1px solid transparent;
 }
 
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--sf-accent-shadow-strong);
+  box-shadow: 0 6px 20px var(--sf-button-accent-shadow);
 }
 
 /* Form styles */

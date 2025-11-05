@@ -41,6 +41,9 @@ body[data-palette="default"] {
   --sf-footer-text: #475569;
   --sf-footer-heading: #1e293b;
   --sf-heading-highlight: var(--sf-accent);
+  --sf-button-accent: #f59e0b;
+  --sf-button-accent-deep: #d97706;
+  --sf-button-accent-shadow: rgba(245, 158, 11, 0.4);
 }
 
 body.dark-theme,
@@ -86,6 +89,9 @@ body.dark-theme[data-palette="default"] {
   --sf-footer-text: #cbd5e1;
   --sf-footer-heading: #e2e8f0;
   --sf-heading-highlight: var(--sf-accent-muted);
+  --sf-button-accent: #fbbf24;
+  --sf-button-accent-deep: #f59e0b;
+  --sf-button-accent-shadow: rgba(251, 191, 36, 0.4);
 }
 
 /* body[data-palette="serene-blush"] {}
