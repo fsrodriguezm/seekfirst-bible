@@ -511,22 +511,22 @@ main {
   justify-content: center;
   padding: 0.7rem 1.5rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-deep) 100%);
+  color: var(--sf-accent-contrast);
   font-weight: 600;
   font-size: 0.95rem;
   text-decoration: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 12px 30px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 12px 30px var(--sf-accent-shadow);
 }
 
 .feedback-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 36px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 18px 36px var(--sf-accent-shadow-strong);
 }
 
 .feedback-link:focus-visible {
-  outline: 3px solid rgba(99, 102, 241, 0.35);
+  outline: 3px solid var(--sf-accent-focus);
   outline-offset: 4px;
 }
 
@@ -555,7 +555,7 @@ main {
 }
 
 .dark-theme .feedback-link {
-  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 12px 28px var(--sf-accent-shadow-strong);
 }
 
 .dark-theme .footer-logo {

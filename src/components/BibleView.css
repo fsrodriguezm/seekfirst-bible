@@ -334,7 +334,7 @@
 }
 
 .dark-theme .jesus-revealed-text {
-  color: var(--sf-accent-muted);
+  color: var(--sf-accent-contrast, #ffffff);
 }
 
 @keyframes fadeInDescription {

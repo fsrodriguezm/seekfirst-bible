@@ -123,28 +123,28 @@
 
 .graph-control-btn {
   padding: 8px 16px;
-  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
-  color: white;
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-mid) 100%);
+  color: var(--sf-accent-contrast, #ffffff);
   border: none;
   border-radius: 6px;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 2px 4px var(--sf-accent-shadow);
 }
 
 
 .graph-control-btn:hover {
-  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  background: linear-gradient(135deg, var(--sf-accent-mid) 0%, var(--sf-accent-deep) 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 4px 8px var(--sf-accent-shadow-strong);
 }
 
 
 .graph-control-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+  box-shadow: 0 2px 4px var(--sf-accent-shadow);
 }
 
 
@@ -228,13 +228,13 @@
 }
 
 .dark-theme .graph-control-btn {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  box-shadow: 0 2px 4px rgba(99, 102, 241, 0.3);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-mid) 100%);
+  box-shadow: 0 2px 4px var(--sf-accent-shadow);
 }
 
 .dark-theme .graph-control-btn:hover {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  box-shadow: 0 4px 8px rgba(99, 102, 241, 0.4);
+  background: linear-gradient(135deg, var(--sf-accent-mid) 0%, var(--sf-accent-deep) 100%);
+  box-shadow: 0 4px 8px var(--sf-accent-shadow-strong);
 }
 
 

@@ -68,7 +68,7 @@ body.dark-theme[data-palette="default"] {
   --sf-accent: #38bdf8;
   --sf-accent-mid: #0ea5e9;
   --sf-accent-deep: #2563eb;
-  --sf-accent-contrast: #0f172a;
+  --sf-accent-contrast: #ffffff;
   --sf-accent-soft: rgba(56, 189, 248, 0.22);
   --sf-accent-soft-alt: rgba(56, 189, 248, 0.34);
   --sf-accent-focus: rgba(56, 189, 248, 0.22);

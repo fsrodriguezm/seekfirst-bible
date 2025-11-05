@@ -88,8 +88,8 @@
 }
 
 .chord-control-btn {
-  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
-  color: white;
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-mid) 100%);
+  color: var(--sf-accent-contrast, #ffffff);
   border: none;
   padding: 8px 16px;
   border-radius: 6px;
@@ -97,18 +97,18 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--sf-accent-shadow);
 }
 
 .chord-control-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #7c3aed, #0891b2);
+  box-shadow: 0 4px 8px var(--sf-accent-shadow-strong);
+  background: linear-gradient(135deg, var(--sf-accent-mid) 0%, var(--sf-accent-deep) 100%);
 }
 
 .chord-control-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--sf-accent-shadow);
 }
 
 .chord-instructions p {
@@ -394,13 +394,13 @@
 
 /* Dark mode styles for control buttons */
 .chord-diagram-container.dark .chord-control-btn {
-  background: linear-gradient(135deg, #7c3aed, #0891b2);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-mid) 100%);
+  box-shadow: 0 2px 4px var(--sf-accent-shadow);
 }
 
 .chord-diagram-container.dark .chord-control-btn:hover {
-  background: linear-gradient(135deg, #6d28d9, #0e7490);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, var(--sf-accent-mid) 0%, var(--sf-accent-deep) 100%);
+  box-shadow: 0 4px 8px var(--sf-accent-shadow-strong);
 }
 
 /* Responsive breadcrumb styles */
