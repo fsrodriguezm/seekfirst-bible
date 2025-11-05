@@ -1,27 +1,49 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import type { NextPage } from 'next'
+import styles from '../src/styles/LegalPage.module.css'
 
 const AboutPage: NextPage = () => {
+  const title = 'About - SeekFirst Bible'
+  const description = 'Learn about SeekFirst Bible, an application designed to help believers study God\'s Word deeply and grow in their relationship with Jesus Christ.'
+  const url = 'https://seekfirstbible.com/about'
+  const ogImage = 'https://seekfirstbible.com/seekfirst_logo_dark.png'
+
   return (
     <>
       <Head>
-        <title>About - SeekFirst Bible</title>
-        <meta name="description" content="Learn about SeekFirst Bible, a free AI-powered application designed for rich, contextual Bible study and Scripture exploration." />
+        {/* Basic Meta Tags */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
-        <link rel="canonical" href="https://seekfirstbible.com/about" />
+        <link rel="canonical" href={url} />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:site_name" content="SeekFirst Bible" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="About SeekFirst Bible" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
       </Head>
-      <div className="legal-page">
-        <div className="legal-container">
-          <Link href="/" className="back-link">← Back to SeekFirst</Link>
+      <div className={styles.legalPage}>
+        <div className={styles.legalContainer}>
+          <Link href="/" className={styles.backLink}>← Back to SeekFirst</Link>
           
           <h1>About SeekFirst</h1>
-          <p className="last-updated">AI-powered Bible study app</p>
+          <p className={styles.lastUpdated}>AI-powered Bible study app</p>
 
-          <div className="legal-content">
-            <p className="intro">
+          <div className={styles.legalContent}>
+            <p className={styles.intro}>
               SeekFirst is a free, AI-powered application designed for rich, contextual Bible study. 
               We emphasize seeking &quot;first the kingdom of God and his righteousness&quot; (Matthew 6:33) 
               by providing believers with intuitive tools to explore Scripture.
@@ -149,133 +171,12 @@ const AboutPage: NextPage = () => {
               <ul>
                 <li><Link href="/privacy">Privacy Policy</Link></li>
                 <li><Link href="/terms">Terms of Use</Link></li>
-                <li><Link href="/license">License & Scripture Credits</Link></li>
+                <li><Link href="/license">License &amp; Scripture Credits</Link></li>
               </ul>
             </section>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .legal-page {
-          min-height: 100vh;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          padding: 2rem 1rem;
-        }
-
-        .legal-container {
-          max-width: 800px;
-          margin: 0 auto;
-          background: white;
-          border-radius: 12px;
-          padding: 3rem;
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .back-link {
-          display: inline-flex;
-          align-items: center;
-          color: #667eea;
-          text-decoration: none;
-          font-weight: 500;
-          margin-bottom: 1.5rem;
-          transition: color 0.2s;
-        }
-
-        .back-link:hover {
-          color: #764ba2;
-        }
-
-        h1 {
-          font-size: 2.5rem;
-          color: #213547;
-          margin-bottom: 0.5rem;
-        }
-
-        .last-updated {
-          color: #64748b;
-          font-size: 0.9rem;
-          margin-bottom: 2rem;
-        }
-
-        .legal-content {
-          line-height: 1.7;
-          color: #334155;
-        }
-
-        .intro {
-          font-size: 1.1rem;
-          color: #475569;
-          margin-bottom: 2rem;
-          padding: 1rem;
-          background: #f1f5f9;
-          border-left: 4px solid #667eea;
-          border-radius: 4px;
-        }
-
-        section {
-          margin-bottom: 2rem;
-        }
-
-        h2 {
-          font-size: 1.5rem;
-          color: #334155;
-          margin-bottom: 1rem;
-          margin-top: 2rem;
-        }
-
-        p {
-          margin-bottom: 1rem;
-        }
-
-        strong {
-          color: #1e293b;
-          font-weight: 600;
-        }
-
-        ul {
-          margin-left: 1.5rem;
-          margin-bottom: 1rem;
-        }
-
-        li {
-          margin-bottom: 0.5rem;
-        }
-
-        blockquote {
-          margin: 1.5rem 0;
-          padding: 1rem 1.5rem;
-          background: #f8fafc;
-          border-left: 4px solid #667eea;
-          font-style: italic;
-          color: #475569;
-        }
-
-        a {
-          color: #667eea;
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-
-        a:hover {
-          color: #764ba2;
-          text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-          .legal-container {
-            padding: 2rem 1.5rem;
-          }
-
-          h1 {
-            font-size: 2rem;
-          }
-
-          h2 {
-            font-size: 1.3rem;
-          }
-        }
-      `}</style>
     </>
   )
 }

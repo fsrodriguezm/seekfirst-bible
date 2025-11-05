@@ -62,7 +62,7 @@
 
 .view-mode-btn.active {
   background: white;
-  color: var(--accent-primary, #3b82f6);
+  color: var(--sf-accent, #38bdf8);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -235,7 +235,7 @@
   line-height: 1.5;
   font-size: 0.9em;
   padding-left: 1rem;
-  border-left: 3px solid var(--accent-color);
+  border-left: 3px solid var(--sf-accent, #38bdf8);
   background: var(--card-bg);
   padding: 0.5rem 0.75rem;
   border-radius: 0 var(--border-radius) var(--border-radius) 0;

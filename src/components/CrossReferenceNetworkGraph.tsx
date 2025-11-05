@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import type { Options, Edge, Node } from 'vis-network/peer'
 import { Network } from 'vis-network/peer'
 import { DataSet } from 'vis-data/peer'
@@ -102,6 +102,14 @@ const lightenColor = (color: string, factor: number): string => {
   return `rgb(${r}, ${g}, ${b})`
 }
 
+const getCssVar = (name: string, fallback: string): string => {
+  if (typeof window === 'undefined') return fallback
+  const value = getComputedStyle(document.body).getPropertyValue(name)
+  return value.trim() || fallback
+}
+
+const buildRgba = (rgbValue: string, alpha: number): string => `rgba(${rgbValue}, ${alpha})`
+
 const CrossReferenceNetworkGraph = ({
   currentBook,
   currentChapter,
@@ -122,6 +130,9 @@ const CrossReferenceNetworkGraph = ({
     edges: new DataSet<ReferenceEdge>([]),
   }))
   const { isDark } = useTheme()
+  const accent = useMemo(() => getCssVar('--sf-accent', '#38bdf8'), [])
+  const accentMid = useMemo(() => getCssVar('--sf-accent-mid', '#0ea5e9'), [])
+  const accentRgb = useMemo(() => getCssVar('--sf-accent-rgb', '56, 189, 248'), [])
 
   const handleNavigation = useCallback(
     (book: string, chapter: number, verse: number, trimToIndex: number | null = null) => {
@@ -141,57 +152,57 @@ const CrossReferenceNetworkGraph = ({
     (weight: number): string => {
       if (isDark) {
         if (weight >= 0.9) return '#34d399'
-        if (weight >= 0.7) return '#fbbf24'
+        if (weight >= 0.7) return accent
         if (weight >= 0.5) return '#60a5fa'
         if (weight >= 0.3) return '#a78bfa'
         return '#94a3b8'
       }
 
       if (weight >= 0.9) return '#10b981'
-      if (weight >= 0.7) return '#f59e0b'
+      if (weight >= 0.7) return accent
       if (weight >= 0.5) return '#3b82f6'
       if (weight >= 0.3) return '#8b5cf6'
       return '#64748b'
     },
-    [isDark],
+    [isDark, accent],
   )
 
   const getWeightBorderColor = useCallback(
     (weight: number): string => {
       if (isDark) {
         if (weight >= 0.9) return '#059669'
-        if (weight >= 0.7) return '#d97706'
+        if (weight >= 0.7) return accentMid
         if (weight >= 0.5) return '#2563eb'
         if (weight >= 0.3) return '#8b5cf6'
         return '#64748b'
       }
 
       if (weight >= 0.9) return '#047857'
-      if (weight >= 0.7) return '#d97706'
+      if (weight >= 0.7) return accentMid
       if (weight >= 0.5) return '#1d4ed8'
       if (weight >= 0.3) return '#7c3aed'
       return '#475569'
     },
-    [isDark],
+    [isDark, accentMid],
   )
 
   const getEdgeColor = useCallback(
     (weight: number, alpha = 1): string => {
       if (isDark) {
         if (weight >= 0.9) return `rgba(52, 211, 153, ${alpha})`
-        if (weight >= 0.7) return `rgba(251, 191, 36, ${alpha})`
+        if (weight >= 0.7) return buildRgba(accentRgb, alpha)
         if (weight >= 0.5) return `rgba(96, 165, 250, ${alpha})`
         if (weight >= 0.3) return `rgba(167, 139, 250, ${alpha})`
         return `rgba(148, 163, 184, ${alpha})`
       }
 
       if (weight >= 0.9) return `rgba(16, 185, 129, ${alpha})`
-      if (weight >= 0.7) return `rgba(245, 158, 11, ${alpha})`
+      if (weight >= 0.7) return buildRgba(accentRgb, alpha)
       if (weight >= 0.5) return `rgba(59, 130, 246, ${alpha})`
       if (weight >= 0.3) return `rgba(139, 92, 246, ${alpha})`
       return `rgba(100, 116, 139, ${alpha})`
     },
-    [isDark],
+    [isDark, accentRgb],
   )
 
   useEffect(() => {
@@ -450,7 +461,7 @@ const CrossReferenceNetworkGraph = ({
             <span>Highest Relevance (90%+)</span>
           </div>
           <div className="legend-item">
-            <div className="legend-color" style={{ backgroundColor: '#f59e0b' }} />
+            <div className="legend-color" style={{ backgroundColor: accent }} />
             <span>High Relevance (70%+)</span>
           </div>
           <div className="legend-item">

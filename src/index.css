@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light;
-  color: #213547;
-  background-color: #ffffff;
+  color: var(--sf-text-primary);
+  background-color: var(--sf-app-bg-start);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,7 +22,13 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--sf-app-bg-start) 0%, var(--sf-app-bg-end) 100%);
+  color: var(--sf-text-primary);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+body.dark-theme {
+  color: var(--sf-text-primary);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -54,9 +60,9 @@ button {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-deep) 100%);
+  color: var(--sf-accent-contrast);
+  box-shadow: 0 10px 24px rgba(var(--sf-accent-mid-rgb), 0.25);
 }
 
 .btn::before {
@@ -79,20 +85,21 @@ button {
 
 .btn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 36px rgba(var(--sf-accent-mid-rgb), 0.3);
 }
 
 .btn:active {
   transform: translateY(0) scale(0.98);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(var(--sf-accent-mid-rgb), 0.22);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, var(--sf-accent) 0%, var(--sf-accent-deep) 100%);
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+  background: linear-gradient(135deg, rgba(100, 116, 139, 0.85) 0%, rgba(71, 85, 105, 0.95) 100%);
+  color: #f8fafc;
 }
 
 .btn-success {
@@ -150,7 +157,7 @@ select, input[type="text"], input[type="search"] {
 select:focus, input[type="text"]:focus, input[type="search"]:focus {
   transform: scale(1.02);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #6366f1;
+  border-color: var(--sf-accent);
   outline: none;
 }
 
@@ -248,7 +255,7 @@ select:focus, input[type="text"]:focus, input[type="search"]:focus {
   top: 0;
   transform: translateY(-50%);
   font-size: 0.8rem;
-  color: #6366f1;
+  color: var(--sf-accent-mid);
 }
 
 /* Enhanced hover effects */
@@ -311,7 +318,7 @@ select:focus, input[type="text"]:focus, input[type="search"]:focus {
 
 /* Gradient text animation */
 .gradient-text {
-  background: linear-gradient(45deg, #6366f1, #8b5cf6, #ec4899, #f59e0b);
+  background: linear-gradient(45deg, var(--sf-accent), var(--sf-accent-mid), var(--sf-accent-deep));
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

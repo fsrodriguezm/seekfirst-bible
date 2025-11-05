@@ -198,7 +198,7 @@ const CrossReferencePanel = ({
 
   const getVoteColor = (votes: number): string => {
     if (votes >= 10) return '#10b981'
-    if (votes >= 5) return '#f59e0b'
+    if (votes >= 5) return 'var(--sf-accent)'
     return '#6b7280'
   }
 

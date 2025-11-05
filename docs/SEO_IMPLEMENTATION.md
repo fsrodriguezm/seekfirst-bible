@@ -31,7 +31,7 @@
 
 #### Homepage (`pages/index.tsx`)
 
-- Title: "SeekFirst Bible - Read and Study Scripture Online"
+- Title: "SeekFirst Bible - Read and Study Scripture"
 - Comprehensive description highlighting key features
 - Added canonical URL
 

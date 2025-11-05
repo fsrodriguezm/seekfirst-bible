@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
+import '../src/styles/palettes.css'
 import '../src/index.css'
 import '../src/App.css'
 import '../src/styles/responsive.css'

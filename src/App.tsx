@@ -1,8 +1,19 @@
 import { useRef, useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 import { Moon, Sun } from 'lucide-react'
 import BibleView from './components/bible-view/BibleView'
 import Footer from './components/Footer'
 import { ThemeProvider, useTheme } from './contexts/ThemeContext'
+
+const toolbarActions = [
+  { label: 'Read' },
+  { label: 'Learn', badge: 'beta' },
+  // { label: 'Reason', badge: 'beta'},
+] as const
+
+type ToolbarAction = (typeof toolbarActions)[number]
+type ToolLabel = ToolbarAction['label']
 
 interface AppContentProps {
   initialBook?: string
@@ -12,8 +23,10 @@ interface AppContentProps {
 }
 
 function AppContent({ initialBook, initialChapter, initialVersion, initialVerses }: AppContentProps) {
-  const { isDark, toggleTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { isDark, toggleTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [activeTool, setActiveTool] = useState<ToolLabel>('Read')
+  const router = useRouter()
   const videoARef = useRef<HTMLVideoElement | null>(null)
   const videoBRef = useRef<HTMLVideoElement | null>(null)
   const fadingRef = useRef<boolean>(false)
@@ -21,8 +34,8 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
   const fadeSeconds = 3.0 // seconds to crossfade
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
   // Refs and configuration for crossfade between two identical video elements
   useEffect(() => {
@@ -86,15 +99,48 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
     }
   }, [])
 
+  const handleToolbarClick = (action: ToolbarAction) => {
+    if (action.label === 'Learn') {
+      router.push('/learn')
+      return
+    }
+    setActiveTool(action.label)
+  }
+
   return (
     <div className={`App ${isDark ? 'dark' : 'light'}`}>
       <header className="App-header">
+        <nav className="app-navbar" aria-label="Primary navigation">
+          <div className="navbar-brand" onClick={() => window.location.reload()} style={{ cursor: "pointer" }}>
+            <Image src="/seekfirst_logo.png" alt="SeekFirst" className="brand-logo" width={48} height={48} priority />
+            <span className="brand-text">SeekFirst</span>
+          </div>
+          <div className="navbar-left">
+            {toolbarActions.map((action) => (
+              <button
+                key={action.label}
+                type="button"
+                className={`nav-item ${activeTool === action.label ? 'active' : ''} ${action.label === 'Learn' ? 'nav-item-learn' : ''}`}
+                onClick={() => handleToolbarClick(action)}
+                aria-current={activeTool === action.label ? 'page' : undefined}
+              >
+                <span className="nav-label">{action.label}</span>
+                {'badge' in action && action.badge && <span className="nav-badge">{action.badge}</span>}
+              </button>
+            ))}
+          </div>
+        </nav>
         <div className="header-content">
           <div className="header-text">
             <h1 onClick={() => window.location.reload()} style={{ cursor: "pointer" }}>
               SEEKFIRST
             </h1>
-            <p>the kingdom of God and his righteousness, and all these things will be added to you -Matthew 6:33</p>
+            <p>
+              <span className="hero-verse-text">
+                But seek first the kingdom of God and his righteousness, and all these things will be added to you.
+              </span>
+              <span className="hero-verse-citation">— Matthew 6:33</span>
+            </p>
           </div>
           <button
             className="theme-toggle-btn"
