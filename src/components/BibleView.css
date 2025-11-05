@@ -41,6 +41,16 @@
   animation: fadeInButtons 1s ease-out 0.5s both;
 }
 
+.action-buttons .btn {
+  box-shadow: none !important;
+}
+
+.action-buttons .btn:hover,
+.action-buttons .btn:focus-visible,
+.action-buttons .btn:active {
+  box-shadow: none !important;
+}
+
 .action-buttons > * {
   animation: bounceIn 0.6s ease-out var(--delay, 0s) both;
 }
@@ -86,13 +96,11 @@
 .btn-red-letter-active {
   background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(185, 28, 28, 0.15)) !important;
   border: 2px solid rgba(220, 38, 38, 0.5) !important;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
 }
 
 .btn-red-letter-active:hover {
   background: linear-gradient(135deg, rgba(220, 38, 38, 0.25), rgba(185, 28, 28, 0.25)) !important;
   border-color: rgba(220, 38, 38, 0.7) !important;
-  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
 }
 
 .bible-main-content {
@@ -451,10 +459,14 @@
 
 .verse-number {
   font-weight: 700;
-  color: #667eea;
+  color: var(--sf-accent-mid);
   margin-right: 0.75rem;
   min-width: 2rem;
   font-size: 0.9rem;
+}
+
+.dark-theme .verse-number {
+  color: var(--sf-accent-muted);
 }
 
 .verse-text {

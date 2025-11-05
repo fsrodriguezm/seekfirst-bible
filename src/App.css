@@ -458,20 +458,21 @@ main {
 }
 
 .footer-column a {
-  color: #1e293b;
+  color: var(--sf-link-color);
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .footer-column a:hover {
-  color: #6366f1;
+  color: var(--sf-accent-deep);
   transform: translateX(2px);
+  text-decoration: none;
 }
 
 .footer-column a:focus-visible {
-  outline: 2px solid rgba(99, 102, 241, 0.4);
-  outline-offset: 2px;
+  outline: 3px solid var(--sf-accent-focus);
+  outline-offset: 3px;
 }
 
 .footer-cta {
@@ -576,7 +577,8 @@ main {
 }
 
 .dark-theme .footer-column a:hover {
-  color: #a855f7;
+  color: var(--sf-accent-muted);
+  text-decoration: none;
 }
 
 @keyframes fadeInUp {
