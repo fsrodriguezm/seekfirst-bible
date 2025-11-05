@@ -562,9 +562,6 @@ const MemorizeHelper = () => {
           </div>
 
           <div className={styles.buttonRow}>
-            <button type="button" className={styles.primaryButton} onClick={handleSave}>
-              Save Verse
-            </button>
             <button type="button" className={styles.secondaryButton} onClick={handleLoadSample}>
               Load Sample
             </button>
