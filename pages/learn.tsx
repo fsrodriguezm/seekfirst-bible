@@ -218,14 +218,35 @@ const LearnPageContent = () => {
 }
 
 const LearnPage: NextPage = () => {
+  const title = 'Learn with SeekFirst Bible'
+  const description = 'Discover Holy Spirit-led learning paths that draw you closer to Jesus and shape your life through God\'s Word.'
+  const url = 'https://seekfirstbible.com/learn'
+  const ogImage = 'https://seekfirstbible.com/seekfirst_logo_dark.png'
+
   return (
     <>
       <Head>
-        <title>Learn with SeekFirst Bible</title>
-        <meta
-          name="description"
-          content="Explore curated learning paths, spiritual practices, and formation journeys with SeekFirst Bible."
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <link rel="canonical" href={url} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        
+        {/* Open Graph Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:site_name" content="SeekFirst Bible" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="Learn with SeekFirst Bible" />
+        
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
       </Head>
       <ThemeProvider>
         <LearnPageContent />
