@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Footer from '../../../src/components/Footer'
 import { ThemeProvider, useTheme } from '../../../src/contexts/ThemeContext'
@@ -34,12 +34,30 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
   const router = useRouter()
   const { isDark, toggleTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const activeTool: ToolLabel = 'Learn'
   const currentPracticeId = practice.id
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    // Close sidebar when route changes on mobile
+    setIsSidebarOpen(false)
+  }, [router.pathname])
+
+  useEffect(() => {
+    // Prevent body scroll when sidebar is open
+    if (isSidebarOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isSidebarOpen])
 
   const handleToolbarClick = (action: ToolbarAction) => {
     if (action.label === 'Learn') return
@@ -99,8 +117,36 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
         </div>
       </header>
       <main className={styles.learnMain}>
+        {/* Mobile Menu Bar */}
+        <div className={styles.mobileMenuBar}>
+          <button
+            className={styles.mobileMenuToggle}
+            onClick={() => setIsSidebarOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={isSidebarOpen}
+          >
+            <Menu size={24} />
+          </button>
+        </div>
+
         <div className={styles.learnPage}>
-          <aside className={styles.learnSidebar}>
+          {/* Mobile Overlay */}
+          <div 
+            className={`${styles.mobileOverlay} ${isSidebarOpen ? styles.visible : ''}`}
+            onClick={() => setIsSidebarOpen(false)}
+            aria-hidden="true"
+          />
+
+          <aside className={`${styles.learnSidebar} ${isSidebarOpen ? styles.learnSidebarOpen : ''}`}>
+            {/* Close button inside sidebar */}
+            <button
+              className={styles.mobileMenuClose}
+              onClick={() => setIsSidebarOpen(false)}
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+            
             <div className={styles.learnSidebarTop}>
               <Link href="/learn" className={styles.learnBrand}>
                 LEARN
