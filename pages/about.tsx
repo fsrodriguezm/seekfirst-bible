@@ -5,7 +5,7 @@ import styles from '../src/styles/LegalPage.module.css'
 
 const AboutPage: NextPage = () => {
   const title = 'About - SeekFirst Bible'
-  const description = 'Learn about SeekFirst Bible, a free Holy Spirit-led application designed to help believers study God\'s Word deeply and grow in their relationship with Jesus Christ.'
+  const description = 'Learn about SeekFirst Bible, an application designed to help believers study God\'s Word deeply and grow in their relationship with Jesus Christ.'
   const url = 'https://seekfirstbible.com/about'
   const ogImage = 'https://seekfirstbible.com/seekfirst_logo_dark.png'
 
