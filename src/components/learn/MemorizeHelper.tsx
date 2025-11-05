@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { ChangeEvent, DragEvent } from 'react'
+import { Search, BookOpen } from 'lucide-react'
 import styles from './MemorizeHelper.module.css'
+import { useBibleData, type BibleData } from '../../hooks/useBibleData'
+import { useBibleSearch } from '../../hooks/useBibleSearch'
+import { parseBibleReference, isBibleReference } from '../../utils/bibleReferenceParser'
 
 const STORAGE_KEY = 'memorize-helper.current'
 
@@ -117,6 +121,24 @@ const MemorizeHelper = () => {
   const [feedback, setFeedback] = useState<string | null>(null)
   const [feedbackTone, setFeedbackTone] = useState<'neutral' | 'success' | 'error'>('neutral')
   const [savedNotice, setSavedNotice] = useState<string | null>(null)
+  
+  // Verse search state
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedBible, setSelectedBible] = useState('KJV')
+  const [selectedBook, setSelectedBook] = useState('Genesis')
+  const [selectedChapter, setSelectedChapter] = useState(1)
+  
+  // Load Bible data for verse search
+  const { bibleData } = useBibleData({
+    bibleId: selectedBible,
+    book: selectedBook,
+    setBook: setSelectedBook,
+    chapter: selectedChapter,
+    setChapter: setSelectedChapter,
+    crossReferenceMode: false,
+  })
+  
+  const { results: searchResults, search: searchBible, clear: clearSearch } = useBibleSearch(bibleData)
 
   useEffect(() => {
     const stored = loadFromStorage()
@@ -206,6 +228,76 @@ const MemorizeHelper = () => {
       copy.splice(to, 0, moved)
       return copy
     })
+  }
+  
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (isBibleReference(searchQuery)) {
+      // Try to parse as Bible reference
+      const parsed = parseBibleReference(searchQuery, bibleData ? Object.keys(bibleData) : [])
+      if (parsed && bibleData) {
+        setSelectedBook(parsed.book)
+        setSelectedChapter(parsed.chapter)
+        
+        const verses = bibleData[parsed.book]?.[parsed.chapter]
+        if (verses && parsed.verse) {
+          // Handle verse ranges (e.g., 3:5-6)
+          if (parsed.endVerse) {
+            // Combine multiple verses WITHOUT verse numbers
+            const verseNumbers: number[] = []
+            const verseTexts: string[] = []
+            
+            for (let v = parsed.verse; v <= parsed.endVerse; v++) {
+              if (verses[v]) {
+                verseNumbers.push(v)
+                verseTexts.push(verses[v]) // Just the text, no verse numbers
+              }
+            }
+            
+            if (verseTexts.length > 0) {
+              const combinedText = verseTexts.join(' ')
+              const startVerse = verseNumbers[0]
+              const endVerse = verseNumbers[verseNumbers.length - 1]
+              const ref = endVerse > startVerse 
+                ? `${parsed.book} ${parsed.chapter}:${startVerse}-${endVerse}`
+                : `${parsed.book} ${parsed.chapter}:${startVerse}`
+              
+              setData({
+                ref: ref,
+                text: combinedText,
+                context: '',
+                paraphrase: '',
+              })
+              clearSearch()
+              setSavedNotice('Verses loaded. Add context and paraphrase, then save.')
+              window.setTimeout(() => setSavedNotice(null), 3000)
+            }
+          } else {
+            // Single verse
+            if (verses[parsed.verse]) {
+              handleSelectVerse(parsed.book, parsed.chapter, parsed.verse, verses[parsed.verse])
+            }
+          }
+        }
+        return
+      }
+    }
+    
+    // Otherwise perform keyword search
+    searchBible(searchQuery)
+  }
+  
+  const handleSelectVerse = (book: string, chapter: number, verse: number, text: string) => {
+    setData({
+      ref: `${book} ${chapter}:${verse}`,
+      text: text,
+      context: '',
+      paraphrase: '',
+    })
+    clearSearch()
+    setSavedNotice('Verse loaded. Add context and paraphrase, then save.')
+    window.setTimeout(() => setSavedNotice(null), 3000)
   }
 
   const firstLettersView = useMemo(() => buildFirstLetters(data.text), [data.text])
@@ -369,16 +461,72 @@ const MemorizeHelper = () => {
           <p className={styles.subtext}>Save the passage along with context and your own paraphrase.</p>
 
           <div>
-            <label className={styles.fieldLabel} htmlFor="verseRef">Reference</label>
-            <input
-              id="verseRef"
-              type="text"
-              value={data.ref}
-              onChange={handleChange('ref')}
-              className={styles.fieldInput}
-              placeholder="e.g. Romans 12:2"
-            />
+            <label className={styles.fieldLabel} htmlFor="bibleVersion">Bible Version</label>
+            <select
+              id="bibleVersion"
+              value={selectedBible}
+              onChange={(e) => setSelectedBible(e.target.value)}
+              className={styles.fieldSelect}
+            >
+              <option value="KJV">King James Version (KJV)</option>
+              <option value="NKJV">New King James Version (NKJV)</option>
+              <option value="ESV">English Standard Version (ESV)</option>
+              <option value="NIV">New International Version (NIV)</option>
+              <option value="NASB">New American Standard Bible (NASB)</option>
+              <option value="NLT">New Living Translation (NLT)</option>
+            </select>
           </div>
+
+          <div>
+            <form onSubmit={handleSearchSubmit}>
+              <label className={styles.fieldLabel} htmlFor="verseSearch">
+                Search by reference or keyword
+              </label>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input
+                  id="verseSearch"
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className={styles.fieldInput}
+                  placeholder="e.g. John 3:16 or 'love'"
+                  style={{ flex: 1 }}
+                />
+                <button type="submit" className={styles.primaryButton} style={{ padding: '10px 14px' }}>
+                  {isBibleReference(searchQuery) ? <BookOpen size={18} /> : <Search size={18} />}
+                </button>
+              </div>
+            </form>
+            
+            {searchResults.length > 0 && (
+              <div className={styles.searchResultsList} style={{ marginTop: '12px' }}>
+                <div className={styles.searchResultsHeader}>
+                  Search Results ({searchResults.length})
+                </div>
+                {searchResults.slice(0, 20).map((result, index) => (
+                  <div
+                    key={`${result.reference}-${index}`}
+                    className={styles.searchResultItem}
+                    onClick={() => handleSelectVerse(result.book, result.chapter, result.verse, result.text)}
+                  >
+                    <div className={styles.resultReference}>{result.reference}</div>
+                    <div className={styles.resultText}>{result.text}</div>
+                  </div>
+                ))}
+                {searchResults.length > 20 && (
+                  <div className={styles.resultsTruncated}>
+                    ... and {searchResults.length - 20} more results. Try a more specific search.
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {data.ref && (
+            <div style={{ padding: '12px', background: 'var(--sf-accent-soft)', borderRadius: '10px', fontSize: '0.9rem' }}>
+              <strong>Selected:</strong> {data.ref}
+            </div>
+          )}
 
           <div>
             <label className={styles.fieldLabel} htmlFor="verseText">Verse Text</label>

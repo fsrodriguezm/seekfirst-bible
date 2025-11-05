@@ -130,9 +130,9 @@ const CrossReferenceNetworkGraph = ({
     edges: new DataSet<ReferenceEdge>([]),
   }))
   const { isDark } = useTheme()
-  const accent = useMemo(() => getCssVar('--sf-accent', '#38bdf8'), [isDark])
-  const accentMid = useMemo(() => getCssVar('--sf-accent-mid', '#0ea5e9'), [isDark])
-  const accentRgb = useMemo(() => getCssVar('--sf-accent-rgb', '56, 189, 248'), [isDark])
+  const accent = useMemo(() => getCssVar('--sf-accent', '#38bdf8'), [])
+  const accentMid = useMemo(() => getCssVar('--sf-accent-mid', '#0ea5e9'), [])
+  const accentRgb = useMemo(() => getCssVar('--sf-accent-rgb', '56, 189, 248'), [])
 
   const handleNavigation = useCallback(
     (book: string, chapter: number, verse: number, trimToIndex: number | null = null) => {

@@ -151,6 +151,8 @@
   color: #1f2937;
   line-height: 1.6;
   white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .smallLabel {
@@ -318,4 +320,64 @@
 
 .dark .sampleNotice {
   color: rgba(203, 213, 225, 0.7);
+}
+
+/* Verse Search Results */
+.searchResultsList {
+  border: 1px solid var(--sf-surface-border);
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.searchResultsHeader {
+  padding: 12px 16px;
+  background: rgba(var(--sf-accent-rgb), 0.08);
+  border-bottom: 1px solid var(--sf-surface-border);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--sf-text-primary);
+}
+
+.searchResultItem {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--sf-surface-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.searchResultItem:last-child {
+  border-bottom: none;
+}
+
+.searchResultItem:hover {
+  background: var(--sf-accent-soft);
+  border-left: 3px solid var(--sf-accent);
+}
+
+.resultReference {
+  font-weight: 600;
+  color: var(--sf-accent-mid);
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.resultText {
+  color: var(--sf-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.resultsTruncated {
+  padding: 12px 16px;
+  text-align: center;
+  color: var(--sf-text-secondary);
+  font-size: 0.85rem;
+  font-style: italic;
+  background: rgba(var(--sf-accent-rgb), 0.05);
+}
+
+.dark .searchResultItem:hover {
+  background: rgba(var(--sf-accent-rgb), 0.15);
 }
