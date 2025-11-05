@@ -1,0 +1,176 @@
+.learnPage {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f8f8;
+  color: #151515;
+}
+
+.learnSidebar {
+  width: 260px;
+  padding: 32px 24px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.learnBrand {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+}
+
+.learnBrand:hover {
+  color: #1f1f1f;
+}
+
+.learnNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.learnNavItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.learnNavItem:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.learnNavItemActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+.learnNavBadge {
+  margin-left: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.08);
+  color: #444444;
+}
+
+.learnNavItemActive .learnNavBadge {
+  background: #ffffff;
+  color: #111111;
+}
+
+.learnContent {
+  flex: 1;
+  padding: 48px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.learnHeader {
+  max-width: 720px;
+}
+
+.learnHeader h1 {
+  font-size: 2.75rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.learnHeader p {
+  color: #494949;
+  line-height: 1.6;
+}
+
+.learnSection {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.learnSection h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.01em;
+}
+
+.learnSection p {
+  color: #4f4f4f;
+  line-height: 1.6;
+}
+
+.learnSectionMeta {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(17, 17, 17, 0.55);
+}
+
+@media (max-width: 960px) {
+  .learnPage {
+    flex-direction: column;
+  }
+
+  .learnSidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 24px 16px;
+  }
+
+  .learnNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .learnNavItem {
+    padding: 8px 16px;
+  }
+
+  .learnContent {
+    padding: 32px 20px 48px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .learnPage {
+    background: #0c0c0c;
+    color: #f5f5f5;
+  }
+
+  .learnSidebar {
+    background: #111111;
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .learnNavItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .learnNavBadge {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(245, 245, 245, 0.88);
+  }
+
+  .learnSection p,
+  .learnHeader p {
+    color: rgba(245, 245, 245, 0.72);
+  }
+
+  .learnSectionMeta {
+    color: rgba(245, 245, 245, 0.48);
+  }
+}

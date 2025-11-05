@@ -57,7 +57,7 @@ const BibleActionToolbar = ({
 
       <button
         ref={getButtonRef(2)}
-        className={`btn btn-secondary btn-morphing`}
+        className={`btn btn-primary btn-morphing`}
         onClick={onToggleExplanation}
         title="Get AI-powered biblical explanations"
       >

@@ -1,0 +1,257 @@
+.learnMain {
+  display: flex;
+  justify-content: center;
+  padding: 0 48px 64px;
+}
+
+.learnPage {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 70vh;
+  margin: 0 auto;
+  background: #f8f8f8;
+  color: #151515;
+  border-radius: 32px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+}
+
+.learnSidebar {
+  width: 260px;
+  padding: 32px 24px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.learnBrand {
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.learnBrand:hover {
+  opacity: 1;
+}
+
+.learnNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.learnNavItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.learnNavItem:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.learnNavItemActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+.learnNavBadge {
+  margin-left: 12px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(0, 0, 0, 0.08);
+  color: #444444;
+}
+
+.learnNavItemActive .learnNavBadge {
+  background: #ffffff;
+  color: #111111;
+}
+
+.learnContent {
+  flex: 1;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  background: #f8f8f8;
+}
+
+.learnHeader {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.learnHeaderSubtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.learnHeader h1 {
+  font-size: 2.5rem;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #0f172a;
+}
+
+.learnHeader p {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.learnSection {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.learnSection h2 {
+  font-size: 1.8rem;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #0f172a;
+}
+
+.learnSection p {
+  color: #4f4f4f;
+  line-height: 1.6;
+}
+
+.learnSectionMeta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(17, 17, 17, 0.55);
+}
+
+@media (max-width: 1200px) {
+  .learnMain {
+    padding: 0 32px 48px;
+  }
+
+  .learnPage {
+    flex-direction: column;
+  }
+
+  .learnSidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 24px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .learnNav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .learnContent {
+    padding: 40px 32px 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .learnMain {
+    padding: 0 16px 32px;
+  }
+
+  .learnSidebar {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .learnNav {
+    width: 100%;
+  }
+
+  .learnContent {
+    padding: 32px 20px 40px;
+    gap: 40px;
+  }
+}
+
+:global(.dark-theme) .learnPage {
+  background: #05090f;
+  color: #f5f5f5;
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 28px 80px rgba(5, 10, 20, 0.6);
+}
+
+:global(.dark-theme) .learnSidebar {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+:global(.dark-theme) .learnNavItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+:global(.dark-theme) .learnNavItemActive {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+:global(.dark-theme) .learnNavBadge {
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(15, 23, 42, 0.85);
+}
+
+:global(.dark-theme) .learnNavItemActive .learnNavBadge {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+:global(.dark-theme) .learnContent {
+  background: #05090f;
+}
+
+:global(.dark-theme) .learnHeader h1 {
+  color: #e2e8f0;
+}
+
+:global(.dark-theme) .learnHeaderSubtitle {
+  color: rgba(226, 232, 240, 0.65);
+}
+
+:global(.dark-theme) .learnHeader p {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+:global(.dark-theme) .learnSection h2 {
+  color: #e2e8f0;
+}
+
+:global(.dark-theme) .learnSection p {
+  color: rgba(226, 232, 240, 0.7);
+}
+
+:global(.dark-theme) .learnSectionMeta {
+  color: rgba(148, 163, 184, 0.75);
+}
