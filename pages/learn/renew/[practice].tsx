@@ -154,15 +154,20 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
               <h1>{practice.title}</h1>
               <p>{practice.summary}</p>
             </header>
-            <div className={styles.renewLayout}>
-              <div className={styles.renewSectionContent}>
-                <article className={styles.renewSubsection}>
-                  <h3>Practice Ideas</h3>
-                  <p>
-                    These rhythms help you embody the practice of {practice.title.toLowerCase()} with simplicity and
-                    faithfulness.
-                  </p>
-                  <ul className={styles.renewSubsectionList}>
+            
+            {practice.id === 'memorization' && (
+              <div className={styles.memorizeHelperGrid}>
+                <MemorizeHelper />
+              </div>
+            )}
+
+            <article className={styles.renewSubsection}>
+              <h3>Practice Ideas</h3>
+              <p>
+                These rhythms help you embody the practice of {practice.title.toLowerCase()} with simplicity and
+                faithfulness.
+              </p>
+              <ul className={styles.renewSubsectionList}>
                 {practice.practices.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -180,13 +185,6 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
             </section>
           </div>
 
-          {practice.id === 'memorization' && (
-            <div className={styles.memorizeHelperGrid}>
-              <MemorizeHelper />
-            </div>
-          )}
-            </div>
-          </div>
           <aside className={styles.learnRightRail}>
             <div className={styles.rightSection}>
               <h4>Scripture to Anchor In</h4>

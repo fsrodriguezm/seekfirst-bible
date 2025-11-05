@@ -179,8 +179,8 @@
 .nav-badge {
   padding: 0.125rem 0.5rem;
   border-radius: 4px;
-  background: rgba(59, 130, 246, 0.15);
-  color: #1d4ed8;
+  background: var(--sf-accent-soft);
+  color: var(--sf-accent-deep);
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -188,8 +188,8 @@
 }
 
 .dark-theme .nav-badge {
-  background: rgba(59, 130, 246, 0.25);
-  color: #60a5fa;
+  background: var(--sf-accent-soft-alt);
+  color: var(--sf-accent-muted);
 }
 
 /* Header content */
