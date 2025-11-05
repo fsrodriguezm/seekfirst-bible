@@ -17,10 +17,10 @@ export type LearnNavEntry = {
 export const renewPractices: RenewPractice[] = [
   {
     id: 'study',
-    title: 'Study',
+    title: 'Read',
     path: '/learn/renew/study',
     summary:
-      'Guided readings with contextual notes, timelines, and cross-references so you can build a whole-Bible view of each passage.',
+      'Guided reading plans with context notes, timelines, and cross-references so you can build a whole-Bible view of each passage.',
     practices: [
       'Pair each passage with historical and literary notes before journaling.',
       'Trace cross references to see how Scripture interprets Scripture.',
@@ -39,38 +39,14 @@ export const renewPractices: RenewPractice[] = [
       'Pray the verse back to God, asking for alignment with its truth.',
     ],
   },
-  {
-    id: 'silence',
-    title: 'Silence',
-    path: '/learn/renew/silence',
-    summary:
-      'Lectio divina inspired pauses that create space to listen for the Spirit’s gentle guidance and conviction.',
-    practices: [
-      'Set a timer for five minutes of quiet after reading; notice what the Spirit highlights.',
-      'Hold a single verse in silence, letting each phrase breathe before moving on.',
-      'Close with gratitude, naming specific gifts you received in the stillness.',
-    ],
-  },
-  {
-    id: 'rest',
-    title: 'Rest',
-    path: '/learn/renew/rest',
-    summary:
-      'Sabbath-shaped rhythms that protect margin, restore delight, and keep Jesus at the center of every pursuit.',
-    practices: [
-      'Block a weekly Sabbath window and guard it like any vital meeting.',
-      'Plan restorative practices: a slow walk, worship playlist, or family meal.',
-      'End the day by surrendering upcoming work back to the Lord in prayer.',
-    ],
-  },
 ]
 
 export const learnNavItems: LearnNavEntry[] = [
   {
     id: 'renew',
-    label: 'Renew the Mind',
+    label: 'Study Tools',
     description:
-      'Scripture-first journeys that help you meditate on truth, build rhythms of reflection, and let the Word reshape your thinking each day.',
+      'Scripture-first tools that help you engage passages deeply, stay rooted in the Word, and build rhythms of reflection.',
     path: '/learn',
   },
   {

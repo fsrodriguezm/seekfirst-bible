@@ -48,10 +48,10 @@ const LearnPageContent = () => {
     {
       label: 'What You’ll Practice',
       items: [
-        'Anchor each study session in context, prayer, and responsive obedience.',
+        'Anchor each reading session in prayer, context, and responsive obedience.',
         'Let memorized verses renew your thinking throughout the day.',
-        'Create space for silence so the Spirit personalizes the Word.',
-        'Protect Sabbath rhythms that restore delight in God.',
+        'Trace cross references to see how Scripture interprets Scripture.',
+        'Journal applications that move you toward faithful action.',
       ],
     },
     {
@@ -65,10 +65,10 @@ const LearnPageContent = () => {
     {
       label: 'Live This Out',
       items: [
-        'Sketch a weekly study rhythm with cross references and journaling.',
+        'Sketch a weekly reading rhythm with cross references and journaling.',
         'Memorize Romans 12:2 using spaced repetition prompts.',
-        'Plan a 20-minute silence retreat this weekend.',
-        'Invite a friend to join your Sabbath block and share reflections.',
+        'Summarize each passage in your own words before checking commentary.',
+        'Invite a friend to read alongside you and compare insights weekly.',
       ],
     },
   ]
@@ -151,7 +151,7 @@ const LearnPageContent = () => {
                         </Link>
                       )}
                       {item.id === 'renew' && (
-                        <nav className={styles.learnSubNavGroup} aria-label="Renew the Mind practices">
+                        <nav className={styles.learnSubNavGroup} aria-label="Study Tools practices">
                           {renewPractices.map((practice) => (
                             <Link
                               key={practice.id}
@@ -182,10 +182,10 @@ const LearnPageContent = () => {
               </p>
             </header>
             <section id="renew" className={styles.learnSection}>
-              <h2>Renew the Mind</h2>
+              <h2>Study Tools</h2>
               <p>
-                Scripture-first journeys that help you meditate on truth, build rhythms of reflection,
-                and let the Word reshape your thinking each day.
+                Scripture-first tools that help you engage passages deeply, stay rooted in the Word,
+                and build rhythms of reflection that shape everyday obedience.
               </p>
               <div className={styles.learnPracticeGrid}>
                 {renewPractices.map((practice) => (

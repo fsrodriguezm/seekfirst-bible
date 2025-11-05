@@ -128,7 +128,7 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
                         </Link>
                       )}
                       {item.id === 'renew' && (
-                        <nav className={styles.learnSubNavGroup} aria-label="Renew the Mind practices">
+                        <nav className={styles.learnSubNavGroup} aria-label="Study Tools practices">
                           {renewPractices.map((practiceEntry) => (
                             <Link
                               key={practiceEntry.id}
@@ -150,7 +150,7 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
           </aside>
           <div className={styles.learnContent}>
             <header className={styles.learnHeader}>
-              <span className={styles.learnHeaderSubtitle}>Renew the Mind</span>
+              <span className={styles.learnHeaderSubtitle}>Study Tools</span>
               <h1>{practice.title}</h1>
               <p>{practice.summary}</p>
             </header>
@@ -216,7 +216,7 @@ const PracticePage: NextPage<PracticePageProps> = (props) => {
   return (
     <>
       <Head>
-        <title>{`${props.practice.title} · Renew the Mind`}</title>
+        <title>{`${props.practice.title} · Study Tools`}</title>
         <meta
           name="description"
           content={`Practice ${props.practice.title.toLowerCase()} with SeekFirst Bible. Guided steps and Scripture to help you renew your mind.`}
