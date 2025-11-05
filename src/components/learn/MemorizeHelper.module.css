@@ -1,0 +1,321 @@
+.helperContainer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .helperContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inputCard,
+.outputCard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.subtext {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.fieldLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(15, 23, 42, 0.66);
+}
+
+.fieldInput,
+.fieldTextarea,
+.fieldSelect {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.92);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fieldInput:focus,
+.fieldTextarea:focus,
+.fieldSelect:focus {
+  outline: none;
+  border-color: var(--sf-accent, #38bdf8);
+  box-shadow: 0 0 0 3px var(--sf-accent-focus, rgba(56, 189, 248, 0.18));
+}
+
+.fieldTextarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primaryButton,
+.secondaryButton,
+.ghostButton {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, var(--sf-accent, #38bdf8) 0%, var(--sf-accent-mid, #0ea5e9) 100%);
+  color: var(--sf-accent-contrast, #ffffff);
+  box-shadow: 0 10px 25px var(--sf-accent-shadow, rgba(14, 165, 233, 0.28));
+}
+
+.secondaryButton {
+  background: linear-gradient(135deg, rgba(254, 215, 102, 0.95) 0%, rgba(245, 158, 11, 0.95) 100%);
+  color: #1f2937;
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.22);
+}
+
+.ghostButton {
+  background: rgba(15, 23, 42, 0.06);
+  color: #334155;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.primaryButton:hover,
+.secondaryButton:hover,
+.ghostButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+}
+
+.primaryButton:active,
+.secondaryButton:active,
+.ghostButton:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tabButton {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(148, 163, 184, 0.12);
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabButtonActive {
+  background: linear-gradient(135deg, var(--sf-accent, #38bdf8) 0%, var(--sf-accent-mid, #0ea5e9) 100%);
+  color: var(--sf-accent-contrast, #ffffff);
+  box-shadow: 0 10px 24px var(--sf-accent-shadow, rgba(14, 165, 233, 0.28));
+}
+
+.outputPanel {
+  min-height: 220px;
+  border-radius: 12px;
+  background: rgba(248, 250, 252, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 18px;
+  font-size: 1rem;
+  color: #1f2937;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.smallLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(100, 116, 139, 0.85);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.resultTextArea {
+  min-height: 120px;
+}
+
+.accuracyRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.accuracyScore {
+  font-weight: 600;
+  color: var(--sf-accent, #38bdf8);
+}
+
+.phrasePool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.phraseChip {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.18);
+  color: #1f2937;
+  font-size: 0.9rem;
+  cursor: grab;
+  user-select: none;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phraseChip:active {
+  cursor: grabbing;
+  transform: scale(0.97);
+}
+
+.orderActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.feedbackMessage {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.feedbackMessageSuccess {
+  color: #059669;
+}
+
+.feedbackMessageError {
+  color: #dc2626;
+}
+
+.metaSection {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.metaItem {
+  background: rgba(15, 23, 42, 0.04);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.85rem;
+  color: #475569;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.metaItem strong {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.dark .sectionTitle,
+.dark .subtext,
+.dark label,
+.dark .metaItem,
+.dark .metaItem strong {
+  color: inherit;
+}
+
+.dark .subtext {
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.dark .fieldInput,
+.dark .fieldTextarea,
+.dark .fieldSelect {
+  background: rgba(15, 23, 42, 0.65);
+  border-color: rgba(71, 85, 105, 0.5);
+  color: #f1f5f9;
+}
+
+.dark .metaItem {
+  background: rgba(30, 41, 59, 0.65);
+  border-color: rgba(71, 85, 105, 0.4);
+  color: #e2e8f0;
+}
+
+.dark .outputPanel {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(71, 85, 105, 0.45);
+  color: #e2e8f0;
+}
+
+.dark .phraseChip {
+  background: rgba(148, 163, 184, 0.28);
+  color: #e2e8f0;
+  box-shadow: 0 1px 4px rgba(2, 6, 23, 0.4);
+}
+
+.dark .ghostButton {
+  background: rgba(15, 23, 42, 0.45);
+  color: #e2e8f0;
+  border-color: rgba(71, 85, 105, 0.45);
+}
+
+.dark .sectionTitle {
+  color: #f8fafc;
+}
+
+.dark .accuracyRow {
+  color: #cbd5f5;
+}
+
+.modeSummary {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: -2px;
+}
+
+.dark .modeSummary {
+  color: rgba(203, 213, 225, 0.78);
+}
+
+.sampleNotice {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.dark .sampleNotice {
+  color: rgba(203, 213, 225, 0.7);
+}

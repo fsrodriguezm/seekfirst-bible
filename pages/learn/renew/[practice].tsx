@@ -14,6 +14,7 @@ import {
   type LearnNavEntry,
 } from '../../../src/data/learnPractices'
 import styles from '../../../src/styles/learn.module.css'
+import MemorizeHelper from '../../../src/components/learn/MemorizeHelper'
 
 const toolbarActions = [
   { label: 'Read' },
@@ -167,6 +168,12 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
                     ))}
                   </ul>
                 </article>
+
+                {practice.id === 'memorization' && (
+                  <div className={styles.memorizeHelperWrapper}>
+                    <MemorizeHelper />
+                  </div>
+                )}
 
                 <section className={styles.learnPracticeGrid}>
                   {otherPractices.map((other) => (

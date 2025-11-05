@@ -270,6 +270,12 @@
   gap: 48px;
 }
 
+.memorizeHelperWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .renewSubsection {
   scroll-margin-top: 160px;
   display: flex;
