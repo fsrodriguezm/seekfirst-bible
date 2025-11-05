@@ -15,6 +15,13 @@ interface BibleActionToolbarProps {
   selectedBible: string
 }
 
+// Helper function to track events with Google Analytics
+const trackEvent = (eventName: string, eventParams?: Record<string, string | number | boolean>) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, eventParams)
+  }
+}
+
 const BibleActionToolbar = ({
   hasSelectedVerses,
   onCopySelectedVerses,
@@ -29,6 +36,21 @@ const BibleActionToolbar = ({
   selectedBible,
 }: BibleActionToolbarProps) => {
   const redLetterLabel = isSpanishVersion(selectedBible) ? 'Letras Rojas' : 'Red Letters'
+
+  const handleAIInsightsClick = () => {
+    trackEvent('ai_insights_toggle', {
+      action: 'click',
+    })
+    onToggleExplanation()
+  }
+
+  const handleCrossReferencesClick = () => {
+    trackEvent('cross_references_toggle', {
+      action: 'click',
+      mode: crossReferenceMode ? 'hide' : 'show',
+    })
+    onToggleCrossReferences()
+  }
 
   return (
     <div className="action-buttons">
@@ -58,7 +80,7 @@ const BibleActionToolbar = ({
       <button
         ref={getButtonRef(2)}
         className={`btn btn-primary btn-morphing`}
-        onClick={onToggleExplanation}
+        onClick={handleAIInsightsClick}
         title="Get AI-powered biblical explanations"
       >
         <BookOpen size={20} />
@@ -68,7 +90,7 @@ const BibleActionToolbar = ({
       <button
         ref={getButtonRef(3)}
         className={`btn ${crossReferenceMode ? 'btn-accent' : 'btn-secondary'} btn-morphing`}
-        onClick={onToggleCrossReferences}
+        onClick={handleCrossReferencesClick}
       >
         <Link size={20} />
         {crossReferenceMode ? 'Hide' : 'Show'} Cross Refs
