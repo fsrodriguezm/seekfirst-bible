@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import type { NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Moon, Sun } from 'lucide-react'
-import styles from '../src/styles/learn.module.css'
-import Footer from '../src/components/Footer'
-import { ThemeProvider, useTheme } from '../src/contexts/ThemeContext'
-import { learnNavItems, renewPractices } from '../src/data/learnPractices'
-
-type LearnNavItem = typeof learnNavItems[number]
+import { useEffect, useState } from 'react'
+import Footer from '../../../src/components/Footer'
+import { ThemeProvider, useTheme } from '../../../src/contexts/ThemeContext'
+import {
+  learnNavItems,
+  renewPractices,
+  type RenewPractice,
+  type LearnNavEntry,
+} from '../../../src/data/learnPractices'
+import styles from '../../../src/styles/learn.module.css'
 
 const toolbarActions = [
   { label: 'Read' },
@@ -20,16 +23,18 @@ const toolbarActions = [
 type ToolbarAction = (typeof toolbarActions)[number]
 type ToolLabel = ToolbarAction['label']
 
-const navItems: LearnNavItem[] = learnNavItems
+type PracticePageProps = {
+  practice: RenewPractice
+}
 
-const LearnPageContent = () => {
+const navItems: LearnNavEntry[] = learnNavItems
+
+const PracticePageContent = ({ practice }: PracticePageProps) => {
   const router = useRouter()
   const { isDark, toggleTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const activeTool: ToolLabel = 'Learn'
-  const currentPracticeId = router.pathname.startsWith('/learn/renew/')
-    ? router.pathname.split('/')[3]
-    : null
+  const currentPracticeId = practice.id
 
   useEffect(() => {
     setMounted(true)
@@ -44,34 +49,7 @@ const LearnPageContent = () => {
     router.push('/')
   }
 
-  const renewPracticeHighlights = [
-    {
-      label: 'What You’ll Practice',
-      items: [
-        'Anchor each study session in context, prayer, and responsive obedience.',
-        'Let memorized verses renew your thinking throughout the day.',
-        'Create space for silence so the Spirit personalizes the Word.',
-        'Protect Sabbath rhythms that restore delight in God.',
-      ],
-    },
-    {
-      label: 'Scripture to Anchor In',
-      items: [
-        'Romans 12 – Living sacrifices, renewed minds.',
-        'Psalm 1 – Meditate day and night on the law of the Lord.',
-        'Philippians 4 – Think on whatever is true, honorable, just, pure.',
-      ],
-    },
-    {
-      label: 'Live This Out',
-      items: [
-        'Sketch a weekly study rhythm with cross references and journaling.',
-        'Memorize Romans 12:2 using spaced repetition prompts.',
-        'Plan a 20-minute silence retreat this weekend.',
-        'Invite a friend to join your Sabbath block and share reflections.',
-      ],
-    },
-  ]
+  const otherPractices = renewPractices.filter((item) => item.id !== practice.id)
 
   return (
     <div className={`App ${isDark ? 'dark' : 'light'}`}>
@@ -128,9 +106,7 @@ const LearnPageContent = () => {
               </Link>
               <nav className={styles.learnNav} aria-label="Learn navigation">
                 {navItems.map((item, index) => {
-                  const isActive = !item.comingSoon && (
-                    (item.path ? router.asPath === item.path : false)
-                  )
+                  const isActive = !item.comingSoon && item.path && router.asPath === item.path
 
                   return (
                     <div
@@ -152,15 +128,15 @@ const LearnPageContent = () => {
                       )}
                       {item.id === 'renew' && (
                         <nav className={styles.learnSubNavGroup} aria-label="Renew the Mind practices">
-                          {renewPractices.map((practice) => (
+                          {renewPractices.map((practiceEntry) => (
                             <Link
-                              key={practice.id}
-                              href={practice.path}
+                              key={practiceEntry.id}
+                              href={practiceEntry.path}
                               className={`${styles.learnSubNavLink}${
-                                currentPracticeId === practice.id ? ` ${styles.learnSubNavLinkActive}` : ''
+                                currentPracticeId === practiceEntry.id ? ` ${styles.learnSubNavLinkActive}` : ''
                               }`}
                             >
-                              {practice.title}
+                              {practiceEntry.title}
                             </Link>
                           ))}
                         </nav>
@@ -173,42 +149,54 @@ const LearnPageContent = () => {
           </aside>
           <div className={styles.learnContent}>
             <header className={styles.learnHeader}>
-              <span className={styles.learnHeaderSubtitle}>Formation Studio</span>
-              <h1>Learning Paths to Seek First His Kingdom</h1>
-              <p>
-                Thoughtfully crafted resources that invite you to slow down, listen to Scripture,
-                and respond to Jesus. These experiences are designed for individuals, small groups,
-                and churches hungry to grow together.
-              </p>
+              <span className={styles.learnHeaderSubtitle}>Renew the Mind</span>
+              <h1>{practice.title}</h1>
+              <p>{practice.summary}</p>
             </header>
-            <section id="renew" className={styles.learnSection}>
-              <h2>Renew the Mind</h2>
-              <p>
-                Scripture-first journeys that help you meditate on truth, build rhythms of reflection,
-                and let the Word reshape your thinking each day.
-              </p>
-              <div className={styles.learnPracticeGrid}>
-                {renewPractices.map((practice) => (
-                  <Link key={practice.id} href={practice.path} className={styles.learnPracticeCard}>
-                    <h3>{practice.title}</h3>
-                    <p>{practice.summary}</p>
-                    <span className={styles.learnPracticeCta}>Open journey →</span>
-                  </Link>
-                ))}
+            <div className={styles.renewLayout}>
+              <div className={styles.renewSectionContent}>
+                <article className={styles.renewSubsection}>
+                  <h3>Practice Ideas</h3>
+                  <p>
+                    These rhythms help you embody the practice of {practice.title.toLowerCase()} with simplicity and
+                    faithfulness.
+                  </p>
+                  <ul className={styles.renewSubsectionList}>
+                    {practice.practices.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+
+                <section className={styles.learnPracticeGrid}>
+                  {otherPractices.map((other) => (
+                    <Link key={other.id} href={other.path} className={styles.learnPracticeCard}>
+                      <h3>{other.title}</h3>
+                      <p>{other.summary}</p>
+                      <span className={styles.learnPracticeCta}>Explore →</span>
+                    </Link>
+                  ))}
+                </section>
               </div>
-            </section>
+            </div>
           </div>
           <aside className={styles.learnRightRail}>
-            {renewPracticeHighlights.map((section) => (
-              <div key={section.label} className={styles.rightSection}>
-                <h4>{section.label}</h4>
-                <ul className={styles.rightList}>
-                  {section.items.map((item) => (
-                    <li key={`${section.label}-${item}`}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <div className={styles.rightSection}>
+              <h4>Scripture to Anchor In</h4>
+              <ul className={styles.rightList}>
+                <li>Romans 12:1-2</li>
+                <li>Psalm 1:1-3</li>
+                <li>Philippians 4:8-9</li>
+              </ul>
+            </div>
+            <div className={styles.rightSection}>
+              <h4>Live This Out</h4>
+              <ul className={styles.rightList}>
+                {practice.practices.slice(0, 3).map((item) => (
+                  <li key={`practice-${item}`}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </aside>
         </div>
       </main>
@@ -217,21 +205,43 @@ const LearnPageContent = () => {
   )
 }
 
-const LearnPage: NextPage = () => {
+const PracticePage: NextPage<PracticePageProps> = (props) => {
   return (
     <>
       <Head>
-        <title>Learn with SeekFirst Bible</title>
+        <title>{`${props.practice.title} · Renew the Mind`}</title>
         <meta
           name="description"
-          content="Explore curated learning paths, spiritual practices, and formation journeys with SeekFirst Bible."
+          content={`Practice ${props.practice.title.toLowerCase()} with SeekFirst Bible. Guided steps and Scripture to help you renew your mind.`}
         />
       </Head>
       <ThemeProvider>
-        <LearnPageContent />
+        <PracticePageContent {...props} />
       </ThemeProvider>
     </>
   )
 }
 
-export default LearnPage
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: renewPractices.map((practice) => ({
+      params: { practice: practice.id },
+    })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps<PracticePageProps> = async ({ params }) => {
+  const practiceId = params?.practice as string
+  const practice = renewPractices.find((entry) => entry.id === practiceId)
+
+  if (!practice) {
+    return { notFound: true }
+  }
+
+  return {
+    props: { practice },
+  }
+}
+
+export default PracticePage
