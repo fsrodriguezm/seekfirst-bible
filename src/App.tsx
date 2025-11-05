@@ -101,7 +101,7 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
       <header className="App-header">
         <nav className="app-navbar" aria-label="Primary navigation">
           <div className="navbar-brand">
-            <span className="brand-mark">SF</span>
+            <img src="/seekfirst_logo.png" alt="SeekFirst" className="brand-logo" />
             <span className="brand-text">SeekFirst</span>
           </div>
           <div className="navbar-left">
