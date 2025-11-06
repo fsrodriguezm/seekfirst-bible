@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Copy, Link, BookOpen, Droplet } from 'lucide-react'
+import { Copy, Link, BookOpen, Feather } from 'lucide-react'
 import { isSpanishVersion } from '../../utils/versionMap'
 
 interface BibleActionToolbarProps {
@@ -114,7 +114,7 @@ const BibleActionToolbar = ({
         title="Toggle red letter mode for God's words"
         aria-label={redLetterLabel}
       >
-        <Droplet
+        <Feather
           size={20}
           style={{ color: redLetterMode ? '#dc2626' : 'inherit' }}
         />
