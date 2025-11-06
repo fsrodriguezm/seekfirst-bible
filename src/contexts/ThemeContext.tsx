@@ -26,6 +26,12 @@ const PALETTES = [
     name: 'Dusk Rose',
     description: 'Muted mauves and evening blues',
     swatch: ['#fff1f2', '#ffe4e6', '#f43f5e', '#9f1239']
+  },
+  {
+    id: 'emerald-haze',
+    name: 'Emerald Haze',
+    description: 'Misty greens with grounded neutrals',
+    swatch: ['#e2f1ec', '#c0d9d2', '#1c3934', '#142523']
   }
 ] as const
 
