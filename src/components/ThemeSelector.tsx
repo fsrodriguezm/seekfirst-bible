@@ -4,8 +4,8 @@ import styles from './ThemeSelector.module.css'
 
 const ThemeSelector = () => (
   <div className={styles.controls}>
-    <ThemeToggle hideLabel className={styles.themeToggle} />
     <ThemePalettePicker className={styles.paletteBar} />
+    <ThemeToggle hideLabel className={styles.themeToggle} />
   </div>
 )
 

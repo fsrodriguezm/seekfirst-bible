@@ -1,11 +1,11 @@
 .themeToggle {
-  background: var(--sf-toggle-bg);
-  border: 1px solid var(--sf-toggle-border);
+  background: rgba(148, 163, 184, 0.22);
+  border: 1px solid rgba(148, 163, 184, 0.35);
   border-radius: 12px;
   padding: 0.75rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--sf-toggle-color);
+  color: #475569;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,7 @@
 }
 
 .themeToggle:hover {
-  background: var(--sf-toggle-hover-bg);
+  background: rgba(148, 163, 184, 0.3);
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 25px rgba(15, 23, 42, 0.12);
 }
@@ -42,7 +42,7 @@
 }
 
 .themeToggle:focus-visible {
-  outline: 3px solid rgba(59, 130, 246, 0.4);
+  outline: 3px solid rgba(59, 130, 246, 0.35);
   outline-offset: 3px;
 }
 
@@ -63,15 +63,31 @@
   z-index: 1200;
   padding: 0.85rem;
   border-radius: 999px;
-  background: var(--sf-toggle-floating-bg);
-  border: 1px solid var(--sf-toggle-floating-border);
-  color: var(--sf-toggle-floating-color);
+  background: rgba(30, 41, 59, 0.82);
+  border: 1px solid rgba(15, 23, 42, 0.4);
+  color: #e2e8f0;
   backdrop-filter: blur(12px);
   animation: themeToggleFloatIn 0.6s ease-out forwards;
 }
 
 .floating:hover {
-  background: var(--sf-toggle-floating-hover-bg);
+  background: rgba(30, 41, 59, 0.92);
+}
+
+:global(.dark-theme) .themeToggle {
+  background: rgba(71, 85, 105, 0.45);
+  border: 1px solid rgba(71, 85, 105, 0.55);
+  color: #e2e8f0;
+}
+
+:global(.dark-theme) .themeToggle:hover {
+  background: rgba(71, 85, 105, 0.6);
+}
+
+:global(.dark-theme) .floating {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(15, 23, 42, 0.5);
+  color: #f8fafc;
 }
 
 @keyframes themeToggleEntry {

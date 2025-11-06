@@ -2,15 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.themeToggle {
+.paletteBar {
   flex-shrink: 0;
 }
 
-.paletteBar {
+.themeToggle {
   flex-shrink: 0;
 }
 
