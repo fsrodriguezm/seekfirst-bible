@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Copy, Link, BookOpen } from 'lucide-react'
 import { isSpanishVersion } from '../../utils/versionMap'
 
@@ -36,11 +37,14 @@ const BibleActionToolbar = ({
   selectedBible,
 }: BibleActionToolbarProps) => {
   const redLetterLabel = isSpanishVersion(selectedBible) ? 'Letras Rojas' : 'Red Letters'
+  const [showExplanation, setShowExplanation] = useState(false)
 
   const handleAIInsightsClick = () => {
     trackEvent('ai_insights_toggle', {
       action: 'click',
+      mode: showExplanation ? 'hide' : 'show'
     })
+    setShowExplanation(!showExplanation)
     onToggleExplanation()
   }
 
@@ -79,12 +83,12 @@ const BibleActionToolbar = ({
 
       <button
         ref={getButtonRef(2)}
-        className={`btn btn-primary btn-morphing`}
+        className={`btn ${showExplanation ? 'btn-success' : 'btn-primary'} btn-morphing`}
         onClick={handleAIInsightsClick}
         title="Get AI-powered biblical explanations"
       >
         <BookOpen size={20} />
-        AI Insights
+        {showExplanation ? 'Hide Explanation' : 'AI Explanation'}
       </button>
 
       <button
