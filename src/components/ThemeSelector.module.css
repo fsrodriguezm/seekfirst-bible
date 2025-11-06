@@ -1,0 +1,46 @@
+.themeControls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.themeToggleBtn {
+  background: var(--sf-toggle-bg);
+  border: 1px solid var(--sf-toggle-border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--sf-toggle-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themeToggleBtn:hover {
+  background: var(--sf-toggle-hover-bg);
+  transform: translateY(-1px);
+}
+
+.paletteSelect {
+  background: var(--sf-toggle-bg);
+  border: 1px solid var(--sf-toggle-border);
+  color: var(--sf-toggle-color);
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.875rem;
+  min-width: 120px;
+}
+
+.paletteSelect:hover {
+  background: var(--sf-toggle-hover-bg);
+  transform: translateY(-1px);
+}
+
+.paletteSelect option {
+  background: var(--sf-surface);
+  color: var(--sf-text-primary);
+  padding: 0.5rem;
+}

@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { Moon, Sun } from 'lucide-react'
 import BibleView from './components/bible-view/BibleView'
+import ThemeSelector from './components/ThemeSelector'
 import Footer from './components/Footer'
 import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 
@@ -142,13 +142,7 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
               <span className="hero-verse-citation">— Matthew 6:33</span>
             </p>
           </div>
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {mounted ? (isDark ? <Sun size={24} /> : <Moon size={24} />) : null}
-          </button>
+          <ThemeSelector />
         </div>
       </header>
       <main>
