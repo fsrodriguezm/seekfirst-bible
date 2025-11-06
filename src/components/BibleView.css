@@ -43,12 +43,24 @@
 
 .action-buttons .btn {
   box-shadow: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .action-buttons .btn:hover,
 .action-buttons .btn:focus-visible,
 .action-buttons .btn:active {
   box-shadow: none !important;
+}
+
+.action-buttons .btn svg {
+  flex-shrink: 0;
+}
+
+.btn-label {
+  display: inline-flex;
+  align-items: center;
 }
 
 .action-buttons > * {

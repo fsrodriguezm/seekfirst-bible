@@ -195,15 +195,25 @@
   }
   
   .action-buttons {
-    justify-content: stretch;
+    justify-content: center;
     gap: 0.5rem;
   }
   
   .action-buttons .btn {
-    flex: 1;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
     justify-content: center;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  .action-buttons .btn svg {
+    margin: 0;
+  }
+
+  .action-buttons .btn .btn-label {
+    display: none;
   }
   
   /* === BIBLE CONTENT LAYOUT === */
@@ -226,32 +236,46 @@
   .jesus-description {
     min-width: unset;
   }
-  
+
   .jesus-revealed-text {
     font-size: 0.85rem;
   }
   
   /* === CHAPTER AND VERSE CONTENT === */
   .chapter-header {
-    padding: 1rem;
+    padding: 0.85rem;
     text-align: center;
+  }
+
+  .chapter-header h2 {
+    font-size: 1.45rem;
   }
   
   .verse-content {
-    padding: 1rem;
+    padding: 0.75rem;
   }
   
   .verse {
-    padding: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    margin-bottom: 0.65rem;
+    border-radius: 10px;
   }
   
   .verse-number {
-    min-width: 1.5rem;
-    margin-right: 0.5rem;
+    min-width: 1.25rem;
+    margin-right: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .verse-text {
+    font-size: clamp(0.95rem, 3.7vw, 1rem);
+    line-height: 1.45;
   }
   
   .verse-content-container {
-    padding: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    max-height: min(70vh, 620px);
+    overflow-y: auto;
   }
   
   /* === PANELS === */
@@ -356,8 +380,8 @@
 
 @media (min-width: 415px) and (max-width: 768px) {
   .action-buttons .btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    width: 52px;
+    height: 52px;
   }
   
   .chapter-header {
@@ -392,13 +416,15 @@
   }
   
   .action-buttons {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
   }
   
   .action-buttons .btn {
-    width: 100%;
-    padding: 0.75rem;
+    width: 44px;
+    height: 44px;
   }
   
   .verse-content {
@@ -476,8 +502,8 @@
 @media (max-width: 768px) {
   /* Ensure sufficient color contrast on mobile */
   .verse-text {
-    font-size: 16px; /* Prevent iOS zoom on focus */
-    line-height: 1.5;
+    font-size: clamp(0.95rem, 3.7vw, 1rem);
+    line-height: 1.45;
   }
   
   /* Improve focus indicators for keyboard navigation */
