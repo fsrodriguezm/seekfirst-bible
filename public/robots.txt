@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://seekfirstbible.com/api/sitemap.xml
+Sitemap: https://seekfirstbible.com/sitemap.xml
 
 # Disallow API routes from being indexed
 Disallow: /api/
