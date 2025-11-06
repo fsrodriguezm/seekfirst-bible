@@ -129,6 +129,9 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
               </button>
             ))}
           </div>
+          <div className="navbar-controls">
+            <ThemeSelector />
+          </div>
         </nav>
         <div className="header-content">
           <div className="header-text">
@@ -142,7 +145,6 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
               <span className="hero-verse-citation">— Matthew 6:33</span>
             </p>
           </div>
-          <ThemeSelector />
         </div>
       </header>
       <main>

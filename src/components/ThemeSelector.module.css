@@ -1,46 +1,28 @@
-.themeControls {
+.controls {
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
   gap: 0.5rem;
-  align-items: center;
+  flex-wrap: wrap;
 }
 
-.themeToggleBtn {
-  background: var(--sf-toggle-bg);
-  border: 1px solid var(--sf-toggle-border);
-  border-radius: 8px;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--sf-toggle-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.themeToggle {
+  flex-shrink: 0;
 }
 
-.themeToggleBtn:hover {
-  background: var(--sf-toggle-hover-bg);
-  transform: translateY(-1px);
+.paletteBar {
+  flex-shrink: 0;
 }
 
-.paletteSelect {
-  background: var(--sf-toggle-bg);
-  border: 1px solid var(--sf-toggle-border);
-  color: var(--sf-toggle-color);
-  border-radius: 8px;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-size: 0.875rem;
-  min-width: 120px;
+@media (max-width: 1024px) {
+  .controls {
+    gap: 0.65rem;
+  }
 }
 
-.paletteSelect:hover {
-  background: var(--sf-toggle-hover-bg);
-  transform: translateY(-1px);
-}
-
-.paletteSelect option {
-  background: var(--sf-surface);
-  color: var(--sf-text-primary);
-  padding: 0.5rem;
+@media (max-width: 768px) {
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
