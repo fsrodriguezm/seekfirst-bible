@@ -1,0 +1,28 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.paletteBar {
+  flex-shrink: 0;
+}
+
+.themeToggle {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .controls {
+    gap: 0.65rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

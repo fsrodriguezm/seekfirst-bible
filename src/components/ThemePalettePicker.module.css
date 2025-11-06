@@ -1,0 +1,129 @@
+.picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  backdrop-filter: blur(12px);
+  position: relative;
+  min-width: 150px;
+}
+
+.picker::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  mix-blend-mode: soft-light;
+}
+
+.label {
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--sf-palette-label-color, var(--sf-text-secondary));
+  opacity: 0.78;
+}
+
+.options {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.option {
+  width: 40px;
+  height: 24px;
+  padding: 0;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.12);
+}
+
+.option:focus-visible {
+  outline: 2px solid rgba(148, 163, 184, 0.5);
+  outline-offset: 2px;
+}
+
+.isActive {
+  border-color: var(--sf-palette-active-border, rgba(59, 130, 246, 0.65));
+  box-shadow: none;
+}
+
+.swatch {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  display: flex;
+}
+
+.swatchSlice {
+  flex: 1;
+}
+
+@media (max-width: 1024px) {
+  .picker {
+    gap: 0.6rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .picker {
+    width: 100%;
+    justify-content: space-between;
+    min-width: auto;
+  }
+
+  .label {
+    letter-spacing: 0.2em;
+  }
+}
+
+:global(.dark-theme) .picker {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: rgba(71, 85, 105, 0.45);
+}
+
+:global(.dark-theme) .label {
+  color: var(--sf-text-secondary);
+}
+
+:global(.dark-theme) .option:hover {
+  box-shadow: 0 12px 22px rgba(15, 23, 42, 0.35);
+}
+
+:global(.dark-theme) .isActive {
+  border-color: var(--sf-palette-active-border, rgba(96, 165, 250, 0.7));
+}
+
+@media (max-width: 520px) {
+  .picker {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .label {
+    letter-spacing: 0.18em;
+    text-align: center;
+  }
+
+  .options {
+    justify-content: center;
+  }
+}

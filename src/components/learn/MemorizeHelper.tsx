@@ -449,9 +449,9 @@ const MemorizeHelper = () => {
 
   return (
     <section>
-      <div className="card" style={{ padding: '24px', marginBottom: '20px' }}>
-        <h2 style={{ margin: 0, fontSize: '1.6rem' }}>Memorize Helper</h2>
-        <p style={{ margin: '8px 0 0', color: '#64748b', fontSize: '0.95rem' }}>
+      <div className={`card ${styles.introCard}`}>
+        <h2 className={styles.introCardTitle}>Memorize Helper</h2>
+        <p className={styles.introCardSubtitle}>
           Capture the verse, rehearse it across different modes, and build lasting recall.
         </p>
       </div>

@@ -4,10 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import styles from '../src/styles/learn.module.css'
 import Footer from '../src/components/Footer'
 import { ThemeProvider, useTheme } from '../src/contexts/ThemeContext'
+import ThemeSelector from '../src/components/ThemeSelector'
 import { learnNavItems, renewPractices } from '../src/data/learnPractices'
 
 type LearnNavItem = typeof learnNavItems[number]
@@ -24,17 +25,12 @@ const navItems: LearnNavItem[] = learnNavItems
 
 const LearnPageContent = () => {
   const router = useRouter()
-  const { isDark, toggleTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { isDark } = useTheme()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const activeTool: ToolLabel = 'Learn'
   const currentPracticeId = router.pathname.startsWith('/learn/renew/')
     ? router.pathname.split('/')[3]
     : null
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     // Close sidebar when route changes on mobile
@@ -113,6 +109,9 @@ const LearnPageContent = () => {
               </button>
             ))}
           </div>
+          <div className="navbar-controls">
+            <ThemeSelector />
+          </div>
         </nav>
         <div className="header-content">
           <div className="header-text">
@@ -128,13 +127,6 @@ const LearnPageContent = () => {
               <span className="hero-verse-citation">— Romans 12:2</span>
             </p>
           </div>
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {mounted ? (isDark ? <Sun size={24} /> : <Moon size={24} />) : null}
-          </button>
         </div>
       </header>
       <main className={styles.learnMain}>
