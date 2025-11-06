@@ -1,4 +1,5 @@
-import { Copy, Link, BookOpen } from 'lucide-react'
+import { useState } from 'react'
+import { Copy, Link, BookOpen, Feather } from 'lucide-react'
 import { isSpanishVersion } from '../../utils/versionMap'
 
 interface BibleActionToolbarProps {
@@ -36,11 +37,14 @@ const BibleActionToolbar = ({
   selectedBible,
 }: BibleActionToolbarProps) => {
   const redLetterLabel = isSpanishVersion(selectedBible) ? 'Letras Rojas' : 'Red Letters'
+  const [showExplanation, setShowExplanation] = useState(false)
 
   const handleAIInsightsClick = () => {
     trackEvent('ai_insights_toggle', {
       action: 'click',
+      mode: showExplanation ? 'hide' : 'show'
     })
+    setShowExplanation(!showExplanation)
     onToggleExplanation()
   }
 
@@ -60,9 +64,10 @@ const BibleActionToolbar = ({
           className="btn btn-accent btn-morphing"
           onClick={onCopySelectedVerses}
           title="Copy selected verses with citations"
+          aria-label="Copy selected verses"
         >
           <Copy size={20} />
-          Copy Selected
+          <span className="btn-label">Copy Selected</span>
         </button>
       )}
 
@@ -79,21 +84,27 @@ const BibleActionToolbar = ({
 
       <button
         ref={getButtonRef(2)}
-        className={`btn btn-primary btn-morphing`}
+        className={`btn ${showExplanation ? 'btn-success' : 'btn-primary'} btn-morphing`}
         onClick={handleAIInsightsClick}
         title="Get AI-powered biblical explanations"
+        aria-label={showExplanation ? 'Hide explanation' : 'Show AI explanation'}
       >
         <BookOpen size={20} />
-        AI Insights
+        <span className="btn-label">
+          {showExplanation ? 'Hide Explanation' : 'AI Explanation'}
+        </span>
       </button>
 
       <button
         ref={getButtonRef(3)}
         className={`btn ${crossReferenceMode ? 'btn-accent' : 'btn-secondary'} btn-morphing`}
         onClick={handleCrossReferencesClick}
+        aria-label={crossReferenceMode ? 'Hide cross references' : 'Show cross references'}
       >
         <Link size={20} />
-        {crossReferenceMode ? 'Hide' : 'Show'} Cross Refs
+        <span className="btn-label">
+          {crossReferenceMode ? 'Hide' : 'Show'} Cross Refs
+        </span>
       </button>
 
       <button
@@ -101,8 +112,16 @@ const BibleActionToolbar = ({
         className={`btn ${redLetterMode ? 'btn-red-letter-active' : 'btn-secondary'} btn-morphing`}
         onClick={onToggleRedLetterMode}
         title="Toggle red letter mode for God's words"
+        aria-label={redLetterLabel}
       >
-        <span style={{ color: redLetterMode ? '#dc2626' : 'inherit', fontWeight: 'bold' }}>
+        <Feather
+          size={20}
+          style={{ color: redLetterMode ? '#dc2626' : 'inherit' }}
+        />
+        <span
+          className="btn-label"
+          style={{ color: redLetterMode ? '#dc2626' : 'inherit', fontWeight: 'bold' }}
+        >
           {redLetterLabel}
         </span>
       </button>
