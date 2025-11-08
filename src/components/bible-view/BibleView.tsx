@@ -23,6 +23,7 @@ import { useVerseScrollTracker } from '../../hooks/useVerseScrollTracker'
 import { useButtonRipples } from '../../hooks/useButtonRipples'
 import { copyToClipboard } from '../../hooks/useClipboard'
 import { useBibleLicenses } from '../../hooks/useBibleLicenses'
+import { useStrongsData } from '../../hooks/useStrongsData'
 import { extractVerseNumber, formatSelectedVersesForCopy } from '../../utils/selectionFormatter'
 
 const CrossReferencePanel = dynamic(() => import('../CrossReferencePanel'), {
@@ -49,6 +50,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
   const [verseSelectionLocked, setVerseSelectionLocked] = useState<boolean>(false)
   const [fontSize, setFontSize] = useState<number>(16)
   const [redLetterMode, setRedLetterMode] = useState<boolean>(false)
+  const [showStrongs, setShowStrongs] = useState<boolean>(false)
   const [initialVersesLoaded, setInitialVersesLoaded] = useState<boolean>(false)
   const buttonRefs = useRef<Array<HTMLButtonElement | null>>([])
   const selectedCountRef = useRef<HTMLParagraphElement | null>(null)
@@ -73,6 +75,10 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
     setVerseSelectionLocked(false)
   }, [])
 
+  const handleToggleStrongs = useCallback(() => {
+    setShowStrongs((prev) => !prev)
+  }, [])
+
   const { bibleData, verses, isLoading } = useBibleData({
     bibleId: selectedBible,
     book: selectedBook,
@@ -92,6 +98,11 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
   })
   const { results: searchResults, search: searchBible } = useBibleSearch(bibleData)
   const bibleLicense = useBibleLicenses(selectedBible)
+  const {
+    isLoading: isStrongsLoading,
+    error: strongsError,
+    getChapterStrongs,
+  } = useStrongsData(showStrongs)
 
   // Restore persisted selections on mount (client only)
   // BUT: Don't override initial props from URL
@@ -109,6 +120,14 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
     if (savedChapter && !initialChapter) setSelectedChapter(parseInt(savedChapter, 10) || 1)
     if (savedRedLetter) setRedLetterMode(savedRedLetter === 'true')
   }, [initialVersion, initialBook, initialChapter])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const savedShowStrongs = window.localStorage.getItem('showStrongs')
+    if (savedShowStrongs !== null) {
+      setShowStrongs(savedShowStrongs === 'true')
+    }
+  }, [])
 
   // Update state when initial props change (URL navigation)
   useEffect(() => {
@@ -184,6 +203,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
   useLocalStorageSync('selectedBook', selectedBook)
   useLocalStorageSync('selectedChapter', selectedChapter)
   useLocalStorageSync('redLetterMode', redLetterMode)
+  useLocalStorageSync('showStrongs', showStrongs)
 
   // Load initial verses from URL when data is ready
   useEffect(() => {
@@ -368,6 +388,11 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
     }
   }
 
+  const strongsVerses = useMemo(
+    () => (showStrongs ? getChapterStrongs(selectedBook, selectedChapter) : null),
+    [showStrongs, selectedBook, selectedChapter, getChapterStrongs],
+  )
+
   const selectedVerseNumbers = useMemo(
     () =>
       selectedVerses
@@ -413,6 +438,8 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
           onIncreaseFontSize={increaseFontSize}
           getButtonRef={setButtonRef}
           selectedBible={selectedBible}
+          showStrongs={showStrongs}
+          onToggleStrongs={handleToggleStrongs}
         />
       </div>
 
@@ -450,6 +477,10 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
             jesusWordsVerses={jesusWordsVerses}
             godWordsVerses={godWordsVerses}
             jesusDescription={jesusDescription}
+            showStrongs={showStrongs}
+            strongsVerses={strongsVerses}
+            isStrongsLoading={isStrongsLoading}
+            strongsError={strongsError}
           />
 
           {bibleLicense && (

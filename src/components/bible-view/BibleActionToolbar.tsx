@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Copy, Link, BookOpen, Feather } from 'lucide-react'
+import { Copy, Link, BookOpen, Feather, Hash } from 'lucide-react'
 import { isSpanishVersion } from '../../utils/versionMap'
 
 interface BibleActionToolbarProps {
@@ -14,6 +14,8 @@ interface BibleActionToolbarProps {
   onIncreaseFontSize: () => void
   getButtonRef: (_index: number) => (_element: HTMLButtonElement | null) => void
   selectedBible: string
+  showStrongs: boolean
+  onToggleStrongs: () => void
 }
 
 // Helper function to track events with Google Analytics
@@ -35,8 +37,11 @@ const BibleActionToolbar = ({
   onIncreaseFontSize,
   getButtonRef,
   selectedBible,
+  showStrongs,
+  onToggleStrongs,
 }: BibleActionToolbarProps) => {
   const redLetterLabel = isSpanishVersion(selectedBible) ? 'Letras Rojas' : 'Red Letters'
+  const strongsLabel = isSpanishVersion(selectedBible) ? 'Números Strong' : 'Strong\'s #'
   const [showExplanation, setShowExplanation] = useState(false)
 
   const handleAIInsightsClick = () => {
@@ -54,6 +59,14 @@ const BibleActionToolbar = ({
       mode: crossReferenceMode ? 'hide' : 'show',
     })
     onToggleCrossReferences()
+  }
+
+  const handleStrongsToggle = () => {
+    trackEvent('strongs_toggle', {
+      action: 'click',
+      mode: showStrongs ? 'hide' : 'show',
+    })
+    onToggleStrongs()
   }
 
   return (
@@ -123,6 +136,19 @@ const BibleActionToolbar = ({
           style={{ color: redLetterMode ? '#dc2626' : 'inherit', fontWeight: 'bold' }}
         >
           {redLetterLabel}
+        </span>
+      </button>
+
+      <button
+        ref={getButtonRef(7)}
+        className={`btn ${showStrongs ? 'btn-accent' : 'btn-secondary'} btn-morphing`}
+        onClick={handleStrongsToggle}
+        title="Toggle Strong's number overlay"
+        aria-label={showStrongs ? 'Hide Strong\'s numbers' : 'Show Strong\'s numbers'}
+      >
+        <Hash size={20} />
+        <span className="btn-label">
+          {showStrongs ? 'Hide Strong\'s #' : strongsLabel}
         </span>
       </button>
 

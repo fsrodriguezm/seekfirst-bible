@@ -1,6 +1,7 @@
 import type { MutableRefObject } from 'react'
 import BibleVerseContent from '../BibleVerseContent'
 import type { VerseMap } from '../../hooks/useBibleData'
+import type { StrongsChapterVerses } from '../../utils/strongs'
 
 interface BibleChapterContentProps {
   book: string
@@ -19,6 +20,10 @@ interface BibleChapterContentProps {
   jesusWordsVerses: Set<number>
   godWordsVerses: Set<number>
   jesusDescription: string | null
+  showStrongs: boolean
+  strongsVerses: StrongsChapterVerses | null
+  isStrongsLoading: boolean
+  strongsError: string | null
 }
 
 const BibleChapterContent = ({
@@ -38,6 +43,10 @@ const BibleChapterContent = ({
   jesusWordsVerses,
   godWordsVerses,
   jesusDescription,
+  showStrongs,
+  strongsVerses,
+  isStrongsLoading,
+  strongsError,
 }: BibleChapterContentProps) => {
   return (
     <div className="bible-content card">
@@ -56,6 +65,19 @@ const BibleChapterContent = ({
           <p ref={selectedCountRef} className="selected-count">
             {selectedVersesCount} verse(s) selected
           </p>
+        )}
+        {showStrongs && (
+          <div
+            className={`strongs-banner ${strongsError ? 'strongs-banner-error' : ''}`.trim()}
+          >
+            {isStrongsLoading
+              ? 'Loading Strong\'s numbers...'
+              : strongsError
+                ? 'Unable to load Strong\'s numbers. Please try again.'
+                : strongsVerses
+                  ? 'Showing Strong\'s numbers from the KJV reference text.'
+                  : 'Strong\'s numbers are unavailable for this chapter.'}
+          </div>
         )}
       </div>
 
@@ -76,6 +98,8 @@ const BibleChapterContent = ({
             redLetterMode={redLetterMode}
             jesusWordsVerses={jesusWordsVerses}
             godWordsVerses={godWordsVerses}
+            showStrongs={showStrongs}
+            strongsVerses={strongsVerses}
           />
         </div>
       )}

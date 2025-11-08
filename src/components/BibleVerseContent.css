@@ -27,6 +27,7 @@
 
 .verse {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
   cursor: pointer;
   padding: 0.75rem;
@@ -246,6 +247,131 @@
 .dark-theme .verse:hover .verse-text.god-words {
   color: #93c5fd;
   text-shadow: 0 2px 5px rgba(96, 165, 250, 0.3);
+}
+
+.strongs-interlinear {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.12);
+  border: 1px dashed rgba(99, 102, 241, 0.35);
+  display: block;
+  line-height: 1.8;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+.dark-theme .strongs-interlinear {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(129, 140, 248, 0.45);
+}
+
+.strongs-word {
+  display: inline-block;
+  position: relative;
+  padding: 0.15rem 0.25rem;
+  margin: 0 0.15rem;
+  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  vertical-align: baseline;
+  line-height: 1.4;
+}
+
+.dark-theme .strongs-word {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: rgba(129, 140, 248, 0.5);
+}
+
+.strongs-word-text {
+  display: inline;
+  font-size: 1em;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.dark-theme .strongs-word-text {
+  color: #f8fafc;
+}
+
+.strongs-code-row {
+  display: inline-block;
+  margin-left: 0.25rem;
+  vertical-align: baseline;
+}
+
+.strongs-code-chip {
+  display: inline-block;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', monospace;
+  font-size: 0.65rem;
+  color: #4338ca;
+  background: rgba(99, 102, 241, 0.2);
+  border-radius: 4px;
+  padding: 0.05rem 0.3rem;
+  border: 1px solid rgba(79, 70, 229, 0.3);
+  font-weight: 600;
+  margin-right: 0.15rem;
+  vertical-align: super;
+  line-height: 1;
+}
+
+.dark-theme .strongs-code-chip {
+  color: #c7d2fe;
+  background: rgba(99, 102, 241, 0.3);
+  border-color: rgba(129, 140, 248, 0.4);
+}
+
+.strongs-code-morph {
+  color: #0f766e;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(5, 150, 105, 0.4);
+}
+
+.dark-theme .strongs-code-morph {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.3);
+  border-color: rgba(45, 212, 191, 0.5);
+}
+
+.strongs-plain-chunk {
+  display: inline;
+  white-space: normal;
+  font-size: 1em;
+  color: #0f172a;
+}
+
+.dark-theme .strongs-plain-chunk {
+  color: #e2e8f0;
+}
+
+.strongs-banner {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  font-size: 0.85rem;
+  color: #1d4ed8;
+}
+
+.dark-theme .strongs-banner {
+  background: rgba(37, 99, 235, 0.25);
+  border-color: rgba(147, 197, 253, 0.3);
+  color: #bfdbfe;
+}
+
+.strongs-banner.strongs-banner-error {
+  color: #b91c1c;
+  background: rgba(248, 113, 113, 0.15);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.dark-theme .strongs-banner.strongs-banner-error {
+  color: #fecaca;
+  background: rgba(248, 113, 113, 0.25);
+  border-color: rgba(252, 165, 165, 0.4);
 }
 
 /* Mobile styles moved to /src/styles/responsive.css */
