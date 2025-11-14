@@ -31,6 +31,18 @@ const LearnPageContent = () => {
   const currentPracticeId = router.pathname.startsWith('/learn/renew/')
     ? router.pathname.split('/')[3]
     : null
+  const renderSummaryParagraphs = (summary: string | string[], keyPrefix: string) => {
+    const paragraphs = Array.isArray(summary)
+      ? summary
+      : summary
+          .split('\n')
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+
+    return paragraphs.map((text, index) => (
+      <p key={`${keyPrefix}-${index}`}>{text}</p>
+    ))
+  }
 
   useEffect(() => {
     // Close sidebar when route changes on mobile
@@ -229,7 +241,9 @@ const LearnPageContent = () => {
                 {renewPractices.map((practice) => (
                   <Link key={practice.id} href={practice.path} className={styles.learnPracticeCard}>
                     <h3>{practice.title}</h3>
-                    <p>{practice.summary}</p>
+                    <div className={styles.learnPracticeSummary}>
+                      {renderSummaryParagraphs(practice.summary, `${practice.id}-summary`)}
+                    </div>
                     <span className={styles.learnPracticeCta}>Open journey →</span>
                   </Link>
                 ))}

@@ -184,6 +184,18 @@
   line-height: 1.6;
 }
 
+.learnHeaderSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--sf-text-secondary);
+  line-height: 1.6;
+}
+
+.learnHeaderSummary p {
+  margin: 0;
+}
+
 .learnSection {
   max-width: none;
   width: 100%;
@@ -259,6 +271,19 @@
   color: var(--sf-text-secondary);
   line-height: 1.55;
   font-size: 0.96rem;
+}
+
+.learnPracticeSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: var(--sf-text-secondary);
+  line-height: 1.55;
+  font-size: 0.96rem;
+}
+
+.learnPracticeSummary p {
+  margin: 0;
 }
 
 .learnPracticeCta {

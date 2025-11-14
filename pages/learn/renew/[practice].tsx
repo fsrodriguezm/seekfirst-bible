@@ -37,6 +37,18 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const activeTool: ToolLabel = 'Learn'
   const currentPracticeId = practice.id
+  const renderSummaryParagraphs = (summary: string | string[], keyPrefix: string) => {
+    const paragraphs = Array.isArray(summary)
+      ? summary
+      : summary
+          .split('\n')
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+
+    return paragraphs.map((text, index) => (
+      <p key={`${keyPrefix}-${index}`}>{text}</p>
+    ))
+  }
 
   useEffect(() => {
     setMounted(true)
@@ -198,7 +210,9 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
             <header className={styles.learnHeader}>
               <span className={styles.learnHeaderSubtitle}>Study Tools</span>
               <h1>{practice.title}</h1>
-              <p>{practice.summary}</p>
+              <div className={styles.learnHeaderSummary}>
+                {renderSummaryParagraphs(practice.summary, `${practice.id}-header`)}
+              </div>
             </header>
             
             {practice.id === 'memorization' && (
@@ -224,7 +238,9 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
               {otherPractices.map((other) => (
                 <Link key={other.id} href={other.path} className={styles.learnPracticeCard}>
                   <h3>{other.title}</h3>
-                  <p>{other.summary}</p>
+                  <div className={styles.learnPracticeSummary}>
+                    {renderSummaryParagraphs(other.summary, `${other.id}-summary`)}
+                  </div>
                   <span className={styles.learnPracticeCta}>Explore →</span>
                 </Link>
               ))}
