@@ -339,6 +339,34 @@
   line-height: 1.6;
 }
 
+.renewFoundationalPassages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.renewPassageGroup {
+  padding-left: 16px;
+  border-left: 2px solid rgba(var(--sf-accent-mid-rgb), 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.renewPassageGroup h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--sf-header-title);
+}
+
+.renewPassageGroup p {
+  margin: 0;
+  color: var(--sf-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 .learnRightRail {
   position: sticky;
   top: 140px;
