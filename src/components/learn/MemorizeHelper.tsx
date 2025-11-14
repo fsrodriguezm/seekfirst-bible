@@ -5,6 +5,7 @@ import styles from './MemorizeHelper.module.css'
 import { useBibleData, type BibleData } from '../../hooks/useBibleData'
 import { useBibleSearch } from '../../hooks/useBibleSearch'
 import { parseBibleReference, isBibleReference } from '../../utils/bibleReferenceParser'
+import { BIBLE_VERSION_GROUPS, type BibleVersionLanguage, getDefaultVersionForLanguage } from '../../data/bibleVersions'
 
 const STORAGE_KEY = 'memorize-helper.current'
 
@@ -124,9 +125,13 @@ const MemorizeHelper = () => {
   
   // Verse search state
   const [searchQuery, setSearchQuery] = useState('')
-  const [selectedBible, setSelectedBible] = useState('KJV')
+  const [selectedBible, setSelectedBible] = useState(() => getDefaultVersionForLanguage('english'))
   const [selectedBook, setSelectedBook] = useState('Genesis')
   const [selectedChapter, setSelectedChapter] = useState(1)
+
+  const currentLanguage: BibleVersionLanguage =
+    BIBLE_VERSION_GROUPS.spanish.some((version) => version.value === selectedBible) ? 'spanish' : 'english'
+  const currentVersions = BIBLE_VERSION_GROUPS[currentLanguage]
   
   // Load Bible data for verse search
   const { bibleData } = useBibleData({
@@ -228,6 +233,11 @@ const MemorizeHelper = () => {
       copy.splice(to, 0, moved)
       return copy
     })
+  }
+
+  const handleLanguageChange = (language: BibleVersionLanguage) => {
+    if (currentLanguage === language) return
+    setSelectedBible(getDefaultVersionForLanguage(language))
   }
   
   const handleSearchSubmit = (e: React.FormEvent) => {
@@ -457,7 +467,27 @@ const MemorizeHelper = () => {
       </div>
       <div className={styles.helperContainer}>
         <section className={`${styles.inputCard} card`}>
-          <h3 className={styles.sectionTitle}>Verse Details</h3>
+          <div className={styles.sectionHeader}>
+            <h3 className={styles.sectionTitle}>Verse Details</h3>
+            <div className={styles.languageToggle} role="group" aria-label="Select language">
+              <button
+                type="button"
+                className={`${styles.languageButton} ${currentLanguage === 'english' ? styles.languageButtonActive : ''}`}
+                onClick={() => handleLanguageChange('english')}
+                aria-pressed={currentLanguage === 'english'}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                className={`${styles.languageButton} ${currentLanguage === 'spanish' ? styles.languageButtonActive : ''}`}
+                onClick={() => handleLanguageChange('spanish')}
+                aria-pressed={currentLanguage === 'spanish'}
+              >
+                ES
+              </button>
+            </div>
+          </div>
           <p className={styles.subtext}>Save the passage along with context and your own paraphrase.</p>
 
           <div>
@@ -468,12 +498,11 @@ const MemorizeHelper = () => {
               onChange={(e) => setSelectedBible(e.target.value)}
               className={styles.fieldSelect}
             >
-              <option value="KJV">King James Version (KJV)</option>
-              <option value="NKJV">New King James Version (NKJV)</option>
-              <option value="ESV">English Standard Version (ESV)</option>
-              <option value="NIV">New International Version (NIV)</option>
-              <option value="NASB">New American Standard Bible (NASB)</option>
-              <option value="NLT">New Living Translation (NLT)</option>
+              {currentVersions.map((version) => (
+                <option key={version.value} value={version.value}>
+                  {version.label}
+                </option>
+              ))}
             </select>
           </div>
 

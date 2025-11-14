@@ -1,6 +1,7 @@
 import { useState, useRef, type ChangeEvent, type FormEvent } from 'react'
 import { ChevronLeft, ChevronRight, Search, BookOpen, X } from 'lucide-react'
 import { parseBibleReference, isBibleReference, getSuggestions } from '../utils/bibleReferenceParser'
+import { BIBLE_VERSION_GROUPS, type BibleVersionLanguage, getDefaultVersionForLanguage } from '../data/bibleVersions'
 
 type BibleSelectionControlsProps = {
   selectedBible: string
@@ -31,34 +32,13 @@ const BibleSelectionControls = ({
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const englishVersions: Array<{ value: string; label: string }> = [
-    { value: 'AKJV', label: 'American King James Version (AKJV)' },
-    { value: 'ASV', label: 'American Standard Version (ASV)' },
-    { value: 'GNV', label: 'Geneva Bible (GNV)' },
-    { value: 'JUB', label: 'Jubilee Bible (JUB)' },
-    // { value: 'KJ21', label: '21st Century King James Version (KJ21)' },
-    { value: 'KJV', label: 'King James Version (KJV)' },
-    // { value: 'NLT', label: 'New Living Translation (NLT)' },
-    { value: 'WEB', label: 'World English Bible (WEB)' },
-    { value: 'YLT', label: 'Young\'s Literal Translation (YLT)' }
-  ]
+  const currentLanguage: BibleVersionLanguage =
+    BIBLE_VERSION_GROUPS.spanish.some((version) => version.value === selectedBible) ? 'spanish' : 'english'
+  const currentVersions = BIBLE_VERSION_GROUPS[currentLanguage]
 
-  const spanishVersions = [
-    { value: 'RVA1602', label: 'Reina-Valera Antigua 1602 (RVA1602)' }
-    // { value: 'RVR1960', label: 'Reina-Valera 1960 (RVR1960)' }
-    // { value: 'NTV', label: 'Nueva Traducción Viviente (NTV)' }
-  ]
-
-  const currentLanguage = spanishVersions.some(v => v.value === selectedBible) ? 'spanish' : 'english'
-  const currentVersions = currentLanguage === 'spanish' ? spanishVersions : englishVersions
-
-  const handleLanguageChange = (language: 'english' | 'spanish') => {
-    // Always set the appropriate default Bible for the target language
-    if (language === 'english') {
-      onBibleChange('KJV') // Default to KJV for English
-    } else if (language === 'spanish') {
-      onBibleChange('RVA1602') // Default to RVA1602 for Spanish
-    }
+  const handleLanguageChange = (language: BibleVersionLanguage) => {
+    const defaultVersion = getDefaultVersionForLanguage(language)
+    onBibleChange(defaultVersion)
   }
 
   const handlePreviousChapter = () => {

@@ -224,18 +224,20 @@ const LearnPageContent = () => {
           <div className={styles.learnContent}>
             <header className={styles.learnHeader}>
               <span className={styles.learnHeaderSubtitle}>Formation Studio</span>
-              <h1>Learning Paths to Seek First His Kingdom</h1>
+              <h1>How Do We Seek the Kingdom of God?</h1>
               <p>
-                Thoughtfully crafted resources that invite you to slow down, listen to Scripture,
-                and respond to Jesus. These experiences are designed for individuals, small groups,
-                and churches hungry to grow together.
+                Seeking the Kingdom begins with knowing Christ through His Word (John 17:17), obeying His teachings 
+                (John 14:21), and shaping the mind around Scripture rather than surrounding culture (Romans 12:2). 
+                The resources below help you engage the Bible with clarity, structure, and consistency so that obedience 
+                is informed by truth, not emotion.
               </p>
             </header>
             <section id="renew" className={styles.learnSection}>
               <h2>Study Tools</h2>
               <p>
-                Scripture-first tools that help you engage passages deeply, stay rooted in the Word,
-                and build rhythms of reflection that shape everyday obedience.
+                Tools designed to help you handle Scripture accurately (2 Timothy 2:15), understand passages in their 
+                context, and align your thinking with the teachings of Jesus. These resources support disciplined study, 
+                clear interpretation, and obedience shaped by the Word rather than personal opinion.
               </p>
               <div className={styles.learnPracticeGrid}>
                 {renewPractices.map((practice) => (
