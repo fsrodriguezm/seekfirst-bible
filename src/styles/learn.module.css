@@ -184,6 +184,18 @@
   line-height: 1.6;
 }
 
+.learnHeaderSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--sf-text-secondary);
+  line-height: 1.6;
+}
+
+.learnHeaderSummary p {
+  margin: 0;
+}
+
 .learnSection {
   max-width: none;
   width: 100%;
@@ -261,6 +273,19 @@
   font-size: 0.96rem;
 }
 
+.learnPracticeSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: var(--sf-text-secondary);
+  line-height: 1.55;
+  font-size: 0.96rem;
+}
+
+.learnPracticeSummary p {
+  margin: 0;
+}
+
 .learnPracticeCta {
   margin-top: auto;
   font-size: 0.85rem;
@@ -312,6 +337,100 @@
   color: var(--sf-text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
+}
+
+.renewFoundationalPassages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.renewPassageHint {
+  margin: 0;
+  color: var(--sf-text-secondary);
+  font-size: 0.9rem;
+}
+
+.renewPassageList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.renewPassageList li {
+  margin: 0;
+}
+
+.renewPassageGroup {
+  padding-left: 16px;
+  border-left: 2px solid rgba(var(--sf-accent-mid-rgb), 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.renewPassageGroup h4 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--sf-header-title);
+}
+
+.renewPassageGroup p {
+  margin: 0;
+  color: var(--sf-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.renewPassageButton {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--sf-surface-border);
+  background: var(--sf-surface);
+  color: var(--sf-text-primary);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.renewPassageButton:hover,
+.renewPassageButton:focus-visible {
+  border-color: rgba(var(--sf-accent-mid-rgb), 0.5);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.renewPassageButton:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--sf-accent-focus), 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.renewPassageReference {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--sf-header-title);
+}
+
+.renewPassageDescription {
+  color: var(--sf-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.renewPassageStatic {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
 }
 
 .learnRightRail {

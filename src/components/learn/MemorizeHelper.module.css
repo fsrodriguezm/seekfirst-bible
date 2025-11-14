@@ -59,6 +59,55 @@
   color: var(--sf-text-secondary);
 }
 
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sectionHeader .sectionTitle {
+  margin: 0;
+}
+
+.languageToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.03);
+  margin-left: auto;
+}
+
+.languageButton {
+  border: none;
+  background: transparent;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.languageButtonActive {
+  background: linear-gradient(135deg, var(--sf-accent, #38bdf8) 0%, var(--sf-accent-mid, #0ea5e9) 100%);
+  color: var(--sf-accent-contrast, #ffffff);
+  box-shadow: 0 6px 16px var(--sf-accent-shadow, rgba(14, 165, 233, 0.24));
+}
+
+@media (max-width: 640px) {
+  .languageToggle {
+    width: 100%;
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
 .fieldInput,
 .fieldTextarea,
 .fieldSelect {
