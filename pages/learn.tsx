@@ -229,7 +229,7 @@ const LearnPageContent = () => {
                 Seeking the Kingdom begins with knowing Christ through His Word (John 17:17), obeying His teachings 
                 (John 14:21), and shaping the mind around Scripture rather than surrounding culture (Romans 12:2). 
                 The resources below help you engage the Bible with clarity, structure, and consistency so that obedience 
-                is informed by truth, not emotion.
+                is informed by truth.
               </p>
             </header>
             <section id="renew" className={styles.learnSection}>
@@ -237,7 +237,7 @@ const LearnPageContent = () => {
               <p>
                 Tools designed to help you handle Scripture accurately (2 Timothy 2:15), understand passages in their 
                 context, and align your thinking with the teachings of Jesus. These resources support disciplined study, 
-                clear interpretation, and obedience shaped by the Word rather than personal opinion.
+                clear interpretation, and obedience shaped by the Word.
               </p>
               <div className={styles.learnPracticeGrid}>
                 {renewPractices.map((practice) => (

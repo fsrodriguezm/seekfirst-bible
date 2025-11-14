@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ChangeEvent, DragEvent } from 'react'
 import { Search, BookOpen } from 'lucide-react'
 import styles from './MemorizeHelper.module.css'
@@ -113,7 +113,23 @@ const saveToStorage = (data: MemorizeData) => {
   }
 }
 
-const MemorizeHelper = () => {
+export type MemorizeHelperSelection = {
+  reference: string
+  initiatedAt: number
+}
+
+type LoadReferenceOptions = {
+  notice?: string
+}
+
+type MemorizeHelperProps = {
+  selectedReference?: MemorizeHelperSelection | null
+}
+
+const DEFAULT_NOTICE = 'Verse loaded. Add context and paraphrase, then save.'
+const PASSAGE_NOTICE = 'Loaded from Foundational Passages. Add context and paraphrase, then save.'
+
+const MemorizeHelper = ({ selectedReference = null }: MemorizeHelperProps) => {
   const [data, setData] = useState<MemorizeData>({ ref: '', text: '', context: '', paraphrase: '' })
   const [mode, setMode] = useState<Mode>('read')
   const [attempt, setAttempt] = useState('')
@@ -122,6 +138,7 @@ const MemorizeHelper = () => {
   const [feedback, setFeedback] = useState<string | null>(null)
   const [feedbackTone, setFeedbackTone] = useState<'neutral' | 'success' | 'error'>('neutral')
   const [savedNotice, setSavedNotice] = useState<string | null>(null)
+  const [pendingReference, setPendingReference] = useState<string | null>(null)
   
   // Verse search state
   const [searchQuery, setSearchQuery] = useState('')
@@ -239,76 +256,92 @@ const MemorizeHelper = () => {
     if (currentLanguage === language) return
     setSelectedBible(getDefaultVersionForLanguage(language))
   }
+
+  const handleSelectVerse = useCallback(
+    (book: string, chapter: number, verse: number, text: string, noticeMessage?: string) => {
+      setData({
+        ref: `${book} ${chapter}:${verse}`,
+        text,
+        context: '',
+        paraphrase: '',
+      })
+      clearSearch()
+      setSavedNotice(noticeMessage ?? DEFAULT_NOTICE)
+      window.setTimeout(() => setSavedNotice(null), 3000)
+    },
+    [clearSearch],
+  )
+
+  const loadReferenceFromString = useCallback(
+    (rawReference: string, options?: LoadReferenceOptions) => {
+      if (!bibleData) return false
+      const normalizedReference = rawReference.replace(/[–—]/g, '-').replace(/\s+/g, ' ').trim()
+      const availableBooks = Object.keys(bibleData)
+      const parsed = parseBibleReference(normalizedReference, availableBooks)
+      if (!parsed) return false
+
+      setSelectedBook(parsed.book)
+      setSelectedChapter(parsed.chapter)
+
+      const chapterData = bibleData[parsed.book]?.[String(parsed.chapter)]
+      if (!chapterData || !parsed.verse) return false
+
+      if (parsed.endVerse) {
+        const verseTexts: string[] = []
+        for (let currentVerse = parsed.verse; currentVerse <= parsed.endVerse; currentVerse += 1) {
+          const verseText = chapterData[String(currentVerse)]
+          if (verseText) {
+            verseTexts.push(verseText)
+          }
+        }
+        if (!verseTexts.length) return false
+        const referenceSuffix =
+          parsed.endVerse > parsed.verse ? `${parsed.verse}-${parsed.endVerse}` : `${parsed.verse}`
+        setData({
+          ref: `${parsed.book} ${parsed.chapter}:${referenceSuffix}`,
+          text: verseTexts.join(' '),
+          context: '',
+          paraphrase: '',
+        })
+        clearSearch()
+        setSavedNotice(options?.notice ?? DEFAULT_NOTICE)
+        window.setTimeout(() => setSavedNotice(null), 3000)
+      } else {
+        const verseText = chapterData[String(parsed.verse)]
+        if (!verseText) return false
+        handleSelectVerse(parsed.book, parsed.chapter, parsed.verse, verseText, options?.notice)
+      }
+
+      return true
+    },
+    [bibleData, clearSearch, handleSelectVerse, setSelectedBook, setSelectedChapter],
+  )
   
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     
     if (isBibleReference(searchQuery)) {
-      // Try to parse as Bible reference
-      const parsed = parseBibleReference(searchQuery, bibleData ? Object.keys(bibleData) : [])
-      if (parsed && bibleData) {
-        setSelectedBook(parsed.book)
-        setSelectedChapter(parsed.chapter)
-        
-        const verses = bibleData[parsed.book]?.[parsed.chapter]
-        if (verses && parsed.verse) {
-          // Handle verse ranges (e.g., 3:5-6)
-          if (parsed.endVerse) {
-            // Combine multiple verses WITHOUT verse numbers
-            const verseNumbers: number[] = []
-            const verseTexts: string[] = []
-            
-            for (let v = parsed.verse; v <= parsed.endVerse; v++) {
-              if (verses[v]) {
-                verseNumbers.push(v)
-                verseTexts.push(verses[v]) // Just the text, no verse numbers
-              }
-            }
-            
-            if (verseTexts.length > 0) {
-              const combinedText = verseTexts.join(' ')
-              const startVerse = verseNumbers[0]
-              const endVerse = verseNumbers[verseNumbers.length - 1]
-              const ref = endVerse > startVerse 
-                ? `${parsed.book} ${parsed.chapter}:${startVerse}-${endVerse}`
-                : `${parsed.book} ${parsed.chapter}:${startVerse}`
-              
-              setData({
-                ref: ref,
-                text: combinedText,
-                context: '',
-                paraphrase: '',
-              })
-              clearSearch()
-              setSavedNotice('Verses loaded. Add context and paraphrase, then save.')
-              window.setTimeout(() => setSavedNotice(null), 3000)
-            }
-          } else {
-            // Single verse
-            if (verses[parsed.verse]) {
-              handleSelectVerse(parsed.book, parsed.chapter, parsed.verse, verses[parsed.verse])
-            }
-          }
-        }
-        return
-      }
+      const loaded = loadReferenceFromString(searchQuery)
+      if (loaded) return
     }
     
     // Otherwise perform keyword search
     searchBible(searchQuery)
   }
-  
-  const handleSelectVerse = (book: string, chapter: number, verse: number, text: string) => {
-    setData({
-      ref: `${book} ${chapter}:${verse}`,
-      text: text,
-      context: '',
-      paraphrase: '',
-    })
-    clearSearch()
-    setSavedNotice('Verse loaded. Add context and paraphrase, then save.')
-    window.setTimeout(() => setSavedNotice(null), 3000)
-  }
+
+  useEffect(() => {
+    if (selectedReference?.reference) {
+      setPendingReference(selectedReference.reference)
+    }
+  }, [selectedReference])
+
+  useEffect(() => {
+    if (!pendingReference) return
+    const loaded = loadReferenceFromString(pendingReference, { notice: PASSAGE_NOTICE })
+    if (loaded) {
+      setPendingReference(null)
+    }
+  }, [pendingReference, loadReferenceFromString])
 
   const firstLettersView = useMemo(() => buildFirstLetters(data.text), [data.text])
   const clozeView = useMemo(() => buildCloze(data.text), [data.text])

@@ -14,7 +14,7 @@ import {
   type LearnNavEntry,
 } from '../../../src/data/learnPractices'
 import styles from '../../../src/styles/learn.module.css'
-import MemorizeHelper from '../../../src/components/learn/MemorizeHelper'
+import MemorizeHelper, { type MemorizeHelperSelection } from '../../../src/components/learn/MemorizeHelper'
 import ThemeSelector from '../../../src/components/ThemeSelector'
 import ThemeToggle from '../../../src/components/ThemeToggle'
 
@@ -32,98 +32,109 @@ type PracticePageProps = {
 
 const navItems: LearnNavEntry[] = learnNavItems
 
-const foundationalPassages = [
+type FoundationalVerse = {
+  reference: string
+  description: string
+}
+
+type FoundationalPassage = {
+  title: string
+  description: string
+  verses: FoundationalVerse[]
+}
+
+const foundationalPassages: readonly FoundationalPassage[] = [
   {
     title: 'Identity & Salvation',
     description: 'These verses define the foundation of the Christian faith.',
     verses: [
-      'John 3:16 — The core summary of the gospel',
-      'Romans 10:9-10 — Confession and belief for salvation',
-      'Ephesians 2:8-9 — Salvation by grace through faith',
-      '2 Corinthians 5:17 — New creation in Christ',
-      'John 1:12 — Adoption as children of God',
-      '1 John 5:11-12 — Assurance of eternal life',
+      { reference: 'John 3:16', description: 'The core summary of the gospel' },
+      { reference: 'Romans 10:9-10', description: 'Confession and belief for salvation' },
+      { reference: 'Ephesians 2:8-9', description: 'Salvation by grace through faith' },
+      { reference: '2 Corinthians 5:17', description: 'New creation in Christ' },
+      { reference: 'John 1:12', description: 'Adoption as children of God' },
+      { reference: '1 John 5:11-12', description: 'Assurance of eternal life' },
     ],
   },
   {
     title: 'Obedience & Discipleship',
     description: 'Verses that shape how believers follow Christ daily.',
     verses: [
-      'John 14:21 — Loving Jesus means obeying His commands',
-      'Matthew 16:24 — Deny yourself, take up your cross, follow',
-      'Matthew 7:24-25 — Obedience builds the house on the rock',
-      'Romans 12:1-2 — Renewing the mind and presenting the body',
-      'Colossians 3:16 — Let the Word dwell richly',
-      'Psalm 119:11 — Storing the Word to fight sin',
+      { reference: 'John 14:21', description: 'Loving Jesus means obeying His commands' },
+      { reference: 'Matthew 16:24', description: 'Deny yourself, take up your cross, follow' },
+      { reference: 'Matthew 7:24-25', description: 'Obedience builds the house on the rock' },
+      { reference: 'Romans 12:1-2', description: 'Renewing the mind and presenting the body' },
+      { reference: 'Colossians 3:16', description: 'Let the Word dwell richly' },
+      { reference: 'Psalm 119:11', description: 'Storing the Word to fight sin' },
     ],
   },
   {
     title: 'The Great Commandments & Mission',
     description: 'Core mandates from Jesus Himself.',
     verses: [
-      'Matthew 22:37-40 — The Great Commandments',
-      'Matthew 28:19-20 — The Great Commission',
-      'Micah 6:8 — What God requires',
-      '1 Peter 3:15 — Being ready to give a reason for the hope',
+      { reference: 'Matthew 22:37-40', description: 'The Great Commandments' },
+      { reference: 'Matthew 28:19-20', description: 'The Great Commission' },
+      { reference: 'Micah 6:8', description: 'What God requires' },
+      { reference: '1 Peter 3:15', description: 'Being ready to give a reason for the hope' },
     ],
   },
   {
     title: 'Spiritual Warfare & Temptation',
     description: 'Verses Jesus used, and verses that establish warfare principles.',
     verses: [
-      'Matthew 4:1-11 — (Key lines Jesus quotes: Deut 8:3; 6:16; 6:13)',
-      'Ephesians 6:10-17 — The armor of God',
-      '1 Corinthians 10:13 — Way of escape in temptation',
-      'James 4:7 — Resist the devil',
-      '2 Corinthians 10:4-5 — Taking thoughts captive',
-      '1 Peter 5:8-9 — Standing firm against the adversary',
+      { reference: 'Matthew 4:1-11', description: 'Key lines Jesus quotes: Deut 8:3; 6:16; 6:13' },
+      { reference: 'Ephesians 6:10-17', description: 'The armor of God' },
+      { reference: '1 Corinthians 10:13', description: 'Way of escape in temptation' },
+      { reference: 'James 4:7', description: 'Resist the devil' },
+      { reference: '2 Corinthians 10:4-5', description: 'Taking thoughts captive' },
+      { reference: '1 Peter 5:8-9', description: 'Standing firm against the adversary' },
     ],
   },
   {
     title: "God's Character",
     description: 'Verses that anchor doctrine and prevent distorted views of God.',
     verses: [
-      "Exodus 34:6-7 — God's self-revelation",
-      "Isaiah 40:28-31 — God's power and endurance",
-      "Lamentations 3:22-23 — God's covenant faithfulness",
-      "James 1:17 — God's unchanging nature",
-      'Psalm 103:8-12 — Compassion and forgiveness',
-      '1 John 1:5 — God is light, no darkness in Him',
+      { reference: 'Exodus 34:6-7', description: "God's self-revelation" },
+      { reference: 'Isaiah 40:28-31', description: "God's power and endurance" },
+      { reference: 'Lamentations 3:22-23', description: "God's covenant faithfulness" },
+      { reference: 'James 1:17', description: "God's unchanging nature" },
+      { reference: 'Psalm 103:8-12', description: 'Compassion and forgiveness' },
+      { reference: '1 John 1:5', description: 'God is light, no darkness in Him' },
     ],
   },
   {
     title: 'Wisdom, Decision-Making, and Thought Life',
     description: 'Verses that shape logical, disciplined spiritual reasoning.',
     verses: [
-      'Proverbs 3:5-6 — Trusting God over our own understanding',
-      'James 1:5 — Asking God for wisdom',
-      'Philippians 4:8 — The Christian thought-filter',
-      'Psalm 1:1-3 — The blessed man grounded in Scripture',
-      'Hebrews 4:12 — The Word discerning thoughts and intentions',
+      { reference: 'Proverbs 3:5-6', description: 'Trusting God over our own understanding' },
+      { reference: 'James 1:5', description: 'Asking God for wisdom' },
+      { reference: 'Philippians 4:8', description: 'The Christian thought-filter' },
+      { reference: 'Psalm 1:1-3', description: 'The blessed man grounded in Scripture' },
+      { reference: 'Hebrews 4:12', description: 'The Word discerning thoughts and intentions' },
     ],
   },
   {
     title: 'Repentance, Confession, and Sanctification',
     description: 'Verses that anchor transformation.',
     verses: [
-      '1 John 1:9 — Confession',
-      'Psalm 51:10-12 — A model of repentance',
-      'Romans 6:12-14 — Sin no longer ruling in your body',
-      'Galatians 5:16 — Walk by the Spirit',
-      'Galatians 2:20 — Crucified with Christ',
-      'Hebrews 12:1-2 — Running with endurance',
+      { reference: '1 John 1:9', description: 'Confession' },
+      { reference: 'Psalm 51:10-12', description: 'A model of repentance' },
+      { reference: 'Romans 6:12-14', description: 'Sin no longer ruling in your body' },
+      { reference: 'Galatians 5:16', description: 'Walk by the Spirit' },
+      { reference: 'Galatians 2:20', description: 'Crucified with Christ' },
+      { reference: 'Hebrews 12:1-2', description: 'Running with endurance' },
     ],
   },
   {
     title: 'Faith, Fear, and Trust in God',
     description: 'Grounding for confidence in the Lord.',
     verses: [
-      'Isaiah 41:10 — God with His people',
-      'Psalm 23:1-4 — God as shepherd',
-      'Philippians 4:6-7 — Prayer replacing anxiety',
-      'Hebrews 11:1 — Definition of faith',
-      'Romans 8:28 — God working all things together',
-      'Psalm 46:1-2 — God as refuge and strength',
+      { reference: 'Isaiah 41:10', description: 'God with His people' },
+      { reference: 'Psalm 23:1-4', description: 'God as shepherd' },
+      { reference: 'Philippians 4:6-7', description: 'Prayer replacing anxiety' },
+      { reference: 'Hebrews 11:1', description: 'Definition of faith' },
+      { reference: 'Romans 8:28', description: 'God working all things together' },
+      { reference: 'Psalm 46:1-2', description: 'God as refuge and strength' },
     ],
   },
 ] as const
@@ -134,6 +145,8 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const activeTool: ToolLabel = 'Learn'
   const currentPracticeId = practice.id
+  const isMemorizationPractice = practice.id === 'memorization'
+  const [selectedPassage, setSelectedPassage] = useState<MemorizeHelperSelection | null>(null)
   const renderSummaryParagraphs = (summary: string | string[], keyPrefix: string) => {
     const paragraphs = Array.isArray(summary)
       ? summary
@@ -167,6 +180,11 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
   const handleToolbarClick = (action: ToolbarAction) => {
     if (action.label === 'Learn') return
     router.push('/')
+  }
+
+  const handlePassageSelect = (reference: string) => {
+    if (!isMemorizationPractice) return
+    setSelectedPassage({ reference, initiatedAt: Date.now() })
   }
 
   const handleBrandClick = () => {
@@ -304,38 +322,64 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
               </div>
             </header>
             
-            {practice.id === 'memorization' && (
+            {isMemorizationPractice && (
               <div className={styles.memorizeHelperGrid}>
-                <MemorizeHelper />
+                <MemorizeHelper selectedReference={selectedPassage} />
               </div>
             )}
 
             <article className={styles.renewSubsection}>
-              <h3>Passages for Every Believer</h3>
+              <h3>Practice Ideas</h3>
               <p>
-                These sections highlight key Scriptures that ground believers in the teachings of Jesus, the gospel,
-                and the life of discipleship. They serve as core passages to memorize, recall, and apply as you follow
-                Christ.
+                These rhythms help you embody the practice of {practice.title.toLowerCase()} with simplicity and
+                faithfulness.
               </p>
               <ul className={styles.renewSubsectionList}>
                 {practice.practices.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+            </article>
 
+            <article className={styles.renewSubsection}>
+              <h3>Foundational Passages for Every Believer</h3>
               <p>
                 These sections highlight key Scriptures that ground believers in the teachings of Jesus, the gospel,
                 and the life of discipleship. They serve as core passages to memorize, recall, and apply as you follow
                 Christ.
               </p>
+              {isMemorizationPractice && (
+                <p className={styles.renewPassageHint}>Tap a reference to load it into the Memorize Helper.</p>
+              )}
               <div className={styles.renewFoundationalPassages}>
                 {foundationalPassages.map((section) => (
                   <section key={section.title} className={styles.renewPassageGroup}>
                     <h4>{section.title}</h4>
                     <p>{section.description}</p>
-                    <ul className={styles.renewSubsectionList}>
+                    <ul
+                      className={
+                        isMemorizationPractice ? styles.renewPassageList : styles.renewSubsectionList
+                      }
+                    >
                       {section.verses.map((verse) => (
-                        <li key={verse}>{verse}</li>
+                        <li key={`${section.title}-${verse.reference}`}>
+                          {isMemorizationPractice ? (
+                            <button
+                              type="button"
+                              className={styles.renewPassageButton}
+                              onClick={() => handlePassageSelect(verse.reference)}
+                              aria-label={`Load ${verse.reference} into the Memorize Helper`}
+                            >
+                              <span className={styles.renewPassageReference}>{verse.reference}</span>
+                              <span className={styles.renewPassageDescription}>{verse.description}</span>
+                            </button>
+                          ) : (
+                            <div className={styles.renewPassageStatic}>
+                              <span className={styles.renewPassageReference}>{verse.reference}</span>
+                              <span className={styles.renewPassageDescription}>{verse.description}</span>
+                            </div>
+                          )}
+                        </li>
                       ))}
                     </ul>
                   </section>
