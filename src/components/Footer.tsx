@@ -54,7 +54,7 @@ export default function Footer({ currentYear = new Date().getFullYear() }: Foote
           <Link href="/terms" className={styles.legalLink}>Terms of Use</Link>
         </div>
         <small>
-          Scripture quotations © their respective publishers. Used by permission. No ads. No donations.
+          Scripture quotations © their respective publishers. Used by permission.
         </small>
       </div>
     </footer>
