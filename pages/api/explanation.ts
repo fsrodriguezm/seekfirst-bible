@@ -37,9 +37,17 @@ type ExplanationResponse = {
   error?: string
 }
 
+// Groq API model limits
+// Model: meta-llama/llama-4-scout-17b-16e-instruct
+// Requests per Minute: 30 
+// Request per day: 1K 
+// Token per minute: 30k
+// Tokens per day: 500K
+
 const GROQ_ENDPOINT = 'https://api.groq.com/openai/v1/chat/completions'
 const MODEL_NAME = 'meta-llama/llama-4-scout-17b-16e-instruct'
 
+// Step 1: Build the JSON schema that acts as our "chain" output contract so Groq responds predictably.
 const createSectionSchema = (title: string) => ({
   type: 'object',
   properties: {
@@ -140,6 +148,7 @@ export default async function handler(
   }
 
   try {
+    // Step 2: Configure the single-step "chain" payload (prompts + schema + model settings).
     const groqResponse = await fetch(GROQ_ENDPOINT, {
       method: 'POST',
       headers: {
@@ -168,6 +177,7 @@ export default async function handler(
       return res.status(groqResponse.status).json({ error: errorText || 'Unexpected error from Groq API.' })
     }
 
+    // Step 3: Call Groq, then capture and validate the structured response.
     const data = await groqResponse.json()
     const content: string | undefined = data?.choices?.[0]?.message?.content
 

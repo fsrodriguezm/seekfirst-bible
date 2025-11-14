@@ -54,7 +54,9 @@ const BibleVerseContent = ({
             onClick={() => onVerseSelect(verseNum)}
           >
             <span className="verse-number">{verseNumber}</span>
-            <span className={verseTextClass}>{verseText}</span>
+            <span className={verseTextClass} style={{ fontSize }}>
+              {verseText}
+            </span>
           </div>
         )
       })}
