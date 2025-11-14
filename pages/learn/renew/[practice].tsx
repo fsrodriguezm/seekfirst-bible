@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Footer from '../../../src/components/Footer'
 import { ThemeProvider, useTheme } from '../../../src/contexts/ThemeContext'
@@ -15,6 +15,8 @@ import {
 } from '../../../src/data/learnPractices'
 import styles from '../../../src/styles/learn.module.css'
 import MemorizeHelper from '../../../src/components/learn/MemorizeHelper'
+import ThemeSelector from '../../../src/components/ThemeSelector'
+import ThemeToggle from '../../../src/components/ThemeToggle'
 
 const toolbarActions = [
   { label: 'Read' },
@@ -32,8 +34,7 @@ const navItems: LearnNavEntry[] = learnNavItems
 
 const PracticePageContent = ({ practice }: PracticePageProps) => {
   const router = useRouter()
-  const { isDark, toggleTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { isDark } = useTheme()
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const activeTool: ToolLabel = 'Learn'
   const currentPracticeId = practice.id
@@ -49,10 +50,6 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
       <p key={`${keyPrefix}-${index}`}>{text}</p>
     ))
   }
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     // Close sidebar when route changes on mobile
@@ -104,6 +101,9 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
               </button>
             ))}
           </div>
+          <div className="navbar-controls">
+            <ThemeSelector />
+          </div>
         </nav>
         <div className="header-content">
           <div className="header-text">
@@ -119,13 +119,6 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
               <span className="hero-verse-citation">— Romans 12:2</span>
             </p>
           </div>
-          <button
-            className="theme-toggle-btn"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {mounted ? (isDark ? <Sun size={24} /> : <Moon size={24} />) : null}
-          </button>
         </div>
       </header>
       <main className={styles.learnMain}>
@@ -268,6 +261,7 @@ const PracticePageContent = ({ practice }: PracticePageProps) => {
         </div>
       </main>
       <Footer />
+      <ThemeToggle variant="floating" />
     </div>
   )
 }
