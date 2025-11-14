@@ -332,6 +332,7 @@ const MemorizeHelper = ({ selectedReference = null }: MemorizeHelperProps) => {
   useEffect(() => {
     if (selectedReference?.reference) {
       setPendingReference(selectedReference.reference)
+      setSearchQuery(selectedReference.reference)
     }
   }, [selectedReference])
 
