@@ -27,8 +27,8 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
   const [mounted, setMounted] = useState(false)
   const [activeTool, setActiveTool] = useState<ToolLabel>('Read')
   const router = useRouter()
-  const videoARef = useRef<HTMLVideoElement | null>(null)
-  const videoBRef = useRef<HTMLVideoElement | null>(null)
+  const videoARef = useRef<HTMLVideoElement>(null)
+  const videoBRef = useRef<HTMLVideoElement>(null)
   const fadingRef = useRef<boolean>(false)
   const activeRef = useRef<number>(0) // 0 => A active, 1 => B active
   const fadeSeconds = 3.0 // seconds to crossfade
@@ -110,6 +110,38 @@ function AppContent({ initialBook, initialChapter, initialVersion, initialVerses
   return (
     <div className={`App ${isDark ? 'dark' : 'light'}`}>
       <header className="App-header">
+        {/* <video
+          ref={videoARef}
+          src="/videos/102302-664306159_small.mp4"
+          muted
+          playsInline
+          autoPlay
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0
+          }}
+        />
+        <video
+          ref={videoBRef}
+          src="/videos/102302-664306159_small.mp4"
+          muted
+          playsInline
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+            opacity: 0
+          }}
+        /> */}
         <nav className="app-navbar" aria-label="Primary navigation">
           <div className="navbar-brand" onClick={() => window.location.reload()} style={{ cursor: "pointer" }}>
             <Image src="/seekfirst_logo.png" alt="SeekFirst" className="brand-logo" width={48} height={48} priority />
