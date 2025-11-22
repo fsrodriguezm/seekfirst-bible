@@ -12,7 +12,10 @@ const cache: { data: BibleLicense[] | null } = {
   data: null,
 }
 
-export const useBibleLicenses = (versionId: string): BibleLicense | null => {
+export const useBibleLicenses = (
+  versionId: string,
+  apiCopyright?: string | null
+): BibleLicense | null => {
   const [licenses, setLicenses] = useState<BibleLicense[] | null>(cache.data)
 
   useEffect(() => {
@@ -47,8 +50,23 @@ export const useBibleLicenses = (versionId: string): BibleLicense | null => {
 
   const license = useMemo(() => {
     if (!licenses) return null
-    return licenses.find((item) => item.abbreviation.toUpperCase() === versionId.toUpperCase()) ?? null
-  }, [licenses, versionId])
+
+    const foundLicense = licenses.find((item) => item.abbreviation.toUpperCase() === versionId.toUpperCase())
+
+    // If we have API copyright and found a license, use API copyright
+    // Or if we have API copyright but no license in JSON, create one from API
+    if (apiCopyright) {
+      return {
+        abbreviation: versionId,
+        fullName: foundLicense?.fullName || versionId,
+        copyright: apiCopyright,
+        permissionRequired: foundLicense?.permissionRequired || 'See copyright',
+        url: foundLicense?.url,
+      }
+    }
+
+    return foundLicense ?? null
+  }, [licenses, versionId, apiCopyright])
 
   return license ?? null
 }

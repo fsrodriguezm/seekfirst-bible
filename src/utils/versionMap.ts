@@ -36,6 +36,7 @@ const VERSION_INFO_LIST: VersionInfo[] = [
   { id: 'NRSVUE', slug: 'nrsvue', file: 'NRSVUE', language: 'en' },
   { id: 'NTV', slug: 'ntv', file: 'NTV', language: 'es' },
   { id: 'RVA1602', slug: 'rva1602', file: 'RVA1602', language: 'es' },
+  { id: 'RVR1909', slug: 'rvr1909', file: 'RVR1909', language: 'es' },
   { id: 'RVR1960', slug: 'rvr1960', file: 'RVR1960', language: 'es' },
   { id: 'WEB', slug: 'web', file: 'WEB', language: 'en' },
   { id: 'YLT', slug: 'ylt', file: 'YLT', language: 'en' },

@@ -69,5 +69,12 @@
         "fullName": "Reina-Valera Antigua 1602 (Public Domain)",
         "url": "https://www.biblegateway.com/versions/Reina-Valera-Antigua-RVA-Biblia/",
         "publisher": "Bible Gateway"
+    },
+    {
+        "abbreviation": "RVR1909",
+        "copyright": "Public Domain",
+        "permissionRequired": "No",
+        "fullName": "Reina Valera 1909 (Public Domain)",
+        "url": "https://www.api.bible"
     }
 ]
