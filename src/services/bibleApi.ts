@@ -3,19 +3,8 @@
  * Handles communication with api.bible API
  */
 
-const BIBLE_API_BASE_URL = 'https://rest.api.bible/v1'
-
-// In client-side code, access the environment variable directly
-const getApiKey = (): string | undefined => {
-  if (typeof window !== 'undefined') {
-    // Client-side
-    return process.env.NEXT_PUBLIC_BIBLE_API_KEY
-  }
-  // Server-side (won't be used in this implementation but good to handle)
-  return process.env.NEXT_PUBLIC_BIBLE_API_KEY
-}
-
-const BIBLE_API_KEY = getApiKey()
+// Use our own API route instead of calling api.bible directly
+// This keeps the API key server-side only
 
 // Map of Bible version IDs to their api.bible IDs
 const BIBLE_VERSION_TO_API_ID: Record<string, string> = {
@@ -324,7 +313,8 @@ export const getApiBibleId = (bibleId: string): string | null => {
 }
 
 /**
- * Fetch a chapter from the Bible API
+ * Fetch a chapter from the Bible API via our Next.js API route
+ * This keeps the API key server-side only
  */
 export const fetchChapter = async (
   bibleId: string,
@@ -334,20 +324,17 @@ export const fetchChapter = async (
   const apiBibleId = getApiBibleId(bibleId)
   const apiBookId = getApiBookId(book)
 
-  if (!apiBibleId || !apiBookId || !BIBLE_API_KEY) {
-    console.error('Missing API configuration:', { apiBibleId, apiBookId, hasApiKey: !!BIBLE_API_KEY })
+  if (!apiBibleId || !apiBookId) {
+    console.error('Missing API configuration:', { apiBibleId, apiBookId })
     return null
   }
 
   const chapterId = `${apiBookId}.${chapter}`
-  const url = `${BIBLE_API_BASE_URL}/bibles/${apiBibleId}/chapters/${chapterId}`
+  // Use our Next.js API route instead of calling api.bible directly
+  const url = `/api/bible/${apiBibleId}/chapters/${chapterId}`
 
   try {
-    const response = await fetch(url, {
-      headers: {
-        'api-key': BIBLE_API_KEY,
-      },
-    })
+    const response = await fetch(url)
 
     if (!response.ok) {
       console.error(`API request failed: ${response.status} ${response.statusText}`)
@@ -366,39 +353,5 @@ export const fetchChapter = async (
   } catch (error) {
     console.error('Error fetching chapter from Bible API:', error)
     return null
-  }
-}
-
-/**
- * Fetch all books available in a Bible version from the API
- */
-export const fetchBooks = async (bibleId: string): Promise<string[]> => {
-  const apiBibleId = getApiBibleId(bibleId)
-
-  if (!apiBibleId || !BIBLE_API_KEY) {
-    return []
-  }
-
-  const url = `${BIBLE_API_BASE_URL}/bibles/${apiBibleId}/books`
-
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'api-key': BIBLE_API_KEY,
-      },
-    })
-
-    if (!response.ok) {
-      return []
-    }
-
-    const data = await response.json()
-
-    // Map book IDs back to book names
-    // This is a simplified version - you may need to enhance this
-    return data.data.map((book: { id: string; name: string }) => book.name)
-  } catch (error) {
-    console.error('Error fetching books from Bible API:', error)
-    return []
   }
 }

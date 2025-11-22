@@ -66,8 +66,19 @@ export const useBibleData = ({
         if (useApi) {
           // For API-based Bibles, we fetch chapter by chapter
           // We'll create a minimal structure to make the rest of the code work
-          const chapterResult = await fetchChapter(bibleId, book, chapter)
+          let chapterToFetch = chapter
+          let chapterResult = await fetchChapter(bibleId, book, chapterToFetch)
           if (!isActive) return
+
+          // If chapter doesn't exist (404), try chapter 1
+          if (!chapterResult && chapter !== 1) {
+            chapterToFetch = 1
+            chapterResult = await fetchChapter(bibleId, book, 1)
+            if (!isActive) return
+            if (chapterResult) {
+              setChapter(1) // Reset to chapter 1
+            }
+          }
 
           if (chapterResult) {
             // Store the copyright from the API response
@@ -76,7 +87,7 @@ export const useBibleData = ({
             // Create a minimal BibleData structure with just the current chapter
             data = {
               [book]: {
-                [String(chapter)]: chapterResult.verses,
+                [String(chapterToFetch)]: chapterResult.verses,
               },
             }
           }
