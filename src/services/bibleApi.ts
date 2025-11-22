@@ -243,8 +243,7 @@ const BOOK_NAME_TO_API_ID: Record<string, string> = {
   'Josué': 'JOS',
   'Jueces': 'JDG',
   'Rut': 'RUT',
-  '1 Samuel': '1SA',
-  '2 Samuel': '2SA',
+  // '1 Samuel' and '2 Samuel' use English names (same in Spanish)
   '1 Reyes': '1KI',
   '2 Reyes': '2KI',
   '1 Crónicas': '1CH',
@@ -252,7 +251,7 @@ const BOOK_NAME_TO_API_ID: Record<string, string> = {
   'Esdras': 'EZR',
   'Nehemías': 'NEH',
   'Ester': 'EST',
-  'Job': 'JOB',
+  // 'Job' uses English name (same in Spanish)
   'Salmos': 'PSA',
   'Proverbios': 'PRO',
   'Eclesiastés': 'ECC',
@@ -261,9 +260,9 @@ const BOOK_NAME_TO_API_ID: Record<string, string> = {
   'Jeremías': 'JER',
   'Lamentaciones': 'LAM',
   'Ezequiel': 'EZK',
-  'Daniel': 'DAN',
+  // 'Daniel' uses English name (same in Spanish)
   'Oseas': 'HOS',
-  'Joel': 'JOL',
+  // 'Joel': 'JOL', uses English name (same in Spanish)
   'Amós': 'AMO',
   'Abdías': 'OBA',
   'Jonás': 'JON',
