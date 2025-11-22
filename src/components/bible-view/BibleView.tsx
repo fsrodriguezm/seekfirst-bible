@@ -24,6 +24,8 @@ import { useButtonRipples } from '../../hooks/useButtonRipples'
 import { copyToClipboard } from '../../hooks/useClipboard'
 import { useBibleLicenses } from '../../hooks/useBibleLicenses'
 import { extractVerseNumber, formatSelectedVersesForCopy } from '../../utils/selectionFormatter'
+import { shouldUseApi } from '../../services/bibleApi'
+import { getBookNamesForBible, getChapterCountForBook } from '../../data/bibleMetadata'
 
 const CrossReferencePanel = dynamic(() => import('../CrossReferencePanel'), {
   ssr: false,
@@ -73,7 +75,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
     setVerseSelectionLocked(false)
   }, [])
 
-  const { bibleData, verses, isLoading } = useBibleData({
+  const { bibleData, verses, isLoading, apiCopyright } = useBibleData({
     bibleId: selectedBible,
     book: selectedBook,
     setBook: setSelectedBook,
@@ -91,7 +93,7 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
     redLetterMode,
   })
   const { results: searchResults, search: searchBible } = useBibleSearch(bibleData)
-  const bibleLicense = useBibleLicenses(selectedBible)
+  const bibleLicense = useBibleLicenses(selectedBible, apiCopyright)
 
   // Restore persisted selections on mount (client only)
   // BUT: Don't override initial props from URL
@@ -290,10 +292,20 @@ const BibleView = ({ initialBook, initialChapter, initialVersion, initialVerses 
   }
 
   const getBookNames = (): string[] => {
+    // For API-based Bibles, use metadata
+    if (shouldUseApi(selectedBible)) {
+      return getBookNamesForBible(selectedBible)
+    }
+    // For JSON-based Bibles, use the loaded data
     return bibleData ? Object.keys(bibleData) : []
   }
 
   const getChapterCount = (): number => {
+    // For API-based Bibles, use metadata
+    if (shouldUseApi(selectedBible)) {
+      return getChapterCountForBook(selectedBible, selectedBook)
+    }
+    // For JSON-based Bibles, use the loaded data
     return bibleData && bibleData[selectedBook] ? Object.keys(bibleData[selectedBook]).length : 0
   }
 

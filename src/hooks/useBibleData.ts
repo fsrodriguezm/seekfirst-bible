@@ -5,6 +5,7 @@ import {
   getVersionFileName,
   getVersionLanguage,
 } from '../utils/versionMap'
+import { shouldUseApi, fetchChapter } from '../services/bibleApi'
 
 export type VerseMap = Record<string, string>
 export type BibleChapterMap = Record<string, VerseMap>
@@ -24,6 +25,7 @@ interface UseBibleDataResult {
   bibleData: BibleData | null
   verses: VerseMap
   isLoading: boolean
+  apiCopyright?: string | null
 }
 
 export const useBibleData = ({
@@ -38,6 +40,7 @@ export const useBibleData = ({
   const [bibleData, setBibleData] = useState<BibleData | null>(null)
   const [verses, setVerses] = useState<VerseMap>({})
   const [isLoading, setIsLoading] = useState(false)
+  const [apiCopyright, setApiCopyright] = useState<string | null>(null)
   const previousBibleRef = useRef<string>(bibleId)
 
   useEffect(() => {
@@ -54,27 +57,68 @@ export const useBibleData = ({
         }
 
         const versionLanguage = getVersionLanguage(bibleId) ?? 'en'
-        const assetPath = getVersionAssetPath(bibleId)
-        let response = await fetch(assetPath)
 
-        if (!response.ok) {
-          const fallbackPath = `/api/bibles/${getVersionFileName(bibleId)}`
-          if (fallbackPath !== assetPath) {
-            const fallbackResponse = await fetch(fallbackPath)
-            if (fallbackResponse.ok) {
-              response = fallbackResponse
-            } else {
-              throw new Error(
-                `Failed to load Bible data for ${bibleId} from ${assetPath} or ${fallbackPath}`,
-              )
+        // Check if this version should use the API
+        const useApi = shouldUseApi(bibleId)
+
+        let data: BibleData | null = null
+
+        if (useApi) {
+          // For API-based Bibles, we fetch chapter by chapter
+          // We'll create a minimal structure to make the rest of the code work
+          let chapterToFetch = chapter
+          let chapterResult = await fetchChapter(bibleId, book, chapterToFetch)
+          if (!isActive) return
+
+          // If chapter doesn't exist (404), try chapter 1
+          if (!chapterResult && chapter !== 1) {
+            chapterToFetch = 1
+            chapterResult = await fetchChapter(bibleId, book, 1)
+            if (!isActive) return
+            if (chapterResult) {
+              setChapter(1) // Reset to chapter 1
             }
-          } else {
-            throw new Error(`Failed to load Bible data for ${bibleId} from ${assetPath}`)
           }
+
+          if (chapterResult) {
+            // Store the copyright from the API response
+            setApiCopyright(chapterResult.copyright || null)
+
+            // Create a minimal BibleData structure with just the current chapter
+            data = {
+              [book]: {
+                [String(chapterToFetch)]: chapterResult.verses,
+              },
+            }
+          }
+        } else {
+          // Use the existing JSON file approach
+          const assetPath = getVersionAssetPath(bibleId)
+          let response = await fetch(assetPath)
+
+          if (!response.ok) {
+            const fallbackPath = `/api/bibles/${getVersionFileName(bibleId)}`
+            if (fallbackPath !== assetPath) {
+              const fallbackResponse = await fetch(fallbackPath)
+              if (fallbackResponse.ok) {
+                response = fallbackResponse
+              } else {
+                throw new Error(
+                  `Failed to load Bible data for ${bibleId} from ${assetPath} or ${fallbackPath}`,
+                )
+              }
+            } else {
+              throw new Error(`Failed to load Bible data for ${bibleId} from ${assetPath}`)
+            }
+          }
+
+          data = (await response.json()) as BibleData
         }
 
-        const data = (await response.json()) as BibleData
         if (!isActive) return
+        if (!data) {
+          throw new Error('Failed to load Bible data')
+        }
 
         setBibleData(data)
 
@@ -150,5 +194,6 @@ export const useBibleData = ({
     bibleData,
     verses,
     isLoading,
+    apiCopyright,
   }
 }

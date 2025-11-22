@@ -17,6 +17,7 @@ const englishVersions: BibleVersionOption[] = [
 
 const spanishVersions: BibleVersionOption[] = [
   { value: 'RVA1602', label: 'Reina-Valera Antigua 1602 (RVA1602)' },
+  { value: 'RVR1909', label: 'Reina Valera 1909 (RVR1909)' },
 ]
 
 export const BIBLE_VERSION_GROUPS: Record<BibleVersionLanguage, BibleVersionOption[]> = {

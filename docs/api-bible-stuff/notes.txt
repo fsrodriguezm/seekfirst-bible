@@ -1,0 +1,42 @@
+# https://www.api.bible/api-reference
+
+# bible id
+{
+  "abbreviation": "RVR09",
+  "name": "Reina Valera 1909",
+  "language": "Spanish",
+  "id": "592420522e16049f-01"
+}
+
+# chapters
+/v1/bibles/{bibleId}/chapters/{chapterId}
+
+curl --location 'https://rest.api.bible/v1/bibles/592420522e16049f-01/chapters/PRO.3' \
+  --header 'api-key: xxxxx'
+
+# sample response
+{
+    "data": {
+        "id": "PRO.3",
+        "bibleId": "592420522e16049f-01",
+        "number": "3",
+        "bookId": "PRO",
+        "reference": "Proverbios 3",
+        "copyright": "Reina-Valera 1909 - Dominio público. Fue realizada por Sociedades Bíblicas Unidas y publicada por primera vez en 1909.",
+        "verseCount": 35,
+        "content": "<p class=\"q\"><span data-number=\"1\" data-sid=\"PRO 3:1\" class=\"v\">1</span>HIJO mío, no te olvides de mi ley;</p><p data-vid=\"PRO 3:1\" class=\"q\">Y tu corazón guarde mis mandamientos:</p><p class=\"q\"><span data-number=\"2\" data-sid=\"PRO 3:2\" class=\"v\">2</span>Porque largura de días, y años de vida</p><p data-vid=\"PRO 3:2\" class=\"q\">Y paz te aumentarán.</p><p class=\"q\"><span data-number=\"3\" data-sid=\"PRO 3:3\" class=\"v\">3</span>Misericordia y verdad no te desamparen;</p><p data-vid=\"PRO 3:3\" class=\"q\">Atalas á tu cuello,</p><p data-vid=\"PRO 3:3\" class=\"q\">Escríbelas en la tabla de tu corazón:</p><p class=\"q\"><span data-number=\"4\" data-sid=\"PRO 3:4\" class=\"v\">4</span>Y hallarás gracia y buena opinión</p><p data-vid=\"PRO 3:4\" class=\"q\">En los ojos de Dios y de los hombres.</p><p class=\"q\"><span data-number=\"5\" data-sid=\"PRO 3:5\" class=\"v\">5</span>Fíate de Jehová de todo tu corazón,</p><p data-vid=\"PRO 3:5\" class=\"q\">Y no estribes en tu prudencia.</p><p class=\"q\"><span data-number=\"6\" data-sid=\"PRO 3:6\" class=\"v\">6</span>Reconócelo en todos tus caminos,</p><p data-vid=\"PRO 3:6\" class=\"q\">Y él enderezará tus veredas.</p><p class=\"q\"><span data-number=\"7\" data-sid=\"PRO 3:7\" class=\"v\">7</span>No seas sabio en tu opinión:</p><p data-vid=\"PRO 3:7\" class=\"q\">Teme á Jehová, y apártate del mal;</p><p class=\"q\"><span data-number=\"8\" data-sid=\"PRO 3:8\" class=\"v\">8</span>Porque será medicina á tu ombligo,</p><p data-vid=\"PRO 3:8\" class=\"q\">Y tuétano á tus huesos.</p><p class=\"q\"><span data-number=\"9\" data-sid=\"PRO 3:9\" class=\"v\">9</span>Honra á Jehová de tu sustancia,</p><p data-vid=\"PRO 3:9\" class=\"q\">Y de las primicias de todos tus frutos;</p><p class=\"q\"><span data-number=\"10\" data-sid=\"PRO 3:10\" class=\"v\">10</span>Y serán llenas tus trojes con abundancia,</p><p data-vid=\"PRO 3:10\" class=\"q\">Y tus lagares rebosarán de mosto.</p><p class=\"b\"></p><p class=\"q\"><span data-number=\"11\" data-sid=\"PRO 3:11\" class=\"v\">11</span>No deseches, hijo mío, el castigo de Jehová;</p><p data-vid=\"PRO 3:11\" class=\"q\">Ni te fatigues de su corrección:</p><p class=\"q\"><span data-number=\"12\" data-sid=\"PRO 3:12\" class=\"v\">12</span>Porque al que ama castiga,</p><p data-vid=\"PRO 3:12\" class=\"q\">Como el padre al hijo á quien quiere.</p><p class=\"q\"><span data-number=\"13\" data-sid=\"PRO 3:13\" class=\"v\">13</span>Bienaventurado el hombre que halla la sabiduría,</p><p data-vid=\"PRO 3:13\" class=\"q\">Y que obtiene la inteligencia:</p><p class=\"q\"><span data-number=\"14\" data-sid=\"PRO 3:14\" class=\"v\">14</span>Porque su mercadería es mejor que la mercadería de la plata,</p><p data-vid=\"PRO 3:14\" class=\"q\">Y sus frutos más que el oro fino.</p><p class=\"s\">1 Valor y beneficios</p><p class=\"s\">2 de la sabiduría.</p><p class=\"q\"><span data-number=\"15\" data-sid=\"PRO 3:15\" class=\"v\">15</span>Más preciosa es que las piedras preciosas;</p><p data-vid=\"PRO 3:15\" class=\"q\">Y todo lo que puedes desear, no se puede comparar á ella.</p><p class=\"q\"><span data-number=\"16\" data-sid=\"PRO 3:16\" class=\"v\">16</span>Largura de días está en su mano derecha;</p><p data-vid=\"PRO 3:16\" class=\"q\">En su izquierda riquezas y honra.</p><p class=\"q\"><span data-number=\"17\" data-sid=\"PRO 3:17\" class=\"v\">17</span>Sus caminos son caminos deleitosos,</p><p data-vid=\"PRO 3:17\" class=\"q\">Y todas sus veredas paz.</p><p class=\"q\"><span data-number=\"18\" data-sid=\"PRO 3:18\" class=\"v\">18</span>Ella es árbol de vida á los que de ella asen:</p><p data-vid=\"PRO 3:18\" class=\"q\">Y bienaventurados son los que la mantienen.</p><p class=\"q\"><span data-number=\"19\" data-sid=\"PRO 3:19\" class=\"v\">19</span>Jehová con sabiduría fundó la tierra;</p><p data-vid=\"PRO 3:19\" class=\"q\">Afirmó los cielos con inteligencia.</p><p class=\"q\"><span data-number=\"20\" data-sid=\"PRO 3:20\" class=\"v\">20</span>Con su ciencia se partieron los abismos,</p><p data-vid=\"PRO 3:20\" class=\"q\">Y destilan el rocío los cielos.</p><p class=\"b\"></p><p class=\"q\"><span data-number=\"21\" data-sid=\"PRO 3:21\" class=\"v\">21</span>Hijo mío, no se aparten <span class=\"add\">estas cosas</span> de tus ojos;</p><p data-vid=\"PRO 3:21\" class=\"q\">Guarda la ley y el consejo;</p><p class=\"q\"><span data-number=\"22\" data-sid=\"PRO 3:22\" class=\"v\">22</span>Y serán vida á tu alma,</p><p data-vid=\"PRO 3:22\" class=\"q\">Y gracia á tu cuello.</p><p class=\"q\"><span data-number=\"23\" data-sid=\"PRO 3:23\" class=\"v\">23</span>Entonces andarás por tu camino confiadamente,</p><p data-vid=\"PRO 3:23\" class=\"q\">Y tu pie no tropezará.</p><p class=\"q\"><span data-number=\"24\" data-sid=\"PRO 3:24\" class=\"v\">24</span>Cuando te acostares, no tendrás temor;</p><p data-vid=\"PRO 3:24\" class=\"q\">Antes te acostarás, y tu sueño será suave.</p><p class=\"q\"><span data-number=\"25\" data-sid=\"PRO 3:25\" class=\"v\">25</span>No tendrás temor de pavor repentino,</p><p data-vid=\"PRO 3:25\" class=\"q\">Ni de la ruina de los impíos cuando viniere:</p><p class=\"q\"><span data-number=\"26\" data-sid=\"PRO 3:26\" class=\"v\">26</span>Porque Jehová será tu confianza,</p><p data-vid=\"PRO 3:26\" class=\"q\">Y él preservará tu pie de ser preso.</p><p class=\"q\"><span data-number=\"27\" data-sid=\"PRO 3:27\" class=\"v\">27</span>No detengas el bien de sus dueños,</p><p data-vid=\"PRO 3:27\" class=\"q\">Cuando tuvieres poder para hacerlo.</p><p class=\"q\"><span data-number=\"28\" data-sid=\"PRO 3:28\" class=\"v\">28</span>No digas á tu prójimo: Ve, y vuelve,</p><p data-vid=\"PRO 3:28\" class=\"q\">Y mañana <span class=\"add\">te</span> daré;</p><p data-vid=\"PRO 3:28\" class=\"q\">Cuando tienes contigo <span class=\"add\">qué darle.</span></p><p class=\"q\"><span data-number=\"29\" data-sid=\"PRO 3:29\" class=\"v\">29</span>No intentes mal contra tu prójimo,</p><p data-vid=\"PRO 3:29\" class=\"q\">Estando él confiado de ti.</p><p class=\"q\"><span data-number=\"30\" data-sid=\"PRO 3:30\" class=\"v\">30</span>No pleitees con alguno sin razón,</p><p data-vid=\"PRO 3:30\" class=\"q\">Si él no te ha hecho agravio.</p><p class=\"q\"><span data-number=\"31\" data-sid=\"PRO 3:31\" class=\"v\">31</span>No envidies al hombre injusto,</p><p data-vid=\"PRO 3:31\" class=\"q\">Ni escojas alguno de sus caminos.</p><p class=\"q\"><span data-number=\"32\" data-sid=\"PRO 3:32\" class=\"v\">32</span>Porque el perverso es abominado de Jehová:</p><p data-vid=\"PRO 3:32\" class=\"q\">Mas su secreto es con los rectos.</p><p class=\"q\"><span data-number=\"33\" data-sid=\"PRO 3:33\" class=\"v\">33</span>La maldición de Jehová está en la casa del impío;</p><p data-vid=\"PRO 3:33\" class=\"q\">Mas él bendecirá la morada de los justos.</p><p class=\"q\"><span data-number=\"34\" data-sid=\"PRO 3:34\" class=\"v\">34</span>Ciertamente él escarnecerá á los escarnecedores,</p><p data-vid=\"PRO 3:34\" class=\"q\">Y á los humildes dará gracia.</p><p class=\"q\"><span data-number=\"35\" data-sid=\"PRO 3:35\" class=\"v\">35</span>Los sabios heredarán honra:</p><p data-vid=\"PRO 3:35\" class=\"q\">Mas los necios sostendrán ignominia.</p>",
+        "next": {
+            "id": "PRO.4",
+            "number": "4",
+            "bookId": "PRO"
+        },
+        "previous": {
+            "id": "PRO.2",
+            "number": "2",
+            "bookId": "PRO"
+        }
+    },
+    "meta": {
+        "fumsToken": "GzIBIBwHbqxlyoOgvZ6KYyof3VE2Fu6K1a-AIFm6-kLn6W1RoFxFLcAWHK8HvdFFvnWgb7eDbYySiEmwvHAr_3jeDoB5OQPO493EykAbyaVLNtSVss7oebib3qCrPWB8BK0VKN7wx5ZVZwFEAJybJHOA9RugZVTOKXLk2JxrPmjHPAZs78r0520JQOYuqrrgE8OIPFsSW8BHwep5vD-1t6s6DZzOVZhOl_U22KhmsxoUZ0uf5oWrabIY"
+    }
+}
