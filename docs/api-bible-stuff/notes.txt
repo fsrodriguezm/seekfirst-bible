@@ -1,0 +1,18 @@
+curl --location 'https://rest.api.bible/v1/bibles/592420522e16049f-01/chapters/PRO.3' \
+  --header 'api-key: '
+
+# verses
+  /v1/bibles/{bibleId}/chapters/{chapterId}/verses
+  /v1/bibles/{bibleId}/verses/{verseId}
+
+
+# chapters
+  /v1/bibles/{bibleId}/chapters/{chapterId}
+
+
+//   {
+//   "abbreviation": "RVR09",
+//   "name": "Reina Valera 1909",
+//   "language": "Spanish",
+//   "id": "592420522e16049f-01"
+// }

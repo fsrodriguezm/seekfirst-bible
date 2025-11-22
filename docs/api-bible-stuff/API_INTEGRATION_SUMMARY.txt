@@ -1,0 +1,148 @@
+================================================================================
+                    BIBLE API INTEGRATION - COMPLETE
+================================================================================
+
+📦 FILES CREATED:
+================================================================================
+
+1. src/utils/bibleApiService.ts
+   └─ Main service for all Bible API interactions
+   └─ Methods: getBibles(), getChapter(), getVerses(), etc.
+   └─ Includes HTML parsing for verse content
+
+2. src/hooks/useBibleDataWithApi.ts
+   └─ Enhanced hook with API support + fallback to local JSON
+   └─ Drop-in replacement for existing useBibleData hook
+   └─ useApiIfAvailable flag to enable/disable API usage
+
+3. src/components/BibleApiTester.tsx
+   └─ Development tool for testing API integration
+   └─ Test buttons for various API calls
+   └─ Shows results/errors in UI
+
+4. BIBLE_API_SETUP.md
+   └─ Complete setup and usage guide
+   └─ Environment configuration instructions
+   └─ Code examples and API reference
+
+5. BIBLE_API_INTEGRATION.md
+   └─ Overview of the integration
+   └─ What was created and how to use it
+   └─ Quick start guide
+
+6. test-bible-api.sh
+   └─ Bash script with curl examples
+   └─ Quick testing tool for command line
+
+================================================================================
+🚀 QUICK START (3 STEPS):
+================================================================================
+
+STEP 1: Get API Key
+   → Visit: https://scripture.api.bible/
+   → Sign up and generate an API key
+
+STEP 2: Set Environment Variable
+   Create/edit .env.local in project root:
+   
+   NEXT_PUBLIC_BIBLE_API_KEY=your_key_here
+
+STEP 3: Test It
+   Add to a page temporarily:
+   
+   import BibleApiTester from '@/components/BibleApiTester'
+   export default function TestPage() {
+     return <BibleApiTester />
+   }
+
+================================================================================
+💡 USAGE EXAMPLES:
+================================================================================
+
+Option A: Use the Enhanced Hook
+─────────────────────────────────
+  import { useBibleData } from '@/hooks/useBibleDataWithApi'
+
+  const { verses, isLoading, source } = useBibleData({
+    bibleId: selectedBible,
+    book: selectedBook,
+    chapter: selectedChapter,
+    setBook: setSelectedBook,
+    setChapter: setSelectedChapter,
+    crossReferenceMode: false,
+    useApiIfAvailable: true  // ← Enable API
+  })
+
+Option B: Use the Service Directly
+──────────────────────────────────
+  import bibleApiService from '@/utils/bibleApiService'
+
+  // Get Proverbs 3 from Reina Valera 1909
+  const verses = await bibleApiService.getChapterVerses(
+    '592420522e16049f-01',
+    'PRO.3'
+  )
+  
+  console.log(verses['5'])  // Verse 5
+  console.log(verses['6'])  // Verse 6
+
+================================================================================
+🔍 TEST WITH CURL:
+================================================================================
+
+Get Proverbs 3:5-6 from Reina Valera 1909 (Spanish):
+
+curl --location 'https://rest.api.bible/v1/bibles/592420522e16049f-01/chapters/PRO.3' \
+  --header 'api-key: YOUR_API_KEY_HERE'
+
+Available Bible IDs:
+  RVR09 (Spanish)    : 592420522e16049f-01
+  WEB (English)      : 9879dbb7cfe39e4d-01
+  KJV (English)      : de4e12af7f28f599-01
+  ASV (English)      : 06125adad2d5898a-01
+
+================================================================================
+✨ KEY FEATURES:
+================================================================================
+
+✅ Works with existing code (drop-in replacement)
+✅ Automatic fallback to local JSON files if API fails
+✅ No breaking changes
+✅ TypeScript support
+✅ Full verse parsing from HTML content
+✅ Support for multiple Bible translations
+✅ Easy to test and debug
+✅ Development test component included
+
+================================================================================
+📝 HOW IT WORKS:
+================================================================================
+
+1. App requests verses for a chapter
+2. Hook checks if API is enabled (useApiIfAvailable: true)
+3. If API is enabled:
+   - Tries to fetch from REST API
+   - If successful, returns verses with source: 'api'
+   - If fails, falls back to local JSON
+4. If API is disabled:
+   - Uses local JSON files (current behavior)
+5. Verses are automatically parsed into your format:
+   { '1': 'verse text', '2': 'verse text', ... }
+
+================================================================================
+📚 ADDITIONAL RESOURCES:
+================================================================================
+
+Full API Documentation:
+  https://docs.api.bible/
+
+For detailed setup see:
+  BIBLE_API_SETUP.md
+  BIBLE_API_INTEGRATION.md
+
+For testing examples see:
+  test-bible-api.sh
+
+================================================================================
+
+Ready to use! Just set your API key in .env.local and test it out.
